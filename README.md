@@ -17,9 +17,7 @@ Chefmind es una aplicación desarrollada como proyecto final de Francisco Piaggi
 ### Setup ###
 
 1. Para instalar el proyecto primero debemos tener configurado composer:  
-```
 https://getcomposer.org/
-```
 
 2. Luego hay que instalar globalmente Laravel con el comando: 
 ```
