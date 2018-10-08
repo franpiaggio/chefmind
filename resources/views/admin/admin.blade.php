@@ -1,4 +1,4 @@
-@extends('layout')
+@extends('layouts.webLayout')
 @section('title', 'Admin')
 @section('content')
     <h1>Vistas solo de administrador</h1>

@@ -13,6 +13,6 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request){
-        return view('home');
+        return view('web.home');
     }
 }

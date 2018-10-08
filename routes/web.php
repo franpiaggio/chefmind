@@ -12,7 +12,9 @@
 */
 
 Route::get('/', 'HomeController@index');
-Route::get('/recetas', 'RecetasController@index');
 Route::get('/contacto', 'ContactoController@index');
-Route::get('admin', 'AdminController@index');
+Route::get('/admin', 'AdminController@index');
+
+Route::get('/recetas', 'RecetasController@index');
+Route::get('/recetas/{id}', 'RecetasController@show');
 Auth::routes();
