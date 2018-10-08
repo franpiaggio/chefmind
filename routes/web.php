@@ -11,11 +11,8 @@
 |
 */
 
-Route::get('/welcome', function () {
-    return view('welcome');
-});
-
 Route::get('/', 'HomeController@index');
 Route::get('/recetas', 'RecetasController@index');
 Route::get('/contacto', 'ContactoController@index');
-
+Route::get('admin', 'AdminController@index');
+Auth::routes();

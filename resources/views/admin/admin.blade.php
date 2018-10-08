@@ -1,7 +1,7 @@
 @extends('layout')
-@section('title', 'Home')
+@section('title', 'Admin')
 @section('content')
-    <h1>Home</h1>
+    <h1>Vistas solo de administrador</h1>
     <!-- Chequeo manual -->
     @if(Auth::check())
         @if(Auth::user()->hasRole('admin'))
