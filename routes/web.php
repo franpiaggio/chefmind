@@ -16,5 +16,8 @@ Route::get('/contacto', 'ContactoController@index');
 Route::get('/admin', 'AdminController@index');
 
 Route::get('/recetas', 'RecetasController@index');
+Route::get('/recetas/nueva', 'RecetasController@create');
 Route::get('/recetas/{id}', 'RecetasController@show');
+
+
 Auth::routes();
