@@ -24,7 +24,7 @@ https://getcomposer.org/
 composer global require "laravel/installer"
 ```
 
-* Para iniciar el proyecto local sobre la raiz del proyecto ejecutar:
+* Para iniciar el proyecto local sobre la raiz ejecutar:
 ```
 php artisan serve
 ```
