@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Recipe extends Model
 {
-    protected $filable = [
+    protected $fillable = [
       'title', 'body', 'published_at' 
     ];
 }
