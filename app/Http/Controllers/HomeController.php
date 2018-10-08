@@ -13,9 +13,6 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request){
-        if( Auth::check() ){
-            $request->user()->authorizeRoles(['user', 'admin']);
-        }
         return view('home');
     }
 }
