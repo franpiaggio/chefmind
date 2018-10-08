@@ -27,4 +27,53 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Relation with role table
+     */
+    public function roles(){
+        return $this
+            ->belongsToMany('App\Role')
+            ->withTimestamps();
+    }
+
+    /**
+     * Verifica si tiene algún rol asignado
+     * Si no lo tiene arroja un error
+     */
+    public function authorizeRoles($roles){
+        if ($this->hasAnyRole($roles)) {
+            return true;
+        }
+        abort(401, 'Esta acción no está autorizada.');
+    }
+
+    /**
+     * Verifica si tiene un listado o un solo rol
+     * En ambos casos verifica que sea válido
+     */
+    public function hasAnyRole($roles){
+        if (is_array($roles)) {
+            foreach ($roles as $role) {
+                if ($this->hasRole($role)) {
+                    return true;
+                }
+            }
+        } else {
+            if ($this->hasRole($roles)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Verifica si el rol existe
+     */
+    public function hasRole($role){
+        if ($this->roles()->where('name', $role)->first()) {
+            return true;
+        }
+        return false;
+    }
 }
