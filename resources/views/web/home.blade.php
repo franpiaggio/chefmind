@@ -1,7 +1,7 @@
 @extends('layouts.webLayout')
-@section('title', 'Admin')
+@section('title', 'Home')
 @section('content')
-    <h1>Vistas solo de administrador</h1>
+    <h1>Home</h1>
     <!-- Chequeo manual -->
     @if(Auth::check())
         @if(Auth::user()->hasRole('admin'))
