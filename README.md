@@ -24,6 +24,13 @@ https://getcomposer.org/
 composer global require "laravel/installer"
 ```
 
+* La base de datos debe llamarse "chefmind" como está configurado en el archivo /.env
+
+* Para generar los datos de prueba correr el comando:  
+```
+php artisan migrate:refresh --seed
+```
+
 * Para iniciar el proyecto local sobre la raiz ejecutar:
 ```
 php artisan serve
