@@ -29,6 +29,9 @@
             <li>
                 <a href="recetas/nueva">Crear receta nueva</a>
             </li>
+            <li>
+                <a href="recetas/mis-recetas">Mis recetas</a>
+            </li>
             @if(Auth::user()->hasRole('admin'))
                 <li>
                     <a href="/admin">Vista que solo pueden ver los admin</a>                    
