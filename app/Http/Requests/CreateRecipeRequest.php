@@ -26,8 +26,7 @@ class CreateRecipeRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
-    {
+    public function rules(){
         return [
             'title' => 'required|min:3',
             'body' => 'required'
