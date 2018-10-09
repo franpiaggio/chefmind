@@ -17,7 +17,10 @@ Route::get('/admin', 'AdminController@index');
 
 Route::get('/recetas', 'RecetasController@index');
 Route::get('/recetas/nueva', 'RecetasController@create');
+Route::get('/recetas/mis-recetas', 'RecetasController@userRecipes');
 Route::get('/recetas/{id}', 'RecetasController@show');
-
+Route::get('recetas/{id}/editar', 'RecetasController@edit');
+Route::post('/recetas', 'RecetasController@store');
+Route::patch('/recetas/{id}', 'RecetasController@update');
 
 Auth::routes();
