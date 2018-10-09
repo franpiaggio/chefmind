@@ -29,7 +29,7 @@ class User extends Authenticatable
     ];
 
     /**
-     * Relation with role table
+     * Relación con tabla de roles
      */
     public function roles(){
         return $this
@@ -75,5 +75,12 @@ class User extends Authenticatable
             return true;
         }
         return false;
+    }
+
+    /**
+     * Relación con tabla de recetas
+     */
+    public function recipes(){
+        return $this->hasMany('App\Recipe');
     }
 }
