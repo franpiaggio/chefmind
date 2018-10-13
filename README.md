@@ -22,7 +22,12 @@ https://getcomposer.org/
 * Luego hay que instalar globalmente Laravel con el comando: 
 ```
 composer global require "laravel/installer"
+```  
+
+* Actualizar las dependencias de composer
 ```
+composer install
+```  
 
 * La base de datos debe llamarse "chefmind" como está configurado en el archivo /.env
 
