@@ -23,7 +23,7 @@
                 @endif
             </li>
         @else
-            <li class="nav-item dropdown">
+            <li class="nav-item">
                 Nombre de usuario: {{ Auth::user()->name }} <span class="caret"></span>
             </li>
             <li>
@@ -39,11 +39,11 @@
             @endif
             <li>
                 <a 
-                class="dropdown-item" href="{{ route('logout') }}"
+                href="{{ route('logout') }}"
                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     {{ __('Logout') }}
                 </a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                <form id="logout-form" action="{{ route('logout') }}" method="POST">
                     @csrf
                 </form>
             </li>

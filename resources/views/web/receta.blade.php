@@ -3,11 +3,21 @@
 @section('content')
     <h1>{{$recipe->title}}</h1>
     <p> {{ $recipe->body }} </p>
+    {{-- Categorias (si es que tiene) --}}
     @unless ( $recipe->categories->isEmpty() )
         <p>Categorías</p>
         <ul>
             @foreach($recipe->categories as $category)
                 <li>{{$category->name}}</li>
+            @endforeach
+        </ul>
+    @endunless
+    {{-- Ingredientes --}}
+    @unless ( $recipe->ingredients->isEmpty() )
+        <p>Ingredientes</p>
+        <ul>
+            @foreach($recipe->ingredients as $ingredient)
+                <li>{{$ingredient->name}}</li>
             @endforeach
         </ul>
     @endunless

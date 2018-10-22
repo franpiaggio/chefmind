@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use \App\Recipe;
 use Carbon\Carbon;
+use App\Ingredient;
 use App\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -94,6 +95,8 @@ class RecetasController extends Controller
         $recipe->update($request->all());
         // Actualiza las categorias sin repetirlas
         $this->syncCategories( $recipe, $request->input('categories') );
+        // Actualiza los ingredientes
+        $this->syncIngredients( $recipe, $request->input('ingredients') );
         // Vuelvo a la vista de recetas
         return redirect('recetas');
     }
@@ -106,6 +109,8 @@ class RecetasController extends Controller
         Auth::user()->recipes()->save($recipe);
         // Guardo las categorias una vez creada la receta porque necesito que se genere un ID
         $this->syncCategories( $recipe, $request->input('categories') );
+        // Guardo los ingredientes
+        $this->syncIngredients( $recipe, $request->input('ingredients') );
         return $recipe;
     }
     
@@ -114,7 +119,39 @@ class RecetasController extends Controller
      * @param Recipe $recipe
      * @param array $categories
      */
-    private function syncCategories(Recipe $recipe, array $categories){
-        $recipe->categories()->sync($categories);
+    private function syncCategories(Recipe $recipe, $categories){
+        // Si existe
+        if($categories){
+            // Sincroniza
+            $recipe->categories()->sync($categories);
+        }else{
+            // Si llegan vacias es porque borró todas las categorías, entonces sincronizo vacio
+            $categories = [];
+            $recipe->categories()->sync($categories);
+        }
+    }
+
+    /**
+     * Sincroniza receta con ingredientes en la base de datos
+     * @param Recipe $recipe
+     * @param array $ingredients
+     */
+    private function syncIngredients(Recipe $recipe, $ingredients){
+        if($ingredients){
+            // Array de ids
+            $ingredientsIds = [];
+            forEach($ingredients as $ingredient){
+                // Si existe lo guarda, sino lo crea
+                $current = Ingredient::firstOrCreate( ["name" => $ingredient] );
+                // Push al array
+                $ingredientsIds[] = $current->id;             
+            }
+            // Sinc de todos los ingredientes agregados 
+            $recipe->ingredients()->sync($ingredientsIds);
+        }else{
+            // Si no llegan ingredientes es porque los borró todos
+            $ingredientsIds = [];
+            $recipe->ingredients()->sync($ingredientsIds);
+        }
     }
 }
