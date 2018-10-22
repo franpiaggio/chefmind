@@ -15,7 +15,18 @@ class CreateCategoriesTable extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title');
+            $table->string('name');
+            $table->timestamps();
+        });
+
+        Schema::create('category_recipe', function(Blueprint $table){
+
+            $table->integer('category_id')->unsigned()->index();
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            
+            $table->integer('recipe_id')->unsigned()->index();
+            $table->foreign('recipe_id')->references('id')->on('recipes')->onDelete('cascade');
+            
             $table->timestamps();
         });
     }
@@ -27,6 +38,8 @@ class CreateCategoriesTable extends Migration
      */
     public function down()
     {
+        
+        Schema::dropIfExists('category_recipe');
         Schema::dropIfExists('categories');
     }
 }

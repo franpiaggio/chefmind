@@ -19,4 +19,11 @@ class Recipe extends Model{
     public function user(){
       return $this->belongsTo('App\User');
     }
+
+    /**
+     * Relación de categorias con recetas
+     */
+    public function categories(){
+      return $this->belongsToMany('App\Category')->withTimestamps();;
+    }
 }
