@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use \App\Recipe;
 use Carbon\Carbon;
+use App\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\CreateRecipeRequest;
@@ -53,7 +54,8 @@ class RecetasController extends Controller
      * @return Response
      */
     public function create(){
-        return view('user.crearReceta');
+        $categories = Category::all();
+        return view('user.crearReceta', compact('categories'));
     }
 
     /**
@@ -63,11 +65,7 @@ class RecetasController extends Controller
      */
     public function store(CreateRecipeRequest $request){
         // Creo una nueva receta con la info del formulario
-        $recipe = new Recipe($request->all());
-        // Seteo la fecha
-        $recipe['published_at'] = Carbon::now(); 
-        // Guardo con el usuario la nueva receta
-        Auth::user()->recipes()->save($recipe);
+        $this->createRecipe($request);
         // Vuelvo a ver las recetas
         return redirect('recetas');
     }
@@ -78,16 +76,45 @@ class RecetasController extends Controller
      * @return Response
      */
     public function edit(EditRecipeRequest $request ,$id){
+        // Receta seleccionada
         $recipe = Recipe::find($id);
-        return view('user.editarReceta', compact('recipe'));
+        // Todas las categorias
+        $categories = Category::all();
+        // Devuelvo vista
+        return view('user.editarReceta', compact('recipe', 'categories'));
     }
 
     /**
      * Edita una receta
      */
     public function update($id, CreateRecipeRequest $request){
+        // Busca y si no encuentra arroja un error
         $recipe = Recipe::findOrfail($id);
+        // Actualiza todos los datos
         $recipe->update($request->all());
+        // Actualiza las categorias sin repetirlas
+        $this->syncCategories( $recipe, $request->input('categories') );
+        // Vuelvo a la vista de recetas
         return redirect('recetas');
+    }
+
+    private function createRecipe( CreateRecipeRequest $request ){
+        $recipe = new Recipe($request->all());
+        // Seteo la fecha
+        $recipe['published_at'] = Carbon::now(); 
+        // Guardo con el usuario la nueva receta
+        Auth::user()->recipes()->save($recipe);
+        // Guardo las categorias una vez creada la receta porque necesito que se genere un ID
+        $this->syncCategories( $recipe, $request->input('categories') );
+        return $recipe;
+    }
+    
+    /**
+     * Sincroniza receta con categorías en la base de dadtos
+     * @param Recipe $recipe
+     * @param array $categories
+     */
+    private function syncCategories(Recipe $recipe, array $categories){
+        $recipe->categories()->sync($categories);
     }
 }
