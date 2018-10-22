@@ -19,5 +19,7 @@ class DatabaseSeeder extends Seeder
         $this->call(RecipeTableSeeder::class);
         // Categorias de prueba
         $this->call(CategoryTableSeeder::class);
+        // Ingredientes iniciales
+        $this->call(IngredientTableSeeder::class);
     }
 }
