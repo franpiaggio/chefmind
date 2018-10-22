@@ -19,7 +19,11 @@ class CategoryTableSeeder extends Seeder
         $category = new Category();
         $category->name = "Categoría 1";
         $category->save();
+        $category2 = new Category();
+        $category2->name = "Categoría 2";
+        $category2->save();
         // Asigno categoria a receta
         $recipe->categories()->attach($category);
+        $recipe->categories()->attach($category2);
     }
 }
