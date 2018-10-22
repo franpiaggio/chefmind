@@ -2,20 +2,14 @@
 @section('title', 'Todas las recetas')
 @section('content')
     <h1>Crear una receta</h1>
-    <!-- Formulario de laravel -->
-    {!! Form::open(['url' => 'recetas']) !!}
-        <div>
-            {!! Form::label('title', 'Nombre') !!} <br>
-            {!! Form::text('title') !!}
-        </div>
-        <div>
-            {!! Form::label('body', 'Descripción') !!}<br>
-            {!! Form::textarea('body') !!} 
-        </div>
-        <div>
-            {!! Form::submit('Crear receta') !!}
-        </div>
-    {!! Form::close() !!}
+    <form method="POST" action="/recetas">
+        @csrf
+        <label for="title">Nombre</label><br>
+        <input type="text" name="title"><br>
+        <label for="body">Descripción</label><br>
+        <textarea name="body" cols="30" rows="10"></textarea><br>
+        <input type="submit">
+    </form>
     <!-- Errores del server -->
     <div>
         @if($errors->any())
