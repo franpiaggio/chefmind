@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
+use App\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -20,9 +22,8 @@ class AdminController extends Controller
     }
 
     /**
-     * Show the application dashboard.
+     * Dashboard del admin
      *
-     * @return \Illuminate\Http\Response
      */
     public function index(Request $request){
         // Ejemplo para validar solo admins
@@ -30,5 +31,37 @@ class AdminController extends Controller
             $request->user()->authorizeRoles(['admin']);
         }
         return view('admin.admin');
+    }
+
+    /**
+     * Vista de usuarios
+     */
+    public function adminUsers(Request $request){
+        if( Auth::check() ){
+            $request->user()->authorizeRoles(['admin']);
+        }
+        return view('admin.users', ['users' => User::paginate(5)]);
+    }
+
+    /**
+     * Vista de edición
+     */
+    public function editUser(Request $request, $id){
+        return view('admin.userEdit', ["user" => User::find($id), "roles" => Role::all() ]);
+    }
+
+    /**
+     * Edición de usuario
+     */
+    public function update(Request $request, $id){
+        // Busca y si no encuentra arroja un error
+        $user = User::findOrfail($id);
+        $role = Role::findOrfail($request->input('role'));
+        // Actualiza todos los datos
+        $user->update($request->all());
+        // Actualizo el rol
+        $user->roles()->sync($role);
+        // Vuelvo a la vista de usuarios
+        return redirect('/admin/usuarios');
     }
 }

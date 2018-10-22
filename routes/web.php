@@ -13,6 +13,10 @@
 
 Route::get('/', 'HomeController@index');
 Route::get('/contacto', 'ContactoController@index');
+
+Route::get('/admin/usuarios/{id}/editar', 'AdminController@editUser');
+Route::patch('/admin/usuarios/{id}', 'AdminController@update');
+Route::get('/admin/usuarios', 'AdminController@adminUsers');
 Route::get('/admin', 'AdminController@index');
 
 Route::get('/recetas', 'RecetasController@index');
