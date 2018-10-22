@@ -15,8 +15,20 @@ class CreateIngredientsTable extends Migration
     {
         Schema::create('ingredients', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('title');
+            $table->string('name');
             $table->timestamps();
+        });
+
+        Schema::create('ingredient_recipe', function(Blueprint $table){
+
+            $table->integer('ingredient_id')->unsigned()->index();
+            $table->foreign('ingredient_id')->references('id')->on('ingredients')->onDelete('cascade');
+            
+            $table->integer('recipe_id')->unsigned()->index();
+            $table->foreign('recipe_id')->references('id')->on('recipes')->onDelete('cascade');
+            
+            $table->timestamps();
+
         });
     }
 
@@ -27,6 +39,7 @@ class CreateIngredientsTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('ingredient_recipe');
         Schema::dropIfExists('ingredients');
     }
 }
