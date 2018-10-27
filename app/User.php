@@ -29,6 +29,13 @@ class User extends Authenticatable
     ];
 
     /**
+     * Relación con tabla de estados
+     */
+    public function userState(){
+        return $this->belongsTo('App\UserState');
+    }
+
+    /**
      * Relación con tabla de roles
      */
     public function roles(){
