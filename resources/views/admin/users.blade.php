@@ -14,14 +14,23 @@
     </thead>
     <tbody>
         @foreach($users as $user)
-            <tr>
+            <tr @if($user->user_state_id == 2) class="table-danger" @endif>
                 <td>{{$user->id}}</td>
                 <td>{{$user->name}}</td>
                 <td>{{$user->email}}</td>
                 <td> 
-                        <a href="{{ url('admin/usuarios/'.$user->id.'/editar') }}">Editar</a>
                     @if( Auth::user()->id != $user->id )
-                        <a href="{{ url('admin/usuarios/'.$user->id.'/ban') }}"> Banear </a> 
+                        <a href="{{ url('admin/usuarios/'.$user->id.'/editar') }}">Editar</a>
+                        @if( $user->user_state_id == 1 ) 
+                            <a href="{{ url('admin/usuarios/'.$user->id.'/ban') }}">
+                                Banear 
+                            </a> 
+                        @elseif( $user->user_state_id == 2 )
+                            <a href="{{ url('admin/usuarios/'.$user->id.'/ban') }}">
+                                Desbanear 
+                            </a> 
+                        @endif
+                            
                         <a href="{{ url('admin/usuarios/'.$user->id.'/borrar') }}"> Borrar </a> 
                     @endif
                 </td>
