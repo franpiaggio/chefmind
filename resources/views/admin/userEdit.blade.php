@@ -22,6 +22,8 @@
         @endif
         <label for="email"> Mail: </label>
         <input class="form-control" type="email" name="email" value="{{$user->email}}"><br>
+        <label for="email"> Contraseña: </label> <br>
+        <input type="password" name="password" class="form-control" value="{{$user->password}}"><br>
         <input type="submit">
     {!! Form::close() !!}
 @endsection 

@@ -70,7 +70,9 @@ class LoginController extends Controller
             $this->guard()->logout();
             $request->session()->invalidate();
             // todo: enviar un mensaje indicando que estás baneado
-            return $this->loggedOut($request) ?: redirect('/');
+            return $this->loggedOut($request) ?: redirect('/login')->withErrors(
+                ['Tu usuario fué baneado del sistema. Para más información, contáctese con el adminsitrador.']
+            );
         }
     }
 }
