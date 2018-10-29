@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 class CreateRecipeRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
+     * Verifica que el usuario esté autorizado
      *
      * @return bool
      */
@@ -22,7 +22,7 @@ class CreateRecipeRequest extends FormRequest
     }
 
     /**
-     * Get the validation rules that apply to the request.
+     * Validaciones para la request
      *
      * @return array
      */

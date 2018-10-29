@@ -8,21 +8,21 @@ use Illuminate\Foundation\Http\FormRequest;
 class EditRecipeRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
+     * Verifica que el usuario sea dueño de la receta
      *
      * @return bool
      */
     public function authorize()
     {
-        $user    = app( 'auth' )->user();
+        $user   = app( 'auth' )->user();
         $recipe = Recipe::findOrFail( $this->id );
         return $recipe->user_id === $user->id;
         
     }
 
     /**
-     * Get the validation rules that apply to the request.
-     *
+     * Reglas de validación
+     * Aunque no las use tienen que ir vacias
      * @return array
      */
     public function rules()

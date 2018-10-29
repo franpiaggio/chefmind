@@ -28,6 +28,9 @@
                 Nombre de usuario: {{ Auth::user()->name }} <span class="caret"></span>
             </li>
             <li>
+                <a href="/admin/usuarios">Usuarios</a>
+            </li>
+            <li>
                 <a 
                 href="{{ route('logout') }}"
                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
