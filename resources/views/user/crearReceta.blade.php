@@ -13,9 +13,9 @@
 
         <label for="time">Dificultad</label>
         <select name="difficulty" class="form-control">
-            <option value="fácil">Fácil</option>
-            <option value="media">Media</option>
-            <option value="difícil">Difícil</option>
+            <option value="Fácil">Fácil</option>
+            <option value="Media">Media</option>
+            <option value="Difícil">Difícil</option>
         </select>
         
         {{-- Categorias El server trae todas --}}

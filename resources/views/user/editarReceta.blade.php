@@ -12,9 +12,13 @@
 
         <label for="time">Dificultad</label>
         <select name="difficulty" class="form-control">
-            <option value="fácil">Fácil</option>
-            <option value="media">Media</option>
-            <option value="difícil">Fácil</option>
+            @foreach( ['Fácil', 'Media', 'Difícil'] as $difficulty )
+                @if($difficulty == $recipe->difficulty)
+                    <option value="{{$recipe->difficulty}}" selected>{{$recipe->difficulty}}</option>
+                @else
+                    <option value="{{$difficulty}}">{{$difficulty}}</option>
+                @endif
+            @endforeach
         </select>
         
         <label for="categories">Categoria</label><br>
