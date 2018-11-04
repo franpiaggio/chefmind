@@ -2,6 +2,9 @@
 @section('title', 'Todas las recetas')
 @section('content')
     <h1>{{$recipe->title}}</h1>
+    @unless( !$recipe->featured_image )
+        <img style="max-height: 200px;" src="/uploads/featured/{{$recipe->featured_image}}" alt="{{$recipe->title}}">
+    @endunless
     <p> {{ $recipe->body }} </p>
     {{-- Categorias (si es que tiene) --}}
     @unless ( $recipe->categories->isEmpty() )

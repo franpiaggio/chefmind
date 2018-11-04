@@ -4,13 +4,15 @@ namespace App\Http\Controllers;
 
 use App\User;
 use \App\Recipe;
+use App\Category;
 use Carbon\Carbon;
 use App\Ingredient;
-use App\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\CreateRecipeRequest;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\EditRecipeRequest;
+use App\Http\Requests\CreateRecipeRequest;
 
 class RecetasController extends Controller
 {
@@ -88,11 +90,33 @@ class RecetasController extends Controller
     /**
      * Edita una receta
      */
-    public function update($id, CreateRecipeRequest $request){
+    public function update($id, Request $request){
+        $validatedData = $request->validate([
+            'title' => 'required|min:3',
+            'body' => 'required',
+        ]);
         // Busca y si no encuentra arroja un error
         $recipe = Recipe::findOrfail($id);
+        // Receta editada
+        $edited = $request->all();
+        // Chequeo la imagen destacada
+        if(is_null($edited['featured_image'])){
+            // Si no hay nada dejo la anterior
+            $edited['featured_image'] = $recipe->featured_image;
+        }else if( file_exists( public_path().'/uploads/featured/'.$recipe->_featured_image) ){
+            // Borro la anterior
+            File::delete(public_path().'/uploads/featured/'.$recipe->featured_image);
+            // Obtengo el archivo
+            $featured = $request->file('featured_image');
+            // Nombre por la fecha
+            $filename = time().'.'.$featured->getClientOriginalExtension();
+            // Lo asigno al object
+            $edited['featured_image'] = $filename;
+            // La muevo a public
+            $featured->move(public_path('/uploads/featured/'), $filename);
+        };
         // Actualiza todos los datos
-        $recipe->update($request->all());
+        $recipe->update($edited);
         // Actualiza las categorias sin repetirlas
         $this->syncCategories( $recipe, $request->input('categories') );
         // Actualiza los ingredientes
@@ -103,6 +127,17 @@ class RecetasController extends Controller
 
     private function createRecipe( CreateRecipeRequest $request ){
         $recipe = new Recipe($request->all());
+        // La imagen es obligatoria, pero igual chequeo si está
+        if($recipe['featured_image']) {
+            // Obtengo el archivo
+            $featured = $request->file('featured_image');
+            // Nombre por la fecha
+            $filename = time().'.'.$featured->getClientOriginalExtension();
+            // Lo asigno al object
+            $recipe['featured_image'] = $filename;
+            // La muevo a public
+            $featured->move(public_path('/uploads/featured/'), $filename);
+        }
         // Seteo la fecha
         $recipe['published_at'] = Carbon::now(); 
         // Guardo con el usuario la nueva receta

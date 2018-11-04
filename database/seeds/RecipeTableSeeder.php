@@ -20,6 +20,7 @@ class RecipeTableSeeder extends Seeder
         $recipe = new Recipe();
         $recipe->title = "Receta de prueba";
         $recipe->body = "Esta es la descripción de la receta de prueba";
+        $recipe->featured_image = 'prueba.jpg';
         $recipe['published_at'] = Carbon::now(); 
         // Le asigno el primer usuario
         $user->recipes()->save($recipe);
