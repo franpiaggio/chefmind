@@ -31,6 +31,7 @@
         </select>
         <label for="body">Descripción</label><br>
         <textarea class="form-control" name="body" cols="30" rows="10">{{ old('body') }}</textarea><br>
+        
         <label for="featured_image">Imágen destacada</label> <br>
         <input name="featured_image" class="form-control" type="file" value="{{ old('featured_image') }}"><br>
 
