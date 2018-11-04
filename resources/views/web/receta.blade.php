@@ -8,6 +8,7 @@
     <p> {{ $recipe->body }} </p>
     <p>Tiempo estimado:  {{ $recipe->time ? $recipe->time : 'No especificado' }} </p>
     <p>Dificultad:  {{ $recipe->difficulty ? $recipe->difficulty : 'No especificado' }} </p>
+    <p>Cantidad:  {{ $recipe->quantity ? $recipe->quantity : 'No especificado' }}  {{$recipe->quantity && $recipe->quantity == 1 ? 'persona' : 'personas'}} </p>
     {{-- Categorias (si es que tiene) --}}
     @unless ( $recipe->categories->isEmpty() )
         <p>Categorías</p>

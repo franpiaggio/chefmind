@@ -11,6 +11,9 @@
         <label for="time">Tiempo estimado</label>
         <input type="text" class="form-control" name="time" value="{{old('title')}}">
 
+        <label for="quantity">Cantidad de personas</label>
+        <input type="number" class="form-control" name="quantity" value="{{old('quantity')}}">
+
         <label for="time">Dificultad</label>
         <select name="difficulty" class="form-control">
             <option value="Fácil">Fácil</option>

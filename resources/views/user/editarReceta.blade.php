@@ -10,6 +10,9 @@
         <label for="time">Tiempo estimado</label>
         <input type="text" class="form-control" name="time" value="{{$recipe->time}}">
 
+        <label for="quantity">Cantidad de personas</label>
+        <input type="number" class="form-control" name="quantity" value="{{$recipe->quantity}}">
+
         <label for="time">Dificultad</label>
         <select name="difficulty" class="form-control">
             @foreach( ['Fácil', 'Media', 'Difícil'] as $difficulty )
