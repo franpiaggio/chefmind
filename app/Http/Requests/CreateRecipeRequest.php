@@ -29,7 +29,8 @@ class CreateRecipeRequest extends FormRequest
     public function rules(){
         return [
             'title' => 'required|min:3',
-            'body' => 'required'
+            'body' => 'required',
+            'featured_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ];
     }
 }

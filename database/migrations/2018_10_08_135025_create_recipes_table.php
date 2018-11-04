@@ -17,7 +17,7 @@ class CreateRecipesTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->string('title');
-            $table->string('featured_image');
+            $table->string('featured_image')->default('empty.png');
             $table->text('body');
             $table->timestamps();
             $table->dateTime('published_at');

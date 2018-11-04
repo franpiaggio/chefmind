@@ -4,13 +4,13 @@ namespace App\Http\Controllers;
 
 use App\User;
 use \App\Recipe;
+use App\Category;
 use Carbon\Carbon;
 use App\Ingredient;
-use App\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Requests\CreateRecipeRequest;
 use App\Http\Requests\EditRecipeRequest;
+use App\Http\Requests\CreateRecipeRequest;
 
 class RecetasController extends Controller
 {
@@ -103,6 +103,12 @@ class RecetasController extends Controller
 
     private function createRecipe( CreateRecipeRequest $request ){
         $recipe = new Recipe($request->all());
+        if($recipe['featured_image']) {
+            $featured = $request->file('featured_image');
+            $filename = time().'.'.$featured->getClientOriginalExtension();
+            $recipe['featured_image'] = $filename;
+            $featured->move(public_path('/uploads/featured/'), $filename);
+        }
         // Seteo la fecha
         $recipe['published_at'] = Carbon::now(); 
         // Guardo con el usuario la nueva receta
