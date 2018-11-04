@@ -125,6 +125,25 @@ class RecetasController extends Controller
         return redirect('recetas');
     }
 
+    /**
+     * Borra la reseta enviada
+     */
+    public function delete(EditRecipeRequest $request, $id){
+        // Busco la receta
+        $recipe = Recipe::findOrFail($id);
+        // Guardo la ruta de la imagen
+        $featured = $recipe->featured_image;
+        // Borro la receta de la db
+        $recipe->delete();
+        // Si existía el archivo lo borro
+        if( file_exists( public_path().'/uploads/featured/'.$featured) ){
+            // Borro la anterior
+            File::delete(public_path().'/uploads/featured/'.$recipe->featured_image);
+        }
+        // Vuelvo a la vista
+        return back()->withErrors(['Borrado correctamente']);;
+    }
+
     private function createRecipe( CreateRecipeRequest $request ){
         $recipe = new Recipe($request->all());
         // La imagen es obligatoria, pero igual chequeo si está
