@@ -7,6 +7,10 @@
         
         <label for="title">Nombre</label><br>
         <input class="form-control" type="text" name="title" value="{{ old('title') }}"><br>
+
+        <label for="time">Tiempo estimado</label>
+        <input type="text" class="form-control" name="time" value="{{old('title')}}">
+        
         {{-- Categorias El server trae todas --}}
         <label for="categories">Categoria</label><br>
         <select class="form-control" id="categoriesSelector" name="categories[]" multiple>

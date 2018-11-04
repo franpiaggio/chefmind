@@ -100,7 +100,7 @@ class RecetasController extends Controller
         // Receta editada
         $edited = $request->all();
         // Chequeo la imagen destacada
-        if(is_null($edited['featured_image'])){
+        if(is_null($request->featured_image)){
             // Si no hay nada dejo la anterior
             $edited['featured_image'] = $recipe->featured_image;
         }else if( file_exists( public_path().'/uploads/featured/'.$recipe->_featured_image) ){

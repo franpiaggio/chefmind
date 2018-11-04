@@ -6,6 +6,9 @@
     {!! Form::model($recipe, ['method' => 'PATCH','url' => 'recetas/' . $recipe->id, 'enctype' => 'multipart/form-data']) !!}
         <label for="title">Nombre</label><br>
         <input class="form-control" type="text" name="title" value="{{$recipe->title}}"><br>
+
+        <label for="time">Tiempo estimado</label>
+        <input type="text" class="form-control" name="time" value="{{$recipe->time}}">
         
         <label for="categories">Categoria</label><br>
         <select class="form-control" id="categoriesSelector" name="categories[]" multiple>

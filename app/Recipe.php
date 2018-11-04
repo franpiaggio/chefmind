@@ -10,7 +10,7 @@ class Recipe extends Model{
      * Datos que se pueden completar
      */
     protected $fillable = [
-      'title', 'body', 'published_at', 'featured_image'
+      'title', 'body', 'published_at', 'featured_image', 'time'
     ];
 
     /**
