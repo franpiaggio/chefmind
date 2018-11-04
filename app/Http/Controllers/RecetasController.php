@@ -98,7 +98,7 @@ class RecetasController extends Controller
         // Busca y si no encuentra arroja un error
         $recipe = Recipe::findOrfail($id);
         // Receta editada
-        $edited = $request->all()
+        $edited = $request->all();
         // Chequeo la imagen destacada
         if(is_null($edited['featured_image'])){
             // Si no hay nada dejo la anterior
