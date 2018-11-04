@@ -18,6 +18,7 @@ class CreateRecipesTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->string('title');
             $table->string('time')->nullable();
+            $table->string('difficulty')->nullable();
             $table->string('featured_image')->default('empty.png');
             $table->text('body');
             $table->timestamps();

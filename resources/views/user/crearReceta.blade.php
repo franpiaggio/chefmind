@@ -10,6 +10,13 @@
 
         <label for="time">Tiempo estimado</label>
         <input type="text" class="form-control" name="time" value="{{old('title')}}">
+
+        <label for="time">Dificultad</label>
+        <select name="difficulty" class="form-control">
+            <option value="fácil">Fácil</option>
+            <option value="media">Media</option>
+            <option value="difícil">Difícil</option>
+        </select>
         
         {{-- Categorias El server trae todas --}}
         <label for="categories">Categoria</label><br>

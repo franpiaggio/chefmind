@@ -9,6 +9,13 @@
 
         <label for="time">Tiempo estimado</label>
         <input type="text" class="form-control" name="time" value="{{$recipe->time}}">
+
+        <label for="time">Dificultad</label>
+        <select name="difficulty" class="form-control">
+            <option value="fácil">Fácil</option>
+            <option value="media">Media</option>
+            <option value="difícil">Fácil</option>
+        </select>
         
         <label for="categories">Categoria</label><br>
         <select class="form-control" id="categoriesSelector" name="categories[]" multiple>

@@ -6,11 +6,8 @@
         <img style="max-height: 200px;" src="/uploads/featured/{{$recipe->featured_image}}" alt="{{$recipe->title}}">
     @endunless
     <p> {{ $recipe->body }} </p>
-    @if( $recipe->time )
-        <p>Tiempo estimado: {{$recipe->time}} </p>
-    @else
-        <p>Tiempo estimado: No especificado </p>
-    @endif
+    <p>Tiempo estimado:  {{ $recipe->time ? $recipe->time : 'No especificado' }} </p>
+    <p>Dificultad:  {{ $recipe->difficulty ? $recipe->difficulty : 'No especificado' }} </p>
     {{-- Categorias (si es que tiene) --}}
     @unless ( $recipe->categories->isEmpty() )
         <p>Categorías</p>
