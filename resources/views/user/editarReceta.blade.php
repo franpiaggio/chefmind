@@ -7,6 +7,9 @@
         <label for="title">Nombre</label><br>
         <input class="form-control" type="text" name="title" value="{{$recipe->title}}"><br>
 
+        <label for="textpreview">Descripción corta</label>
+        <textarea class="form-control" name="textpreview" cols="30" rows="2">{{ $recipe->textpreview}}</textarea><br>
+
         <label for="time">Tiempo estimado</label>
         <input type="text" class="form-control" name="time" value="{{$recipe->time}}">
 
