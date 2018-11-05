@@ -29,7 +29,7 @@ class RecetasController extends Controller
      * @return Response
      */
     public function index(){
-        $recipes = Recipe::latest()->get();
+        $recipes = Recipe::latest()->paginate(10);
         return view('web.recetas', compact('recipes'));
     }
 
@@ -38,7 +38,7 @@ class RecetasController extends Controller
      * @return Response
      */
     public function userRecipes(){
-        $recipes = User::find(Auth::user()->id)->recipes;
+        $recipes = User::find(Auth::user()->id)->recipes()->paginate(10);
         return view('user.misRecetas', compact('recipes'));
     }
 
@@ -49,6 +49,11 @@ class RecetasController extends Controller
      */
     public function show($id){
         $recipe = Recipe::findOrFail($id);
+        // Si está en un formato JSON lo parseo para devolver un HTML, sino devuelvo el texto
+        if(json_decode($recipe->body)){
+            $quill = new \DBlackborough\Quill\Render($recipe->body, 'HTML');
+            $recipe->body = $quill->render();
+        }
         return view('web.receta', compact('recipe'));
     }
 
@@ -100,7 +105,7 @@ class RecetasController extends Controller
         // Receta editada
         $edited = $request->all();
         // Chequeo la imagen destacada
-        if(is_null($edited['featured_image'])){
+        if(is_null($request->featured_image)){
             // Si no hay nada dejo la anterior
             $edited['featured_image'] = $recipe->featured_image;
         }else if( file_exists( public_path().'/uploads/featured/'.$recipe->_featured_image) ){
@@ -123,6 +128,25 @@ class RecetasController extends Controller
         $this->syncIngredients( $recipe, $request->input('ingredients') );
         // Vuelvo a la vista de recetas
         return redirect('recetas');
+    }
+
+    /**
+     * Borra la reseta enviada
+     */
+    public function delete(EditRecipeRequest $request, $id){
+        // Busco la receta
+        $recipe = Recipe::findOrFail($id);
+        // Guardo la ruta de la imagen
+        $featured = $recipe->featured_image;
+        // Borro la receta de la db
+        $recipe->delete();
+        // Si existía el archivo lo borro
+        if( file_exists( public_path().'/uploads/featured/'.$featured) ){
+            // Borro la anterior
+            File::delete(public_path().'/uploads/featured/'.$recipe->featured_image);
+        }
+        // Vuelvo a la vista
+        return back()->withErrors(['Borrado correctamente']);;
     }
 
     private function createRecipe( CreateRecipeRequest $request ){

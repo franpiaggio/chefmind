@@ -6,6 +6,23 @@
     {!! Form::model($recipe, ['method' => 'PATCH','url' => 'recetas/' . $recipe->id, 'enctype' => 'multipart/form-data']) !!}
         <label for="title">Nombre</label><br>
         <input class="form-control" type="text" name="title" value="{{$recipe->title}}"><br>
+
+        <label for="time">Tiempo estimado</label>
+        <input type="text" class="form-control" name="time" value="{{$recipe->time}}">
+
+        <label for="quantity">Cantidad de personas</label>
+        <input type="number" class="form-control" name="quantity" value="{{$recipe->quantity}}">
+
+        <label for="time">Dificultad</label>
+        <select name="difficulty" class="form-control">
+            @foreach( ['Fácil', 'Media', 'Difícil'] as $difficulty )
+                @if($difficulty == $recipe->difficulty)
+                    <option value="{{$recipe->difficulty}}" selected>{{$recipe->difficulty}}</option>
+                @else
+                    <option value="{{$difficulty}}">{{$difficulty}}</option>
+                @endif
+            @endforeach
+        </select>
         
         <label for="categories">Categoria</label><br>
         <select class="form-control" id="categoriesSelector" name="categories[]" multiple>
@@ -33,7 +50,9 @@
         </select><br>
 
         <label for="body">Descripción</label><br>
-        <textarea class="form-control" name="body" cols="30" rows="10">{{$recipe->body}}</textarea><br>
+        {{--<textarea class="form-control" name="body" cols="30" rows="10">{{$recipe->body}}</textarea><br>--}}
+        <input name="body" type="hidden" value="{{$recipe->body}}">
+        <div id="editor-container"></div>
 
         @unless( !$recipe->featured_image )
             <img style="max-height: 200px;" src="/uploads/featured/{{$recipe->featured_image}}" alt="{{$recipe->title}}"><br>
@@ -86,6 +105,29 @@
                     return object.text;
                 }
             });
+            var quill = new Quill('#editor-container', {
+                modules: {
+                    toolbar: [
+                        [{ header: [1, 2, false] }],
+                        ['bold', 'italic', 'underline', 'link'],
+                        ['image'],
+                        [{ list: 'ordered' }]
+                    ]
+                },
+                placeholder: 'Describinos tu receta',
+                theme: 'snow'
+            });
+            var form = document.querySelector('form');
+            var oldEditor = JSON.parse(document.querySelector('input[name=body]').value).ops;
+            var ops = [];
+            oldEditor.forEach(function(line) {
+                ops.push(line)
+            });
+            quill.setContents(ops, 'old');  
+            form.onsubmit = function() {
+                var body = document.querySelector('input[name=body]');
+                body.value = JSON.stringify(quill.getContents());  
+            };
         </script>
     @endsection
 
