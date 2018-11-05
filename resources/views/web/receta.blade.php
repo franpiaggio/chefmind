@@ -5,7 +5,7 @@
     @unless( !$recipe->featured_image )
         <img style="max-height: 200px;" src="/uploads/featured/{{$recipe->featured_image}}" alt="{{$recipe->title}}">
     @endunless
-    <p> {{ $recipe->body }} </p>
+    <p id="body"> {{ $recipe->body }} </p>
     <p>Tiempo estimado:  {{ $recipe->time ? $recipe->time : 'No especificado' }} </p>
     <p>Dificultad:  {{ $recipe->difficulty ? $recipe->difficulty : 'No especificado' }} </p>
     <p>Cantidad:  {{ $recipe->quantity ? $recipe->quantity : 'No especificado' }}  {{$recipe->quantity && $recipe->quantity == 1 ? 'persona' : 'personas'}} </p>
@@ -32,4 +32,10 @@
             <a href="{{ url('recetas/'.$recipe->id.'/editar') }}">Editar</a>
         @endif
     @endif
+    @section('footer')
+        <script>
+            // Lo que viene escapado lo inserto como html
+            $("#body").html( $("#body").text() );
+        </script>
+    @endsection
 @endsection 

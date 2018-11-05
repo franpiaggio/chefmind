@@ -29,7 +29,7 @@ class RecetasController extends Controller
      * @return Response
      */
     public function index(){
-        $recipes = Recipe::latest()->get();
+        $recipes = Recipe::latest()->paginate(10);
         return view('web.recetas', compact('recipes'));
     }
 
@@ -38,7 +38,7 @@ class RecetasController extends Controller
      * @return Response
      */
     public function userRecipes(){
-        $recipes = User::find(Auth::user()->id)->recipes;
+        $recipes = User::find(Auth::user()->id)->recipes()->paginate(10);
         return view('user.misRecetas', compact('recipes'));
     }
 
@@ -49,6 +49,11 @@ class RecetasController extends Controller
      */
     public function show($id){
         $recipe = Recipe::findOrFail($id);
+        // Si está en un formato JSON lo parseo para devolver un HTML, sino devuelvo el texto
+        if(json_decode($recipe->body)){
+            $quill = new \DBlackborough\Quill\Render($recipe->body, 'HTML');
+            $recipe->body = $quill->render();
+        }
         return view('web.receta', compact('recipe'));
     }
 

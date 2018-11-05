@@ -19,6 +19,7 @@ class RecipeTableSeeder extends Seeder
         // Creo una receta de prueba
         $recipe = new Recipe();
         $recipe->title = "Receta de prueba";
+        $recipe->textpreview = "Ideal para hacer pruebas";
         $recipe->body = "Esta es la descripción de la receta de prueba";
         $recipe->featured_image = 'prueba.jpg';
         $recipe->difficulty = 'Media';

@@ -11,11 +11,12 @@
                     @endunless
                     <div class="card-body">
                         <h5 class="card-title">{{ $recipe->title }}</h5>
-                        <p class="card-text">{{ $recipe->body }}</p>
+                        <p class="card-text">{{ $recipe->textpreview }}</p>
                         <a href="{{ url('/recetas', $recipe->id) }}" class="btn btn-primary">Ver receta</a>
                     </div>
                 </div>
             </div>
         @endforeach
     </div>
+    {{$recipes->links()}}
 @endsection 
