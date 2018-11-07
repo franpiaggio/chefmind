@@ -8,9 +8,7 @@ use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
 {
     /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
+     * Home de la web
      */
     public function index(Request $request){
         return view('web.home');

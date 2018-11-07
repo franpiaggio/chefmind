@@ -7,8 +7,6 @@
     @if(Auth::check())
         @if(Auth::user()->hasRole('admin'))
             <div>Acceso como administrador</div>
-        @else
-            <div>Acceso usuario</div>
         @endif
         Estas Logeado
     @endif
@@ -29,6 +27,9 @@
             </li>
             <li>
                 <a href="/admin/usuarios">Usuarios</a>
+            </li>
+            <li>
+                <a href="/admin/categorias">Categorías</a>
             </li>
             <li>
                 <a 

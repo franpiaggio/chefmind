@@ -90,4 +90,11 @@ class User extends Authenticatable
     public function recipes(){
         return $this->hasMany('App\Recipe');
     }
+
+    /**
+     * Relación con tabla de recetas
+     */
+    public function categories(){
+        return $this->hasMany('App\Category', 'category_recipe');
+    }
 }

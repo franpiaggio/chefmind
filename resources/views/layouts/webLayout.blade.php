@@ -33,6 +33,9 @@
             <a href="/recetas">Recetas</a>
         </li>
         <li>
+                <a href="/categorias">Categorias</a>
+            </li>
+        <li>
             <a href="/contacto">Contacto</a>
         </li>
     </ul>
