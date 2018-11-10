@@ -1,6 +1,7 @@
 @extends('layouts.webLayout')
 @section('title', 'Todas las recetas')
 @section('content')
+    <div class="container">
     <h1>{{$recipe->title}}</h1>
     @unless( !$recipe->featured_image )
         <img style="max-height: 200px;" src="/uploads/featured/{{$recipe->featured_image}}" alt="{{$recipe->title}}">
@@ -38,4 +39,5 @@
             $("#body").html( $("#body").text() );
         </script>
     @endsection
+    </div>
 @endsection 

@@ -1,6 +1,7 @@
 @extends('layouts.webLayout')
 @section('title', 'Todas las recetas')
 @section('content')
+<div class="container">
     <h1>Mis Recetas</h1>
     <div class="row">
         @if($errors->any())
@@ -25,4 +26,5 @@
         @endforeach  
     </div>
     {{$recipes->links()}}
+</div>
 @endsection 

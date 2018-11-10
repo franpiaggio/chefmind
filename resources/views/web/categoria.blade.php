@@ -1,7 +1,7 @@
 @extends('layouts.webLayout')
 @section('title', 'Categorias')
 @section('content')
-
+<div class="container">
 <h1>Categoria: {{$category->name}}</h1><br>
 @if($category->img)
     <img src="/uploads/categorias/{{$category->img}}" alt="{{$category->name}}" style="max-width: 300px"><br>
@@ -24,4 +24,5 @@
             </div>
         @endforeach
     </div>
+</div>
 @endsection 

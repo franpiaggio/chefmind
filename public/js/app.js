@@ -13705,6 +13705,8 @@ module.exports = __webpack_require__(36);
 
 __webpack_require__(12);
 
+// Si vamos a usar vue.js habilitar esto
+
 // window.Vue = require('vue');
 
 /**
