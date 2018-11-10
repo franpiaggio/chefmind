@@ -18,6 +18,11 @@ class CreateUsersTable extends Migration
             $table->integer('user_state_id')->unsigned()->default(1);
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('description')->nullable();
+            $table->string('facebook')->nullable();
+            $table->string('instagram')->nullable();
+            $table->string('twitter')->nullable();
+            $table->string('image')->default('profile.png');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

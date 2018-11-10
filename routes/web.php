@@ -31,5 +31,9 @@ Route::delete('/recetas/{id}', 'RecetasController@delete');
 Route::get('/categorias', 'CategoriesController@index');
 Route::get('/categoria/{id}', 'CategoriesController@show');
 Route::post('/categoria', 'CategoriesController@store');
+// Perfil
+Route::get('/miperfil/editar', 'PerfilController@editProfile');
+Route::get('/miperfil', 'PerfilController@index');
+
 
 Auth::routes();
