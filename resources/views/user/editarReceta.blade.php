@@ -1,6 +1,7 @@
 @extends('layouts.webLayout')
 @section('title', 'Todas las recetas')
 @section('content')
+    <div class="container">
     <h1>Editar: {{ $recipe->title }}</h1>
 
     {!! Form::model($recipe, ['method' => 'PATCH','url' => 'recetas/' . $recipe->id, 'enctype' => 'multipart/form-data']) !!}
@@ -132,6 +133,7 @@
                 body.value = JSON.stringify(quill.getContents());  
             };
         </script>
+    </div>
     @endsection
 
 @endsection 

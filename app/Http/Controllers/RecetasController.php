@@ -62,7 +62,7 @@ class RecetasController extends Controller
      * @return Response
      */
     public function create(){
-        $categories = Category::all();
+        $categories = Category::all()->where('active', 1);
         return view('user.crearReceta', compact('categories'));
     }
 
@@ -108,7 +108,7 @@ class RecetasController extends Controller
         if(is_null($request->featured_image)){
             // Si no hay nada dejo la anterior
             $edited['featured_image'] = $recipe->featured_image;
-        }else if( file_exists( public_path().'/uploads/featured/'.$recipe->_featured_image) ){
+        }else if( file_exists( public_path().'/uploads/featured/'.$recipe->featured_image) ){
             // Borro la anterior
             File::delete(public_path().'/uploads/featured/'.$recipe->featured_image);
             // Obtengo el archivo

@@ -15,8 +15,14 @@ class CreateCategoriesTable extends Migration
     {
         Schema::create('categories', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id')->nullable()->unsigned();
             $table->string('name');
+            $table->string('img')->nullable()->default(null);
+            $table->boolean('active')->default(0);
             $table->timestamps();
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users');
         });
 
         Schema::create('category_recipe', function(Blueprint $table){

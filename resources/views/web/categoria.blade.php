@@ -1,12 +1,14 @@
 @extends('layouts.webLayout')
-@section('title', 'Todas las recetas')
+@section('title', 'Categorias')
 @section('content')
 <div class="container">
-    <h1>Mis Recetas</h1>
-    <div class="row">
-        @if($errors->any())
-            <h4>{{$errors->first()}}</h4>
-        @endif
+<h1>Categoria: {{$category->name}}</h1><br>
+@if($category->img)
+    <img src="/uploads/categorias/{{$category->img}}" alt="{{$category->name}}" style="max-width: 300px"><br>
+@endif
+
+<h2>Recetas:</h2>
+<div class="row">
         @foreach($recipes as $recipe)
             <div class="col-md-4 my-3">
                 <div class="card" style="width: 18rem;">
@@ -16,15 +18,11 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ $recipe->title }}</h5>
                         <p class="card-text">{{ $recipe->textpreview }}</p>
-                        <a href="{{ url('/recetas', $recipe->id) }}" class="btn btn-primary d-inline">Ver receta</a>
-                        {{ Form::open(['url' => 'recetas/'.$recipe->id, 'method' => 'delete', 'class' => 'd-inline']) }}
-                            <input type="submit" class="btn btn-danger" value="borrar" />
-                        {{ Form::close() }}
+                        <a href="{{ url('/recetas', $recipe->id) }}" class="btn btn-primary">Ver receta</a>
                     </div>
                 </div>
             </div>
-        @endforeach  
+        @endforeach
     </div>
-    {{$recipes->links()}}
 </div>
 @endsection 
