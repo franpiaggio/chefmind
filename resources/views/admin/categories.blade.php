@@ -45,6 +45,6 @@
             @endforeach   
         </tbody>
         </table>
+        {{$categories->links()}}
     </div>
-    {{--$users->links()--}}
 @endsection 
