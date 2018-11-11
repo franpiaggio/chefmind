@@ -9,7 +9,7 @@ class PerfilController extends Controller{
      * Verifica con Auth en algunos métodos
      */
     public function __construct(){
-        $this->middleware('auth', ['only' => ['index', 'editProfile']]);
+        $this->middleware('auth', ['only' => ['index', 'editProfile', 'updateProfile']]);
     }
     /**
      * Vista de mi perfil
@@ -23,5 +23,12 @@ class PerfilController extends Controller{
      */
     public function editProfile(){
         return view('user.editarPerfil');
+    }
+
+    /**
+     * Actualiza datos del perfil
+     */
+    public function updateProfile(Request $request){
+        dd($request);
     }
 }

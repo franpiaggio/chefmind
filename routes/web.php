@@ -33,7 +33,9 @@ Route::get('/categoria/{id}', 'CategoriesController@show');
 Route::post('/categoria', 'CategoriesController@store');
 // Perfil
 Route::get('/miperfil/editar', 'PerfilController@editProfile');
+Route::patch('/miperfil/editar', 'PerfilController@updateProfile');
 Route::get('/miperfil', 'PerfilController@index');
+
 
 
 Auth::routes();
