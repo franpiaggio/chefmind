@@ -1,6 +1,8 @@
 <?php
 // Web
 Route::get('/', 'HomeController@index');
+Route::post('/buscar', 'HomeController@search');
+Route::get('/recetas', 'HomeController@list');
 Route::get('/contacto', 'ContactoController@index');
 // Admin Usuarios
 Route::get('/admin/usuarios/{id}/editar', 'AdminController@editUser');
