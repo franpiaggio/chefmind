@@ -1,7 +1,7 @@
 <?php
 // Web
 Route::get('/', 'HomeController@index');
-Route::post('/buscar', 'HomeController@search');
+Route::get('/buscar', 'HomeController@search');
 Route::get('/recetas', 'HomeController@list');
 Route::get('/contacto', 'ContactoController@index');
 // Admin Usuarios
@@ -27,6 +27,7 @@ Route::get('/recetas/mis-recetas', 'RecetasController@userRecipes');
 Route::get('/recetas/{id}', 'RecetasController@show');
 Route::get('recetas/{id}/editar', 'RecetasController@edit');
 Route::post('/recetas', 'RecetasController@store');
+Route::post('likeReceta', 'RecetasController@likeReceta');
 Route::patch('/recetas/{id}', 'RecetasController@update');
 Route::delete('/recetas/{id}', 'RecetasController@delete');
 // Categorias

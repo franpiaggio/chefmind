@@ -195,15 +195,6 @@ class AdminController extends Controller
             return back();
         }
         $user = User::findOrFail($id);
-        /*$userRecipes = $user->recipes();
-        if($userRecipes->first()){
-            foreach($userRecipes as $recipe){
-                $recipe->user_id = null;
-                $recipe->save();
-            }
-        }else{
-            dd('No tiene');
-        }*/
         $user->delete();
         return back();
     }

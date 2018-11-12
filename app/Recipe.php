@@ -2,9 +2,11 @@
 
 namespace App;
 
+use Overtrue\LaravelFollow\Traits\CanBeLiked;
 use Illuminate\Database\Eloquent\Model;
 
 class Recipe extends Model{
+    use CanBeLiked;
 
     /**
      * Datos que se pueden completar

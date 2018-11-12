@@ -20,7 +20,7 @@ class RecetasController extends Controller
      * Verifica con Auth en algunos métodos
      */
     public function __construct(){
-        $this->middleware('auth', ['only' => ['create', 'store', 'edit', 'update', 'userRecipes']]);
+        $this->middleware('auth', ['only' => ['create', 'store', 'edit', 'update', 'userRecipes', 'likeReceta']]);
     }
 
     /**
@@ -212,5 +212,16 @@ class RecetasController extends Controller
             $ingredientsIds = [];
             $recipe->ingredients()->sync($ingredientsIds);
         }
+    }
+
+    /**
+     * Da like a una receta
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function likeReceta(Request $request){
+        $recipe = Recipe::find($request->id);
+        $response = auth()->user()->toggleLike($recipe);
+        return response()->json(['success'=>$response]);
     }
 }
