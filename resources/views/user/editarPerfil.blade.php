@@ -18,17 +18,20 @@
             <input class="form-control" type="text" name="email" value="{{Auth::user()->email}}"><br>
 
             <label for="email"> Facebook: </label>
-            <input class="form-control" type="text" name="email" value="{{Auth::user()->facebook}}"><br>
+            <input class="form-control" type="text" name="facebook" value="{{Auth::user()->facebook}}"><br>
 
             <label for="email"> Twitter: </label>
-            <input class="form-control" type="text" name="email" value="{{Auth::user()->twitter}}"><br>
+            <input class="form-control" type="text" name="twitter" value="{{Auth::user()->twitter}}"><br>
 
             <label for="email"> Instagram: </label>
-            <input class="form-control" type="text" name="email" value="{{Auth::user()->instagram}}"><br>
+            <input class="form-control" type="text" name="instagram" value="{{Auth::user()->instagram}}"><br>
 
-            <label for="password"> Contraseña: </label> <br>
-            <input type="password" name="password" class="form-control" value="{{Auth::user()->password}}"><br>
             <input type="submit">
         {!! Form::close() !!}
+        <div>
+            @if($errors->any())
+                <pre> {{var_dump($errors)}} </pre>
+            @endif
+        </div>
     </div>
 @endsection
