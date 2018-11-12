@@ -1,54 +1,60 @@
 @extends('layouts.webLayout')
 @section('title', 'Home')
 @section('content')
-    <div class="container">
+    <div class="container mt-5">
         <h1>Home</h1>
-        <!-- Chequeo manual -->
-        @if(Auth::check())
-            @if(Auth::user()->hasRole('admin'))
-                <div>Acceso como administrador</div>
-            @else
-                <div>Acceso usuario</div>
-            @endif
-            Estas Logeado
-        @endif
-        <!-- Chequeo usando guest de blade -->
-        <ul>
-            @guest
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                </li>
-                <li class="nav-item">
-                    @if (Route::has('register'))
-                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                    @endif
-                </li>
-            @else
-                <li class="nav-item">
-                    Nombre de usuario: {{ Auth::user()->name }} <span class="caret"></span>
-                </li>
-                <li>
-                    <a href="recetas/nueva">Crear receta nueva</a>
-                </li>
-                <li>
-                    <a href="recetas/mis-recetas">Mis recetas</a>
-                </li>
-                @if(Auth::user()->hasRole('admin'))
-                    <li>
-                        <a href="/admin">Vista que solo pueden ver los admin</a>                    
-                    </li>
+        <label for="categories">Ingredientes</label><br>
+        <form method="POST" action="/buscar">
+            @csrf
+            <select class="form-control" name="ingredients[]" id="ingredientsSelector" multiple><br>
+                {{-- Si hay valores viejos los agrego --}}
+                @if( old('ingredients') )
+                    @foreach(old('ingredients') as $ingredient)
+                        <option value="{{$ingredient}}" selected>{{$ingredient}}</option>
+                    @endforeach
                 @endif
-                <li>
-                    <a 
-                    href="{{ route('logout') }}"
-                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                        {{ __('Logout') }}
-                    </a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST">
-                        @csrf
-                    </form>
-                </li>
-            @endguest
-        </ul>
+            </select>
+            <input type="submit" class="btn btn-primary">
+            <div>
+                @if($errors->any())
+                    <pre> {{var_dump($errors)}} </pre>
+                @endif
+            </div>
+        </form>
+        @section('footer')
+            <script>
+                $("#ingredientsSelector").select2({
+                language: "es",
+                placeholder: 'Ingresa los ingredientes',
+                minimumInputLength: 3,
+                tags: true,
+                ajax: {
+                    dataType: 'json',
+                    url: '/api/ingredients',
+                    delay: 250,
+                    data: function(params){
+                        return{
+                            ingredient: params.term
+                        }
+                    },
+                    processResults: function(data){
+                        // Le cambio la propiedad que viene como "name" a "text"
+                        var test = $.map(data, function (obj) {
+                            obj.id =  obj.text || obj.name; 
+                            obj.text = obj.text || obj.name;
+                            return obj;
+                        });
+                        // Devuelvo un object con la propiedad results como espera el plugin
+                        return {
+                            results: test
+                        }
+                    }
+                },
+                id: function(object) {
+                    return object.text;
+                }
+            });
+            </script>
+        @endsection
     </div>
 @endsection 

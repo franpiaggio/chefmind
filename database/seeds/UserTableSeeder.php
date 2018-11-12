@@ -23,6 +23,10 @@ class UserTableSeeder extends Seeder
         $user = new User();
         $user->name = 'usuario';
         $user->email = 'usuario@usuario.com';
+        $user->description = 'Un usuario de prueba para probar las funcionalidades del sistema';
+        $user->facebook = 'https://facebook.com';
+        $user->instagram = 'https://instagram.com';
+        $user->twitter = 'https://twitter.com';
         $user->password = bcrypt('usuario');
         // Lo guardo, asigno un stado y asigno un rol user
         $state_active->users()->save($user);

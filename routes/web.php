@@ -1,6 +1,8 @@
 <?php
 // Web
 Route::get('/', 'HomeController@index');
+Route::post('/buscar', 'HomeController@search');
+Route::get('/recetas', 'HomeController@list');
 Route::get('/contacto', 'ContactoController@index');
 // Admin Usuarios
 Route::get('/admin/usuarios/{id}/editar', 'AdminController@editUser');
@@ -31,5 +33,11 @@ Route::delete('/recetas/{id}', 'RecetasController@delete');
 Route::get('/categorias', 'CategoriesController@index');
 Route::get('/categoria/{id}', 'CategoriesController@show');
 Route::post('/categoria', 'CategoriesController@store');
+// Perfil
+Route::get('/miperfil/editar', 'PerfilController@editProfile');
+Route::patch('/miperfil/editar', 'PerfilController@updateProfile');
+Route::get('/miperfil', 'PerfilController@index');
+
+
 
 Auth::routes();
