@@ -22,10 +22,10 @@
                     <td>{{$category->name}}</td>
                     <td>{{ $category->active  ? 'activa' : 'inactiva'}}</td>
                     <td> 
-                        @if($category->user->id) 
+                        @if($category->user) 
                             <a href="usuario/{{$category->user->id}}">{{$category->user->name}}</a>
                         @else 
-                            {{$category->user->name}} 
+                            -
                         @endif 
                     </td>
                     <td><a href="/uploads/categorias/{{$category->img}}">Ver foto</a></td>
