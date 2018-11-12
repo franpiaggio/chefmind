@@ -3,10 +3,11 @@
 namespace App;
 
 use Overtrue\LaravelFollow\Traits\CanBeLiked;
+use Overtrue\LaravelFollow\Traits\CanBeFavorited;
 use Illuminate\Database\Eloquent\Model;
 
 class Recipe extends Model{
-    use CanBeLiked;
+    use CanBeLiked, canBeFavorited;
 
     /**
      * Datos que se pueden completar

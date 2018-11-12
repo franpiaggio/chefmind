@@ -24,10 +24,12 @@ Route::get('/admin', 'AdminController@index');
 Route::get('/recetas', 'RecetasController@index');
 Route::get('/recetas/nueva', 'RecetasController@create');
 Route::get('/recetas/mis-recetas', 'RecetasController@userRecipes');
+Route::get('/recetas/mis-favoritos', 'RecetasController@userFavs');
 Route::get('/recetas/{id}', 'RecetasController@show');
 Route::get('recetas/{id}/editar', 'RecetasController@edit');
 Route::post('/recetas', 'RecetasController@store');
 Route::post('likeReceta', 'RecetasController@likeReceta');
+Route::post('favReceta', 'RecetasController@favReceta');
 Route::patch('/recetas/{id}', 'RecetasController@update');
 Route::delete('/recetas/{id}', 'RecetasController@delete');
 // Categorias

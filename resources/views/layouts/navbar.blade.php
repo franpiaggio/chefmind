@@ -44,6 +44,7 @@
                         <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
                             <a class="dropdown-item waves-effect waves-light" href="/miperfil">Mi cuenta</a>
                             <a class="dropdown-item waves-effect waves-light" href="/recetas/mis-recetas">Mis recetas</a>
+                            <a class="dropdown-item waves-effect waves-light" href="/recetas/mis-favoritos">Mis favoritos</a>
                             <a 
                                 class="dropdown-item waves-effect waves-light"
                                 href="{{ route('logout') }}"

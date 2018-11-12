@@ -1,16 +1,11 @@
 @extends('layouts.webLayout')
-@section('title', 'Categorias')
+@section('title', 'Todas las recetas')
 @section('content')
-<div class="container">
-<h1>Categoria: {{$category->name}}</h1><br>
-@if($category->img)
-    <img src="/uploads/categorias/{{$category->img}}" alt="{{$category->name}}" style="max-width: 300px"><br>
-@endif
-
-<h2>Recetas:</h2>
-<div class="row">
+    <div class="container">
+    <h1>Mis recetas favoritas</h1>
+    <div class="row">
         @foreach($recipes as $recipe)
-            <div class="col-md-4 my-3">
+            <div id="receta{{$recipe->id}}" class="col-md-4 my-3">
                 <div class="card" style="width: 18rem;">
                     @unless( !$recipe->featured_image )
                         <img class="card-img-top" src="/uploads/featured/{{$recipe->featured_image}}" alt="{{$recipe->title}}">
@@ -21,7 +16,11 @@
                         <p>Likes: <span id="recetaLike{{$recipe->id}}">{{ $recipe->likers()->get()->count() }}</span> </p>
                         @auth
                             <p class="js-like" data-id="{{ $recipe->id }}"> 
-                                    {{ auth()->user()->hasLiked($recipe) ? 'Quitar like' : 'Dar like' }}
+                                {{ auth()->user()->hasLiked($recipe) ? 'Quitar like' : 'Dar like' }}
+                            </p>
+                            <hr>
+                            <p class="js-fav" data-id="{{ $recipe->id }}"> 
+                                {{ auth()->user()->hasFavorited($recipe) ? 'Eliminar de mis favoritos' : 'Agregar a favoritos' }}
                             </p>
                         @endauth
                         <a href="{{ url('/recetas', $recipe->id) }}" class="btn btn-primary">Ver receta</a>
@@ -37,6 +36,9 @@
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         }
                     });
+                    
+                    // Maneja likes
+
                     $(".js-like").click(function(){
                         var clicked = $(this);
                         var id = $(this).data('id');
@@ -55,12 +57,28 @@
                                         clicked.html("Quitar like");
                                     }
                                 }
-                            });
+                        });
+                    });
+
+                        // Maneja Favoritos
+                    $(".js-fav").click(function(){
+                        var clicked = $(this);
+                        var id = $(this).data('id');
+
+                        $.ajax({
+                            type:'POST',
+                                url:'/favReceta',
+                                data:{id:id},
+                                success:function(data){
+                                    if(jQuery.isEmptyObject(data.success.attached)){
+                                        $("#receta"+id).remove();
+                                    }
+                                }
+                        });
                     });
                 });
             </script>
         @endsection
     </div>
-
     </div>
 @endsection 

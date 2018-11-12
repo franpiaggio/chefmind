@@ -43,6 +43,15 @@ class RecetasController extends Controller
     }
 
     /**
+     * Vista de recetas del usuario
+     * @return Response
+     */
+    public function userFavs(){
+        $recipes = Auth::user()->favorites(Recipe::class)->get();
+        return view('user.misFavoritos', compact('recipes'));
+    }
+
+    /**
      * Vista particular de recetas
      * Muestra una sola si existe, sino tira 404
      * @return Response
@@ -223,5 +232,14 @@ class RecetasController extends Controller
         $recipe = Recipe::find($request->id);
         $response = auth()->user()->toggleLike($recipe);
         return response()->json(['success'=>$response]);
+    }
+
+    /**
+     * Agrega como favorita una receta a un usuario
+     */
+    public function favReceta(Request $request){
+        $recipe = Recipe::find($request->id);
+        $response = auth()->user()->toggleFavorite($recipe);
+        return response()->json(['success' => $response]);
     }
 }

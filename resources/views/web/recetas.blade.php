@@ -16,7 +16,11 @@
                         <p>Likes: <span id="recetaLike{{$recipe->id}}">{{ $recipe->likers()->get()->count() }}</span> </p>
                         @auth
                             <p class="js-like" data-id="{{ $recipe->id }}"> 
-                                    {{ auth()->user()->hasLiked($recipe) ? 'Quitar like' : 'Dar like' }}
+                                {{ auth()->user()->hasLiked($recipe) ? 'Quitar like' : 'Dar like' }}
+                            </p>
+                            <hr>
+                            <p class="js-fav" data-id="{{ $recipe->id }}"> 
+                                {{ auth()->user()->hasFavorited($recipe) ? 'Eliminar de mis favoritos' : 'Agregar a favoritos' }}
                             </p>
                         @endauth
                         <a href="{{ url('/recetas', $recipe->id) }}" class="btn btn-primary">Ver receta</a>
@@ -32,6 +36,9 @@
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         }
                     });
+                    
+                    // Maneja likes
+
                     $(".js-like").click(function(){
                         var clicked = $(this);
                         var id = $(this).data('id');
@@ -50,7 +57,26 @@
                                         clicked.html("Quitar like");
                                     }
                                 }
-                            });
+                        });
+                    });
+
+                        // Maneja Favoritos
+                    $(".js-fav").click(function(){
+                        var clicked = $(this);
+                        var id = $(this).data('id');
+
+                        $.ajax({
+                            type:'POST',
+                                url:'/favReceta',
+                                data:{id:id},
+                                success:function(data){
+                                    if(jQuery.isEmptyObject(data.success.attached)){
+                                        clicked.html("Agregar a favoritos");
+                                    }else{
+                                        clicked.html("Eliminar de favoritos");
+                                    }
+                                }
+                        });
                     });
                 });
             </script>
