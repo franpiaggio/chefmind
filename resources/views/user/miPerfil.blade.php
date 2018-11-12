@@ -39,7 +39,8 @@
                   <p><i class="fa fa-mail" aria-hidden="true"></i> {{ Auth::user()->email }}</p>
 
                   <hr>
-                  <a href="/miperfil/editar" class="btn btn-info btn-sm">Editar</a>
+                  <a href="/miperfil/editar" class="btn btn-info btn-sm">Editar datos</a>
+                  <a href="/miperfil/editarContraseña" class="btn btn-danger btn-sm">Cambiar contraseña</a>
 
                   <hr>
                   <span>{{ Auth::user()->description }}</span>
