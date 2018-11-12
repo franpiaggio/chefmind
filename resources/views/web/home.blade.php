@@ -4,8 +4,7 @@
     <div class="container mt-5">
         <h1>Home</h1>
         <label for="categories">Ingredientes</label><br>
-        <form method="POST" action="/buscar">
-            @csrf
+        <form method="GET" action="/buscar">
             <select class="form-control" name="ingredients[]" id="ingredientsSelector" multiple><br>
                 {{-- Si hay valores viejos los agrego --}}
                 @if( old('ingredients') )
