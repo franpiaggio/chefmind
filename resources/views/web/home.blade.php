@@ -15,6 +15,11 @@
                 @endif
             </select>
             <input type="submit" class="btn btn-primary">
+            <div>
+                @if($errors->any())
+                    <pre> {{var_dump($errors)}} </pre>
+                @endif
+            </div>
         </form>
         @section('footer')
             <script>

@@ -20,6 +20,9 @@ class HomeController extends Controller
      * Buscador
      */
     public function search(Request $request){
+        $validatedData = $request->validate([
+            'ingredients' => 'required'
+        ]);
         // Nombres ingresados
         $names = $request->all()['ingredients'];
         // Obtengo los ingredientes
