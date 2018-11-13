@@ -148,7 +148,6 @@
                         toolbar: [
                             [{ header: [1, 2, false] }],
                             ['bold', 'italic', 'underline', 'link'],
-                            ['image'],
                             [{ list: 'ordered' }]
                         ]
                     },
