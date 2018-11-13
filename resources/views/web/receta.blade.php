@@ -28,6 +28,17 @@
             @endforeach
         </ul>
     @endunless
+    {{-- Insertar galería acá--}}
+    @if( $recipe->images()->get() )
+        <div class="row">
+            @foreach( $recipe->images()->get() as $image )
+                <div class="col-md-3">
+                    <img style="max-width: 100%;" src="/uploads/imagenes/{{$image->name}}" alt="">
+                </div>
+            @endforeach
+        </div>
+    @endif
+    {{-- Si es el creador puede editar --}}
     @if(Auth::check())
         @if(Auth::user()->id === $recipe->user_id)
             <a href="{{ url('recetas/'.$recipe->id.'/editar') }}">Editar</a>

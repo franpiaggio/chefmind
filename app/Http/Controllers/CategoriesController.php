@@ -32,6 +32,7 @@ class CategoriesController extends Controller{
             'name' => 'required|min:3',
             'img' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
+        dd($request);
         $user = Auth::user();
         $cat = new Category();
         $cat->name = $request->name;

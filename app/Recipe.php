@@ -42,5 +42,12 @@ class Recipe extends Model{
      */
     public function comments(){
       return $this->hasMany('App\Comment');
-  }
+    }
+
+    /**
+     * Relación con tabla de comments
+     */
+    public function images(){
+      return $this->hasMany('App\Image');
+    }
 }

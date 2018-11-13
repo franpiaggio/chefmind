@@ -36,6 +36,7 @@ Route::post('likeReceta', 'RecetasController@likeReceta');
 Route::post('favReceta', 'RecetasController@favReceta');
 Route::patch('/recetas/{id}', 'RecetasController@update');
 Route::delete('/recetas/{id}', 'RecetasController@delete');
+Route::post('/borrarFoto', 'RecetasController@deleteImg');
 // Comentarios
 Route::post('/recetas/{id}/comment', 'CommentsController@store');
 Route::get('/comment/{id}/delete', 'CommentsController@delete');
