@@ -4,7 +4,7 @@
     <div class="container">
     <h1>Editar: {{ $recipe->title }}</h1>
 
-    {!! Form::model($recipe, ['method' => 'PATCH','url' => 'recetas/' . $recipe->id, 'enctype' => 'multipart/form-data']) !!}
+    {!! Form::model($recipe, ['method' => 'PATCH','url' => 'recetas/' . $recipe->id, 'enctype' => 'multipart/form-data', 'id'=>'enviar']) !!}
         <label for="title">Nombre</label><br>
         <input class="form-control" type="text" name="title" value="{{$recipe->title}}"><br>
 
@@ -121,7 +121,7 @@
                 placeholder: 'Describinos tu receta',
                 theme: 'snow'
             });
-            var form = document.querySelector('form');
+            var form = document.querySelector('#enviar');
             var oldEditor = JSON.parse(document.querySelector('input[name=body]').value).ops;
             var ops = [];
             oldEditor.forEach(function(line) {
@@ -129,6 +129,7 @@
             });
             quill.setContents(ops, 'old');  
             form.onsubmit = function() {
+                alert("Enviar");
                 var body = document.querySelector('input[name=body]');
                 body.value = JSON.stringify(quill.getContents());  
             };

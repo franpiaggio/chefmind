@@ -26,6 +26,9 @@ class CommentsController extends Controller{
         return back();
     }
 
+    /**
+     * Borra comentarios si el usuario auth es el dueño de la receta
+     */
     public function delete(Request $request, $id){
         $comment = Comment::findOrFail($id);
         if($comment->recipe->user_id != Auth::user()->id){

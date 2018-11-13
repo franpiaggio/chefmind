@@ -18,6 +18,10 @@ Route::patch('/admin/categoria/{id}', 'AdminController@updateCat');
 Route::get('/admin/categoria/{id}/editar', 'AdminController@editCat');
 Route::get('/admin/categoria/{id}/activar', 'AdminController@activateCats');
 Route::get('/admin/categoria/{id}/borrar', 'AdminController@deleteCat');
+// Admin recetas
+Route::get('/admin/recetas', 'AdminController@listRecipes');
+Route::get('/admin/recetas/{id}/borrar', 'AdminController@deleteRecipe');
+Route::get('/admin/buscar', 'AdminController@searchRecipe');
 // Admin
 Route::get('/admin', 'AdminController@index');
 // Recetas

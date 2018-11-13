@@ -69,6 +69,7 @@
                             </a>
                             <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
                                 <a class="dropdown-item waves-effect waves-light" href="/admin/usuarios">Usuarios</a>
+                                <a class="dropdown-item waves-effect waves-light" href="/admin/recetas">Todas las recetas</a>
                                 <a class="dropdown-item waves-effect waves-light" href="/admin/categorias">Categorías</a>
                             </div>
                         </li>

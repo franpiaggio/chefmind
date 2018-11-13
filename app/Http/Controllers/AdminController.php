@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use App\Role;
+use App\Recipe;
 use App\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -33,11 +34,26 @@ class AdminController extends Controller
         return view('admin.admin');
     }
 
+    
+    /**
+     * Lista todas las recetas para el admin
+     */
+    public function listRecipes(Request $request){
+        return view('admin.recipes', ['recipes' => Recipe::paginate(10)]);
+    }
+
+    /**
+     * Busca una receta
+     */
+    public function searchRecipe(Request $request){
+        return view('admin.recipes', ['recipes' => Recipe::where('title', 'LIKE', '%'.$request->search.'%')->paginate(10)]);
+    }
+
     /**
      * Vista de categorías
      */
     public function adminCats(Request $request){
-        return view('admin.categories', ['categories' => Category::paginate(5)]);
+        return view('admin.categories', ['categories' => Category::paginate(10)]);
     }
 
     /**
@@ -141,7 +157,7 @@ class AdminController extends Controller
      * Vista de usuarios
      */
     public function adminUsers(Request $request){
-        return view('admin.users', ['users' => User::paginate(5)]);
+        return view('admin.users', ['users' => User::paginate(10)]);
     }
 
     /**
@@ -196,6 +212,15 @@ class AdminController extends Controller
         }
         $user = User::findOrFail($id);
         $user->delete();
+        return back();
+    }
+
+    /**
+     * Borra una receta
+     */
+    public function deleteRecipe($id){
+        $recipe = Recipe::findOrFail($id);
+        $recipe->delete();
         return back();
     }
 }
