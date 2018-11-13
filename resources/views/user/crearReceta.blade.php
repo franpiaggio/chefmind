@@ -56,6 +56,10 @@
             <label for="featured_image">Imágen destacada</label> <br>
             <input name="featured_image" class="form-control" type="file" value="{{ old('featured_image') }}"><br>
 
+            <hr>
+            <label for="images[]">Galería</label> <br>
+            <input name="images[]" class="form-control" type="file" multiple><br>
+
             <input type="submit">
         </form>
     </div>

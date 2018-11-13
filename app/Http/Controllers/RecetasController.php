@@ -7,6 +7,7 @@ use \App\Recipe;
 use App\Category;
 use Carbon\Carbon;
 use App\Ingredient;
+use App\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -20,7 +21,7 @@ class RecetasController extends Controller
      * Verifica con Auth en algunos métodos
      */
     public function __construct(){
-        $this->middleware('auth', ['only' => ['create', 'store', 'edit', 'update', 'userRecipes', 'likeReceta']]);
+        $this->middleware('auth', ['only' => ['create', 'store', 'edit', 'update', 'userRecipes', 'likeReceta', 'deleteImg']]);
     }
 
     /**
@@ -108,6 +109,7 @@ class RecetasController extends Controller
         $validatedData = $request->validate([
             'title' => 'required|min:3',
             'body' => 'required',
+            'images.*' => 'mimes:jpeg,png,jpg,gif,svg'
         ]);
         // Busca y si no encuentra arroja un error
         $recipe = Recipe::findOrfail($id);
@@ -135,6 +137,17 @@ class RecetasController extends Controller
         $this->syncCategories( $recipe, $request->input('categories') );
         // Actualiza los ingredientes
         $this->syncIngredients( $recipe, $request->input('ingredients') );
+        // Si hay archivos los itero, guardo y relaciono
+        if($request->images){
+            foreach($request->images as $image){
+                $newImage = new Image();
+                $filename = time().'-'.$image->getClientOriginalName(); 
+                $image->move(public_path('/uploads/imagenes/'), $filename);
+                $newImage['name'] = $filename;
+                $newImage->recipe()->associate($recipe);
+                $newImage->save();                
+            }
+        }
         // Vuelvo a la vista de recetas
         return redirect('recetas');
     }
@@ -159,6 +172,11 @@ class RecetasController extends Controller
     }
 
     private function createRecipe( CreateRecipeRequest $request ){
+        // Validado de las múltiples imágenes, lo demás se valida con la request
+        $this->validate($request, [
+            'images.*' => 'mimes:jpeg,png,jpg,gif,svg'
+        ]);
+        // Instancio nueva receta
         $recipe = new Recipe($request->all());
         // La imagen es obligatoria, pero igual chequeo si está
         if($recipe['featured_image']) {
@@ -179,6 +197,17 @@ class RecetasController extends Controller
         $this->syncCategories( $recipe, $request->input('categories') );
         // Guardo los ingredientes
         $this->syncIngredients( $recipe, $request->input('ingredients') );
+        // Si hay archivos los itero, guardo y relaciono
+        if($request->images){
+            foreach($request->images as $image){
+                $newImage = new Image();
+                $filename = time().'-'.$image->getClientOriginalName(); 
+                $image->move(public_path('/uploads/imagenes/'), $filename);
+                $newImage['name'] = $filename;
+                $newImage->recipe()->associate($recipe);
+                $newImage->save();                
+            }
+        }
         return $recipe;
     }
     
@@ -241,5 +270,17 @@ class RecetasController extends Controller
         $recipe = Recipe::find($request->id);
         $response = auth()->user()->toggleFavorite($recipe);
         return response()->json(['success' => $response]);
+    }
+
+    /**
+     * Borra una imagen
+     */
+    public function deleteImg(Request $request){
+        $image = Image::findOrFail($request->id);
+        if( file_exists( public_path().'/uploads/imagenes/'.$image->name) ){
+            File::delete(public_path().'/uploads/imagenes/'.$image->name);
+            $image->delete();
+            return response()->json(['success']);
+        }
     }
 }
