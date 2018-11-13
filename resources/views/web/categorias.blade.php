@@ -43,7 +43,7 @@
                             <!-- Title -->
                             <h4 class="card-title"><strong>{{$category->name}}</strong></h4>
                             <!-- Subtitle -->
-                            <a href="/categoria/{{$category->id}} class="font-weight-bold indigo-text py-2">Ver recetas</a>                    
+                            <a href="/categoria/{{$category->id}}" class="font-weight-bold indigo-text py-2">Ver recetas</a>                    
                     </div>
                     
                     </div>

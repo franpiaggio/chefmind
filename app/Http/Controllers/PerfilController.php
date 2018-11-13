@@ -68,4 +68,11 @@ class PerfilController extends Controller{
         $user->save();
         return back();
     }
+
+    /**
+     * Obtiene el perfil de un usuario
+     */
+    public function getUser($id){
+
+    }
 }

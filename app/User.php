@@ -99,4 +99,11 @@ class User extends Authenticatable
     public function categories(){
         return $this->hasMany('App\Category', 'category_recipe');
     }
+
+    /**
+     * Relación con tabla de comments
+     */
+    public function comments(){
+        return $this->hasMany('App\Comment');
+    }
 }

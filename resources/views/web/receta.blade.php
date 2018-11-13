@@ -33,6 +33,34 @@
             <a href="{{ url('recetas/'.$recipe->id.'/editar') }}">Editar</a>
         @endif
     @endif
+    <hr>
+    <div class="card">
+        <div class="card-block py-3 px-3">
+            <form method="POST" action="/recetas/{{$recipe->id}}/comment">
+                @csrf
+                <div class="form-group">
+                    <label for="body">Comentario</label>
+                    <textarea name="body" cols="5" rows="10" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary">
+                </div>
+            </form>
+        </div>
+    </div>
+    <hr>
+    @if($recipe->comments())
+        @foreach( $recipe->comments()->get() as $comment )
+            <p> Comentario de <a href="#">{{$comment->user->name}}</a>
+            <p> {{$comment->body}} </p>
+            @if(Auth::check())
+                @if(Auth::user()->id === $recipe->user_id)
+                    <a href="{{ url('comment/'.$comment->id.'/delete') }}">Borrar comentario</a>
+                @endif
+            @endif
+            <hr>
+        @endforeach
+    @endif
     @section('footer')
         <script>
             // Lo que viene escapado lo inserto como html

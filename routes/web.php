@@ -32,6 +32,9 @@ Route::post('likeReceta', 'RecetasController@likeReceta');
 Route::post('favReceta', 'RecetasController@favReceta');
 Route::patch('/recetas/{id}', 'RecetasController@update');
 Route::delete('/recetas/{id}', 'RecetasController@delete');
+// Comentarios
+Route::post('/recetas/{id}/comment', 'CommentsController@store');
+Route::get('/comment/{id}/delete', 'CommentsController@delete');
 // Categorias
 Route::get('/categorias', 'CategoriesController@index');
 Route::get('/categoria/{id}', 'CategoriesController@show');
@@ -40,7 +43,7 @@ Route::post('/categoria', 'CategoriesController@store');
 Route::get('/miperfil/editar', 'PerfilController@editProfile');
 Route::patch('/miperfil/editar', 'PerfilController@updateProfile');
 Route::get('/miperfil', 'PerfilController@index');
-
-
-
+// Perfiles
+Route::get('/perfil/{id}', 'PerfilController@getUser');
+// Auth laravel
 Auth::routes();

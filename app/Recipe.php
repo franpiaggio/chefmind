@@ -36,4 +36,11 @@ class Recipe extends Model{
     public function ingredients(){
       return $this->belongsToMany('App\Ingredient')->withTimestamps();;
     }
+    
+    /**
+     * Relación con tabla de comments
+     */
+    public function comments(){
+      return $this->hasMany('App\Comment');
+  }
 }
