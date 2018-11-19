@@ -5,32 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <!-- Material Design Bootstrap -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.12/css/mdb.min.css" rel="stylesheet">  
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">    
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}"> 
     <!-- Externos -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
-    <!-- Libreria español -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/i18n/es.js"></script>
-    <script src="//cdn.quilljs.com/1.3.6/quill.min.js"></script>
-    <link href="//cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+    <link rel="stylesheet" href=" {{ asset('lib/bootstrap/css/bootstrap.min.css') }} ">
+    <link rel="stylesheet" href="  {{ asset('lib/font-awesome/font-awesome.min.css') }} ">
+    <link href="{{ asset('lib/select2/select2.min.css') }} " rel="stylesheet" />
+    <link href="{{ asset('lib/quill/quill.snow.css') }} " rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('lib/font-awesome/font-awesome.min.css') }} ">    
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
-    <!-- Styles -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <!-- Estilos -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- Scripts -->
+    <script src=" {{ asset('lib/bootstrap/js/bootstrap.bundle.min.js') }}  "></script>
+    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{asset('lib/select2/select2.min.js')}} "></script>
+    <script src="{{asset('lib/select2/es.js')}}"></script>
+    <script src="{{asset('lib/quill/quill.min.js')}}"></script>
     <title>@yield('title', 'Chefmind - Recetas online')</title>
 </head>
 <body>
     @include('layouts.navbar')
     @yield('content')
     @yield('footer')
-    <!-- MDB core JavaScript -->
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.13/js/mdb.min.js"></script>
 </body>
 </html>
