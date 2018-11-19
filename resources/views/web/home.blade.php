@@ -1,59 +1,45 @@
 @extends('layouts.webLayout')
 @section('title', 'Home')
 @section('content')
-    <div class="container mt-5">
-        <h1>Home</h1>
-        <label for="categories">Ingredientes</label><br>
-        <form method="GET" action="/buscar">
-            <select class="form-control" name="ingredients[]" id="ingredientsSelector" multiple><br>
-                {{-- Si hay valores viejos los agrego --}}
-                @if( old('ingredients') )
-                    @foreach(old('ingredients') as $ingredient)
-                        <option value="{{$ingredient}}" selected>{{$ingredient}}</option>
-                    @endforeach
-                @endif
-            </select>
-            <input type="submit" class="btn btn-primary">
-            <div>
-                @if($errors->any())
-                    <pre> {{var_dump($errors)}} </pre>
-                @endif
-            </div>
-        </form>
-        @section('footer')
-            <script>
-                $("#ingredientsSelector").select2({
-                language: "es",
-                placeholder: 'Ingresa los ingredientes',
-                minimumInputLength: 3,
-                tags: true,
-                ajax: {
-                    dataType: 'json',
-                    url: '/api/ingredients',
-                    delay: 250,
-                    data: function(params){
-                        return{
-                            ingredient: params.term
-                        }
-                    },
-                    processResults: function(data){
-                        // Le cambio la propiedad que viene como "name" a "text"
-                        var test = $.map(data, function (obj) {
-                            obj.id =  obj.text || obj.name; 
-                            obj.text = obj.text || obj.name;
-                            return obj;
-                        });
-                        // Devuelvo un object con la propiedad results como espera el plugin
-                        return {
-                            results: test
-                        }
-                    }
-                },
-                id: function(object) {
-                    return object.text;
-                }
-            });
-            </script>
-        @endsection
-    </div>
+<main class="main-container">
+    <section class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">Hola!</h1>
+            <p class="lead">Bienvenido a Chefmind</p>
+            <hr class="my-4">
+            <p>Ingresá los ingredientes que tenes disponibles:</p>
+            <form  method="GET" action="/buscar">
+                <div class="form-row">
+                    <div class="col-12 col-md-10 mb-2 mb-md-0">
+                        <select id="ingredientsSelector" name="ingredients[]" class="form-control form-control-lg js-ingredients" multiple>
+
+                        </select>
+                        <div>
+                            @if($errors->any())
+                                <pre> {{var_dump($errors)}} </pre>
+                            @endif
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-2">
+                        <input type="submit" class="btn btn-block btn-lg btn-primary" value="Buscar" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+    <section class="container mt-5">
+        <h2>Últimas recetas</h2>
+        <div class="row mt-5 equal">
+
+        </div>
+        <div class="row">
+            @include('web.listadoRecetas', ['recipes' => $latests])
+        </div>
+    </section>
+    @include('layouts.footer')
+    @section('footer')
+        <script src="{{ asset('js/home.js') }}"></script>
+        <script src="{{ asset('js/recetas.js') }}"></script>
+    @endsection
+</main>
 @endsection 

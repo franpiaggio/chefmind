@@ -1,73 +1,40 @@
 @foreach($recipes as $recipe)
-    <div class="col-md-4 my-3">
-        <div class="card" style="width: 18rem;">
-            @unless( !$recipe->featured_image )
-                <img class="card-img-top" src="/uploads/featured/{{$recipe->featured_image}}" alt="{{$recipe->title}}">
-            @endunless
-            <div class="card-body">
-                <h5 class="card-title">{{ $recipe->title }}</h5>
-                <p class="card-text">{{ $recipe->textpreview }}</p>
-                <p>Likes: <span id="recetaLike{{$recipe->id}}">{{ $recipe->likers()->get()->count() }}</span> </p>
-                @auth
-                    <p class="js-like" data-id="{{ $recipe->id }}"> 
-                        {{ auth()->user()->hasLiked($recipe) ? 'Quitar like' : 'Dar like' }}
-                    </p>
-                    <hr>
-                    <p class="js-fav" data-id="{{ $recipe->id }}"> 
-                        {{ auth()->user()->hasFavorited($recipe) ? 'Eliminar de mis favoritos' : 'Agregar a favoritos' }}
-                    </p>
-                @endauth
-                <a href="{{ url('/recetas', $recipe->id) }}" class="btn btn-primary">Ver receta</a>
+<div class="col-md-4 mb-3">
+    <div class="card">
+        @unless( !$recipe->featured_image )
+            <img class="card-img-top" src="/uploads/featured/{{$recipe->featured_image}}" alt="{{$recipe->title}}">
+        @endunless
+        <div class="card-body">
+            <h3 class="card-title">{{ $recipe->title }}</h3>
+            <p class="card-text">{{ $recipe->textpreview }}</p>
+            <a href="{{ url('/recetas', $recipe->id) }}" class="card-link">Ver Receta</a>
+        </div>
+        <div class="card-footer d-flex">
+            <small class="text-muted">Creada por <a href="#">{{$recipe->user->name}}</a></small>
+            <div class="icons ml-auto d-flex" id="recetaLike{{$recipe->id}}" >
+                <div data-id="{{ $recipe->id }}" class="like-receta d-flex {{auth()->user() ? 'js-like' : ''}}">
+                    <div class="icon-count mr-1">
+                        {{ $recipe->likers()->get()->count() }}	
+                    </div>
+                    <div class="like-icons">
+                        @if( auth()->user() && auth()->user()->hasLiked($recipe)) 
+                            <i class="fas fa-thumbs-up"></i>
+                        @else
+                            <i class="far fa-thumbs-up"></i>
+                        @endif
+                    </div>
+                </div>
+                <p class="js-fav ml-3" data-id="{{ $recipe->id }}">
+                    @if(auth()->user())
+                        @if(auth()->user()->hasFavorited($recipe))
+                            <i class="fas fa-heart"></i>
+                        @else
+                            <i class="far fa-heart"></i>
+                        @endif
+                    @endif
+                </p>
             </div>
         </div>
     </div>
+</div>
 @endforeach
-@section('footer')
-    <script>
-        $(document).ready(function(){
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-            // Maneja likes
-            $(".js-like").click(function(){
-                var clicked = $(this);
-                var id = $(this).data('id');
-                var number = $('#recetaLike'+id);
-
-                $.ajax({
-                    type:'POST',
-                        url:'/likeReceta',
-                        data:{id:id},
-                        success:function(data){
-                            if(jQuery.isEmptyObject(data.success.attached)){
-                                number.html(parseInt(number.text())-1);
-                                clicked.html("Dar like");
-                            }else{
-                                number.html(parseInt(number.text())+1);
-                                clicked.html("Quitar like");
-                            }
-                        }
-                });
-            });
-            // Maneja Favoritos
-            $(".js-fav").click(function(){
-                var clicked = $(this);
-                var id = $(this).data('id');
-                $.ajax({
-                    type:'POST',
-                        url:'/favReceta',
-                        data:{id:id},
-                        success:function(data){
-                            if(jQuery.isEmptyObject(data.success.attached)){
-                                clicked.html("Agregar a favoritos");
-                            }else{
-                                clicked.html("Eliminar de favoritos");
-                            }
-                        }
-                });
-            });
-        });
-    </script>
-@endsection

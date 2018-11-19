@@ -15,9 +15,9 @@ body {
 }
 
 /**
-*
+***************************
 * Migrar a archivos externos
-*
+***************************
 **/
 
 /**
@@ -34,6 +34,11 @@ body {
 
 .select2-selection {
   min-height: calc(2.875rem + 2px) !important;
+}
+
+.select2-search__field,
+.select2-selection__choice {
+  margin-top: 10px !important;
 }
 
 /* Navbar principal */
@@ -71,6 +76,11 @@ footer.footer {
   overflow: hidden;
   max-height: 70px;
   text-overflow: ellipsis;
+}
+
+.like-receta.js-like,
+.js-fav{
+  cursor: pointer;
 }
 
 /**
@@ -232,5 +242,37 @@ footer.footer {
 
 .gallery {
   border-top: 1px solid #cacaca;
+}
+
+/**
+*
+* Animaciones
+*
+**/
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+.pulse {
+  -webkit-animation-name: pulse;
+  animation-name: pulse;
+}
+@-webkit-keyframes pulse {
+  from {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    -webkit-transform: scale3d(1.05, 1.05, 1.05);
+    transform: scale3d(1.05, 1.05, 1.05);
+  }
+
+  to {
+    -webkit-transform: scale3d(1, 1, 1);
+    transform: scale3d(1, 1, 1);
+  }
 }
 

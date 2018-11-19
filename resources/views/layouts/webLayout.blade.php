@@ -17,8 +17,8 @@
     <!-- Estilos -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <!-- Scripts -->
-    <script src=" {{ asset('lib/bootstrap/js/bootstrap.bundle.min.js') }}  "></script>
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('lib/bootstrap/js/bootstrap.bundle.min.js') }} "></script>
     <script src="{{asset('lib/select2/select2.min.js')}} "></script>
     <script src="{{asset('lib/select2/es.js')}}"></script>
     <script src="{{asset('lib/quill/quill.min.js')}}"></script>

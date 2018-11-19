@@ -13,7 +13,8 @@ class HomeController extends Controller
      * Home de la web
      */
     public function index(Request $request){
-        return view('web.home');
+        $latests = Recipe::orderBy('created_at', 'desc')->take(6)->get();
+        return view('web.home', compact('latests'));
     }
 
     /**
@@ -39,6 +40,6 @@ class HomeController extends Controller
             ->havingRaw('COUNT(DISTINCT ingredient_id) = '.count($ids));
         })->paginate(10);
         // Devuelvo la vista con las recetas paginadas
-        return view('web.recetas', compact('recipes'));
+        return view('web.recetas', compact('recipes', 'names'));
     }
 }
