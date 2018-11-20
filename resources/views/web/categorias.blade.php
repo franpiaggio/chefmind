@@ -128,7 +128,7 @@
 </main>
 @include('layouts.footer')
 @section('footer')
-    <script src="{{ asset('js/home.js') }}"></script>
+    <script src="{{ asset('js/busquedas.js') }}"></script>
     <script src="{{ asset('js/recetas.js') }}"></script>
 @endsection
 @endsection 

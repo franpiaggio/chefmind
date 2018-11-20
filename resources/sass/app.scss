@@ -19,6 +19,20 @@
 ***************************
 **/
 
+body {
+  min-height: 100vh;
+}
+
+.logout-form {
+  display: none;
+}
+
+.navbar-laravel {
+  background-color: #fff;
+  -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+          box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
 /**
 *
 * Globales
@@ -26,6 +40,7 @@
 **/
 
 /* Select 2: buscador de ingredientes */
+
 .select2 {
   width: 100% !important;
 }
@@ -35,31 +50,35 @@
 }
 
 .select2-search__field,
-.select2-selection__choice{
-    margin-top: 10px !important;
+.select2-selection__choice {
+  margin-top: 10px !important;
 }
 
 /* Navbar principal */
-#menuPrincipal .registrarse{
+
+#menuPrincipal .registrarse {
   margin: 5px 0;
 }
-@media(min-width: 992px){
-  #menuPrincipal .registrarse{
-      margin-left: 15px !important;
+
+@media (min-width: 992px) {
+  #menuPrincipal .registrarse {
+    margin-left: 15px !important;
   }
 }
-.menu-usuario .logout{
+
+.menu-usuario .logout {
   color: #dc3545;
 }
 
-
 /* Footer */
+
 footer.footer {
   padding-top: 4rem;
   padding-bottom: 4rem;
 }
 
 /* Bootstrap mods */
+
 .card-img-top {
   max-height: 200px;
   min-height: 220px;
@@ -78,41 +97,48 @@ footer.footer {
 * Layout mi perfil
 *
 **/
-.admin-topbar{
+
+.admin-topbar {
   padding: 1em 0;
 }
-.profile-topbar{
+
+.profile-topbar {
   padding: 6em 0 .5em 0;
 }
+
 .admin-topbar,
-.profile-topbar{
+.profile-topbar {
   position: relative;
   background-color: #e8e8e8;
 }
+
 .admin-topbar .nav-link:nth-of-type(1),
-.profile-topbar .nav-link:nth-of-type(1){
+.profile-topbar .nav-link:nth-of-type(1) {
   padding-left: 0;
 }
-.profile-topbar__image{
+
+.profile-topbar__image {
   max-width: 150px;
 }
-@media(min-width: 992px){
-  .profile-topbar__image{
-      position: absolute;
-      top: 65px;
+
+@media (min-width: 992px) {
+  .profile-topbar__image {
+    position: absolute;
+    top: 65px;
   }
-  .profile-topbar__title{
-      margin-left: 5.2em;
+
+  .profile-topbar__title {
+    margin-left: 5.2em;
   }
-  .profile-topbar__social{
-      margin-left: 10.5em;
+
+  .profile-topbar__social {
+    margin-left: 10.5em;
   }
-  .profile-description{
-      padding-left: 11.5em;
+
+  .profile-description {
+    padding-left: 11.5em;
   }
 }
-
-
 
 /**
 *
@@ -120,18 +146,21 @@ footer.footer {
 * Recetas por categorías
 *
 **/
+
 .search-filter {
   padding: 60px 0;
   background-color: #e8e8e8;
 }
 
 .list-pagination .pagination {
-  justify-content: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 
 .sticky-filter {
   position: fixed;
-  top: 0;
+  top: 80px;
 }
 
 .categories .active a {
@@ -143,7 +172,8 @@ footer.footer {
 * Editar perfil
 *
 **/
-.profile-form__img{
+
+.profile-form__img {
   max-width: 100%;
 }
 
@@ -152,55 +182,73 @@ footer.footer {
 * Crear receta
 *
 **/
+
 .crear-receta .select2-selection {
   min-height: calc(2rem + 2px) !important;
 }
-.crear-receta .ql-editor{
+
+.crear-receta .ql-editor {
   min-height: 300px;
 }
-.crear-receta .ql-container.ql-snow{
+
+.crear-receta .ql-container.ql-snow {
   height: auto;
 }
-.img-container{
+
+.img-container {
   border: 1px dashed #cacaca;
   position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
   min-height: 204px;
 }
-.img-container i{
+
+.img-container i {
   color: #cacaca;
   font-size: 2rem;
 }
-.img-container img{
+
+.img-container img {
   max-width: 100%;
   min-height: 204px;
 }
+
 .crear-receta.is-invalid .ql-container,
-.crear-receta.is-invalid .ql-toolbar{
+.crear-receta.is-invalid .ql-toolbar {
   border: 1px solid #dc3545;
 }
 
 .quote-imgs-thumbs {
-background: #eee;
-border: 1px solid #ccc;
-border-radius: 0.25rem;
-margin: 1.5rem 0;
-padding: 0.75rem;
+  background: #eee;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+  margin: 1.5rem 0;
+  padding: 0.75rem;
 }
+
 .quote-imgs-thumbs--hidden {
-display: none;
+  display: none;
 }
+
 .img-preview-thumb {
-background: #fff;
-border: 1px solid #777;
-border-radius: 0.25rem;
-box-shadow: 0.125rem 0.125rem 0.0625rem rgba(0, 0, 0, 0.12);
-margin-right: 1rem;
-max-width: 140px;
-padding: 0.25rem;
+  background: #fff;
+  border: 1px solid #777;
+  border-radius: 0.25rem;
+  -webkit-box-shadow: 0.125rem 0.125rem 0.0625rem rgba(0, 0, 0, 0.12);
+          box-shadow: 0.125rem 0.125rem 0.0625rem rgba(0, 0, 0, 0.12);
+  margin-right: 1rem;
+  max-width: 140px;
+  padding: 0.25rem;
 }
-.gallery{
+
+.gallery {
   border-top: 1px solid #cacaca;
 }
+

@@ -147,7 +147,7 @@ footer.footer {
 
 .sticky-filter {
   position: fixed;
-  top: 0;
+  top: 80px;
 }
 
 .categories .active a {

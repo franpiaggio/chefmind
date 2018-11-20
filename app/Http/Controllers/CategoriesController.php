@@ -24,7 +24,7 @@ class CategoriesController extends Controller{
             $recipes = Recipe::where('title', 'LIKE', '%'.$request->buscar.'%')->paginate(6);
         }else if(!$request->buscar && $request->categoria){
             // Si solo está seteada la categoría busco todas
-            $category = Category::where('name', $request->categoria)->first();
+            $category = Category::where('name', $request->categoria)->firstOrFail();
             $recipes = $category->recipes()->paginate(6);
         }else{
             // Sino busco por ambos parámetros
