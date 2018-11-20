@@ -4,13 +4,13 @@
 <main class="main-container">
     <section class="search-filter">
         <div class="container">
-            <form method="GET" action="/buscar" class="container">
+            <form method="GET" action="/buscar">
                 <h1 class="lead">Ingredientes:</h1>
                 <div class="form-row">
                     <div class="col-12 col-md-10 mb-2 mb-md-0">
-                        <select id="ingredientsSelector"  name="ingredients[]" class="form-control form-control-lg js-ingredients" multiple>
-                            @if( $names )
-                                @foreach($names as $ingredient)
+                        <select id="ingredientsSelector"  name="ingredients[]" class="form-control form-control-lg js-ingredients d-none" multiple>
+                            @if( Request::query('ingredients') )
+                                @foreach(Request::query('ingredients') as $ingredient)
                                     <option value="{{$ingredient}}" selected>{{$ingredient}}</option>
                                 @endforeach
                             @endif
@@ -21,7 +21,6 @@
                     </div>
                 </div>
             </form>
-            {{$recipes->links()}}
         </div>
     </section>
     <section class="container mt-5">
@@ -32,6 +31,7 @@
                     @include('web.listadoRecetas', ['recipes' => $recipes])
                 </div>
             </div>
+            {{$recipes->links()}}
     </section>
     @include('layouts.footer')
     @section('footer')

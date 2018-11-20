@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
 use App\Recipe;
 use App\Ingredient;
 
@@ -38,8 +39,8 @@ class HomeController extends Controller
             $q->whereIn('ingredient_id', $ids)
             ->groupBy('recipe_id')
             ->havingRaw('COUNT(DISTINCT ingredient_id) = '.count($ids));
-        })->paginate(10);
+        })->paginate(6);
         // Devuelvo la vista con las recetas paginadas
-        return view('web.recetas', compact('recipes', 'names'));
+        return view('web.recetas', ['recipes'=>$recipes->appends(Input::except('page')), 'ingredients' => $ingredients]);
     }
 }

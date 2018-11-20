@@ -13,7 +13,7 @@
         </button>
         <div class="collapse navbar-collapse" id="menuPrincipal">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item {{ Request::is('/') ? 'active' : '' }}">
+                <li class="nav-item {{ Request::is('/') || Request::is('buscar') ? 'active' : '' }}">
                     <a class="nav-link" href="/">Home</a>
                 </li>
                 <li class="nav-item {{ Request::is('categorias') ? 'active' : '' }}">

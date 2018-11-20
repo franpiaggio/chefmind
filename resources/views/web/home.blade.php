@@ -1,5 +1,5 @@
 @extends('layouts.webLayout')
-@section('title', 'Home')
+@section('title', 'Chefmind - Buscá tu receta')
 @section('content')
 <main class="main-container">
     <section class="jumbotron jumbotron-fluid">
@@ -11,14 +11,8 @@
             <form  method="GET" action="/buscar">
                 <div class="form-row">
                     <div class="col-12 col-md-10 mb-2 mb-md-0">
-                        <select id="ingredientsSelector" name="ingredients[]" class="form-control form-control-lg js-ingredients" multiple>
-
+                        <select id="ingredientsSelector" name="ingredients[]" class="form-control form-control-lg js-ingredients d-none" multiple>
                         </select>
-                        <div>
-                            @if($errors->any())
-                                <pre> {{var_dump($errors)}} </pre>
-                            @endif
-                        </div>
                     </div>
                     <div class="col-12 col-md-2">
                         <input type="submit" class="btn btn-block btn-lg btn-primary" value="Buscar" />
