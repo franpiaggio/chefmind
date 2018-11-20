@@ -28,7 +28,7 @@
                             -
                         @endif 
                     </td>
-                    <td><a href="/uploads/categorias/{{$category->img}}">Ver foto</a></td>
+                    <td>@if($category->img)<a href="/uploads/categorias/{{$category->img}}">Ver foto</a>@endif</td>
                     <td>
                         <a href="/categoria/{{$category->id}}">Ver recetas</a>
                         <a href="/admin/categoria/{{$category->id}}/editar">Editar</a>

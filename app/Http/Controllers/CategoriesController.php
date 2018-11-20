@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Category;
+use App\Recipe;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
 use App\Http\Requests\EditCategoryRequest;
 
 class CategoriesController extends Controller{
@@ -12,8 +14,24 @@ class CategoriesController extends Controller{
      * Vista con listado de categorias
      */
     public function index(Request $request){
-        $categories = Category::where('active', 1)->paginate(10);
-        return view('web.categorias', compact('categories'));
+        // Todas las categorías
+        $categories = Category::where('active', 1)->get();
+        // Si no hay nada seteado busco las últimas
+        if(!$request->buscar && !$request->categoria){
+            $recipes = Recipe::orderBy('created_at', 'desc')->paginate(6);
+        }else if($request->buscar && !$request->categoria){
+            // Si solo está seteada la búsqueda, hago una global
+            $recipes = Recipe::where('title', 'LIKE', '%'.$request->buscar.'%')->paginate(6);
+        }else if(!$request->buscar && $request->categoria){
+            // Si solo está seteada la categoría busco todas
+            $category = Category::where('name', $request->categoria)->first();
+            $recipes = $category->recipes()->paginate(6);
+        }else{
+            // Sino busco por ambos parámetros
+            $category = Category::where('name', $request->categoria)->first();
+            $recipes = $category->recipes()->where('title', 'LIKE', '%'.$request->buscar.'%')->paginate(6);
+        }
+        return view('web.categorias', ['categories'=>$categories, 'recipes'=>$recipes->appends(Input::except('page'))]);
     }
     /**
      * Muestra una categoria y sus recetas
@@ -21,7 +39,7 @@ class CategoriesController extends Controller{
     public function show(Request $request, $id){
         $category = Category::findOrFail($id);
         $recipes = $category->recipes;
-        return view('web.categoria', compact('category', 'recipes'));
+        return view('web.categoria', ['categories'=>$categories, 'recipes'=>$recipes->appends(Input::except('page'))]);
     }
 
     /**
@@ -32,7 +50,6 @@ class CategoriesController extends Controller{
             'name' => 'required|min:3',
             'img' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
-        dd($request);
         $user = Auth::user();
         $cat = new Category();
         $cat->name = $request->name;

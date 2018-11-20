@@ -3,33 +3,40 @@
 @section('content')
 <main class="main-container">
     <section class="search-filter">
-        <form class="container text-center">
-            <h1>Todas las recetas</h1>
-        </form>
+        <div class="container text-center">
+            @if( !Request::query('categoria') )
+                <h1>Todas las recetas</h1>
+            @else
+                <h1>{{Request::query('categoria')}}</h1>
+            @endif
+        </div>
     </section>
     <section class="container mt-5">
         <div class="row mt-5 equal">
             <div class="col-md-3">
                 <div class="js-filters">
-                    <h2>Filtros</h2>
+                    <h2>Buscar</h2>
                     <form action="/categorias" method="GET">
                         <div class="input-group">
+                            @if(Request::query('categoria'))
+                            <input type="hidden" name="categoria" value="{{Request::query('categoria')}}">
+                            @endif
                             <input type="text" class="form-control" placeholder="Buscá tu receta" name="buscar">
                             <div class="input-group-append">
-                                <input type="submit" class="btn btn-outline-secondary" value="Buscar" />
+                                <input type="submit" class="btn btn-outline-secondary" value="Buscar"/>
                             </div>
                         </div>
                     </form>
                     <h2 class="my-3">Categorías</h2>
                     <ul class="list-group categories">
-                        <li class="list-group-item active">
-                            <a class="d-flex justify-content-between align-items-center" href="#">
+                        <li class="list-group-item {{Request::query('categoria') == '' ? 'active' : ''}}">
+                            <a class="d-flex justify-content-between align-items-center" href="?categoria">
                                 Todas
                             </a>
                         </li>
                         @foreach($categories as $category)
-                            <li class="list-group-item ">
-                                <a class="d-flex justify-content-between align-items-center" href="#">
+                            <li class="list-group-item {{Request::query('categoria') == $category->name ? 'active' : ''}}">
+                                <a class="d-flex justify-content-between align-items-center" href="?categoria={{$category->name}}">
                                     {{$category->name}}
                                     <span class="badge badge-primary badge-pill">{{$category->recipes->count()}}</span>
                                 </a>
@@ -37,125 +44,91 @@
                         @endforeach
                     </ul>
                 </div>
+                @if(Auth::check())
+                    <div class="custom-file mt-3">
+                        <p class="mb-1">¡Recomendanos nuevas!</p>
+                        <form method="POST" action="/categoria" enctype="multipart/form-data">
+                            @csrf
+                            <div class="form-group">
+                                <input type="text" name="name" placeholder="Nombre" class="form-control" value="{{old('name')}}">
+                            </div>
+                            <div class="form-group position-relative">
+                                <input name="img" type="file" class="custom-file-input js-preload-input">
+                                <label class="custom-file-label" for="customFile">Subir imagen</label>
+                            </div>
+                            <input type="submit" value="Enviar" class="btn btn-primary">
+                            @if($errors->any())
+                                <p class="small mt-3 text-success">{{$errors->first()}}</p>
+                            @endif
+                        </form>
+                    </div>
+                @endif
             </div>
             <div class="col-md-9 mt-5">
                 @if( Request::query('buscar') )
                     <h3>Resultado de búsqueda: {{Request::query('buscar')}}</h3>
                 @endif
                 <div class="row my-3">
-                    <div class="col-md-6 mb-3">
-                        <div class="card">
-                            <img class="card-img-top" src=" https://picsum.photos/200/100/?random" alt="Card image cap">
-                            <div class="card-body">
-                                <h3 class="card-title">Receta 1</h3>
-                                <p class="card-text">Descripción corta de receta</p>
-                                <a href="#" class="card-link">Ver Receta</a>
-                            </div>
-                            <div class="card-footer d-flex">
-                                <small class="text-muted">Creada por <a href="#">Autor</a></small>
-                                <div class="icons ml-auto">
-                                    <a href="#">
-                                    12	
-                                    <i class="fas fa-thumbs-up"></i>
-                                </a>
-                                    <a href="#" class="ml-3">
-                                    <i class="fas fa-heart"></i>
-                                </a>
+                    @if(!$recipes->count())
+                        <div class="alert alert-warning ml-3" role="alert">
+                            No se encontraron recetas bajo esa búsqueda.
+                        </div>
+                    @endif
+                    @foreach($recipes as $recipe)
+                        <div class="col-md-12 mb-3 recipe-list">
+                            <div class="card">
+                                <div class="row ">
+                                    <div class="col-md-4">
+                                        <img src="/uploads/featured/{{$recipe->featured_image}}" class="w-100">
+                                    </div>
+                                    <div class="col-md-8 px-3">
+                                        <div class="card-block px-3 py-3">
+                                            <h4 class="card-title">{{$recipe->title}}</h4>
+                                            <p class="card-text">{{$recipe->textpreview}}</p>
+                                            <p class="text-muted mt-3">
+                                                Creada por <a href="#">{{$recipe->user->name}}</a>
+                                            </p>
+                                            <div class="d-flex">
+                                                <div class="icons d-flex" id="recetaLike{{$recipe->id}}" >
+                                                    <div data-id="{{ $recipe->id }}" class="like-receta d-flex {{auth()->user() ? 'js-like' : ''}}">
+                                                        <div class="icon-count mr-1">
+                                                            {{ $recipe->likers()->get()->count() }}	
+                                                        </div>
+                                                        <div class="like-icons">
+                                                            @if( auth()->user() && auth()->user()->hasLiked($recipe)) 
+                                                                <i class="fas fa-thumbs-up"></i>
+                                                            @else
+                                                                <i class="far fa-thumbs-up"></i>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                    <p class="js-fav ml-3" data-id="{{ $recipe->id }}">
+                                                        @if(auth()->user())
+                                                            @if(auth()->user()->hasFavorited($recipe))
+                                                                <i class="fas fa-heart"></i>
+                                                            @else
+                                                                <i class="far fa-heart"></i>
+                                                            @endif
+                                                        @endif
+                                                    </p>
+                                                </div>
+                                                <a href="{{ url('/recetas', $recipe->id) }}" class="btn btn-primary ml-auto">Ver más</a>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <div class="card">
-                            <img class="card-img-top" src=" https://picsum.photos/200/100/?random" alt="Card image cap">
-                            <div class="card-body">
-                                <h3 class="card-title">Receta 1</h3>
-                                <p class="card-text">Descripción corta de receta</p>
-                                <a href="#" class="card-link">Ver Receta</a>
-                            </div>
-                            <div class="card-footer d-flex">
-                                <small class="text-muted">Creada por <a href="#">Autor</a></small>
-                                <div class="icons ml-auto">
-                                    <a href="#">
-                                    12	
-                                    <i class="fas fa-thumbs-up"></i>
-                                </a>
-                                    <a href="#" class="ml-3">
-                                    <i class="fas fa-heart"></i>
-                                </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
-                <nav class="col-md-12 list-pagination my-3">
-                    <ul class="pagination">
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                        <span class="sr-only">Siguiente</span>
-                        </a>
-                        </li>
-                    </ul>
-                </nav>
+                {{$recipes->links()}}
             </div>
         </div>
     </section>
 </main>
-<div class="container-fluid">
-    <div class="container mt-5">
-        @if(Auth::check())
-            @if(Auth::user()->hasRole('user'))
-                <h1>Recomendá una categoría</h1>
-                <p>Esto solo se ve si estás logeado</p>
-                <form method="POST" action="/categoria" enctype="multipart/form-data">
-                    @csrf
-                    <label for="name">Nombre</label>
-                    <input type="text" name="name" class="form-control" value="{{old('name')}}">
-                    <label for="img">Imágen</label>
-                    <input class="form-control" name="img" type="file">
-                    <input type="submit">
-                </form>
-                <div>
-                    @if($errors->any())
-                        <pre> {{var_dump($errors)}} </pre>
-                    @endif
-                </div>
-            @endif
-        @endif
-        <div class="row">
-            @foreach($categories as $category)
-                <div class="col-md-4 mb-3">
-                    <!-- Card -->
-                    <div class="card card-cascade wider reverse">
-                        <!-- Card image -->
-                        <div class="view view-cascade overlay">
-                            @if($category->img)
-                                <img class="card-img-top" src="/uploads/categorias/{{$category->img}}" alt="{{$category->name}}">
-                            @endif
-                            <a href="/categoria/{{$category->id}}">
-                                <div class="mask rgba-white-slight"></div>
-                            </a>
-                        </div>
-
-                        <!-- Card content -->
-                        <div class="card-body card-body-cascade text-center">
-                    
-                            <!-- Title -->
-                            <h4 class="card-title"><strong>{{$category->name}}</strong></h4>
-                            <!-- Subtitle -->
-                            <a href="/categoria/{{$category->id}}" class="font-weight-bold indigo-text py-2">Ver recetas</a>                    
-                    </div>
-                    
-                    </div>
-                    <!-- Card -->
-                </div>
-            @endforeach
-        </div>
-        {{$categories->links()}}
-    </div>
-</div>
+@include('layouts.footer')
+@section('footer')
+    <script src="{{ asset('js/home.js') }}"></script>
+    <script src="{{ asset('js/recetas.js') }}"></script>
+@endsection
 @endsection 

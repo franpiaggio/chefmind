@@ -19,6 +19,7 @@
                     </div>
                 </div>
             </form>
+            <small>¿Buscás algo muy específico? <a href="/categorias">Ingresá aquí</a></small>
         </div>
     </section>
     <section class="container mt-5">

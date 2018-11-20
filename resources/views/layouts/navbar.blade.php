@@ -25,7 +25,7 @@
                 @auth
                 @if(Auth::user()->hasRole('admin'))
                     <li class="nav-item {{ Request::is('admin') ? 'active' : '' }}">
-                        <a class="nav-link" href="admin">Administrador</a>
+                        <a class="nav-link" href="/admin">Administrador</a>
                     </li>
                 @endif
                 @endauth
