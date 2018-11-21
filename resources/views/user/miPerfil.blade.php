@@ -1,65 +1,109 @@
 @extends('layouts.webLayout')
 @section('title', 'Todas las recetas')
 @section('content')
-<div class="container mt-5">
-    <style>
-        .profile-header{
-            background-color: #4285f4;
-            height:150px;
-        }
-        .user-detail{
-            margin:-50px 0px 30px 0px;
-        }
-        .user-detail img{
-            height:100px;
-            width:100px;
-        }
-        .user-detail h5{
-            margin:15px 0px 5px 0px;
-        }
-        .user-social-detail{
-            padding:15px 0px;
-            background-color: #4285f4;
-        }
-        .user-social-detail a i{
-            color:#fff;
-            font-size:23px;
-            padding: 0px 5px;
-        }
-    </style>
+<main class="main-container container-fluid">  
     <div class="row">
-      <div class="offset-lg-4 col-lg-4 col-sm-6 col-12 main-section text-center">
-          <div class="row">
-              <div class="col-lg-12 col-sm-12 col-12 profile-header"></div>
-          </div>
-          <div class="row user-detail">
-              <div class="col-lg-12 col-sm-12 col-12">
-                  <img src="uploads/perfiles/{{Auth::user()->image}}" class="rounded-circle img-thumbnail">
-                  <h5>{{ Auth::user()->name }}</h5>
-                  <p><i class="fa fa-mail" aria-hidden="true"></i> {{ Auth::user()->email }}</p>
-
-                  <hr>
-                  <a href="/miperfil/editar" class="btn btn-info btn-sm">Editar datos</a>
-                  <a href="/miperfil/editarContraseña" class="btn btn-danger btn-sm">Cambiar contraseña</a>
-
-                  <hr>
-                  <span>{{ Auth::user()->description }}</span>
-              </div>
-          </div>
-          <div class="row user-social-detail">
-              <div class="col-lg-12 col-sm-12 col-12">
-                  @if( Auth::user()->facebook )
-                    <a href="{{Auth::user()->facebook }}"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                  @endif
-                  @if( Auth::user()->instagram )
-                    <a href="{{Auth::user()->instagram }}"><i class="fa fa-instagram" aria-hidden="true"></i></a>
-                  @endif
-                  @if( Auth::user()->twitter )
-                    <a href="{{Auth::user()->twitter}}"><i class="fa fa-twitter" aria-hidden="true"></i></a>
-                  @endif
-              </div>
-          </div>
-      </div>
+        <header class="col-md-12 profile-topbar">
+            <div class="container">
+                <img src="/uploads/perfiles/{{Auth::user()->image}}" class="img-responsive rounded-circle profile-topbar__image" alt="Foto de perfil de {{ Auth::user()->name }}">
+                <h1 class="profile-topbar__title">
+                    {{ Auth::user()->name }}
+                    <a href="/miperfil/editar" class="btn btn-outline-primary btn-sm ml-3">Editar perfil</a>
+                </h1>
+                <div class="profile-topbar__social">
+                    @if( Auth::user()->facebook )
+                    <a href="{{Auth::user()->facebook}}"><i class="fab fa-facebook"></i></a>
+                    @endif
+                    @if( Auth::user()->instagram )
+                    <a href="{{Auth::user()->instagram}}" class="ml-2"><i class="fab fa-instagram"></i></a>
+                    @endif
+                    @if( Auth::user()->twitter )
+                    <a href="{{Auth::user()->twitter}}" class="ml-2"><i class="fab fa-twitter"></i></a>
+                    @endif
+                </div>
+            </div>
+        </header>
+        <div class="col-md-12 mt-2">
+            <div class="container profile-description">
+                @if(Auth::user()->description)
+                    <h2>Sobre mí</h2>
+                    <p>{{ Auth::user()->description }}</p>
+                @endif
+                <ul class="nav nav-tabs mt-5">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/miperfil"><i class="fas fa-book"></i> Recetas creadas </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="far fa-star"></i> Favoritas </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="far fa-user"></i> Usuarios seguidos</a>
+                    </li>
+                </ul>
+                <div class="row mt-3">
+                    <div class="col-md-12 mb-3">
+                        <form action="/miperfil" method="GET">
+                            <div class="input-group">
+                                @if(Request::query('categoria'))
+                                <input type="hidden" name="categoria" value="{{Request::query('categoria')}}">
+                                @endif
+                                <input type="text" class="form-control" placeholder="Buscá tu receta" name="buscar">
+                                <div class="input-group-append">
+                                    <input type="submit" class="btn btn-outline-secondary" value="Buscar"/>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    @foreach($recipes as $recipe)
+                        <div class="col-md-12 mb-3 recipe-list">
+                            <div class="card">
+                                <div class="row ">
+                                    <div class="col-md-4">
+                                        <img src="/uploads/featured/{{$recipe->featured_image}}" class="w-100">
+                                    </div>
+                                    <div class="col-md-8 px-3">
+                                        <div class="card-block px-3 py-3">
+                                            <h3 class="card-title">{{$recipe->title}}</h3>
+                                            <p class="card-text">{{$recipe->textpreview}}</p>
+                                            <p class="text-muted mt-3">
+                                                Creada por <a href="#">{{$recipe->user->name}}</a>
+                                            </p>
+                                            <div class="d-flex">
+                                                <div class="icons d-flex" id="recetaLike{{$recipe->id}}" >
+                                                    <div data-id="{{ $recipe->id }}" class="like-receta d-flex {{auth()->user() ? 'js-like' : ''}}">
+                                                        <div class="icon-count mr-1">
+                                                            {{ $recipe->likers()->get()->count() }}	
+                                                        </div>
+                                                        <div class="like-icons">
+                                                            @if( auth()->user() && auth()->user()->hasLiked($recipe)) 
+                                                                <i class="fas fa-thumbs-up"></i>
+                                                            @else
+                                                                <i class="far fa-thumbs-up"></i>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                    <p class="js-fav ml-3" data-id="{{ $recipe->id }}">
+                                                        @if(auth()->user())
+                                                            @if(auth()->user()->hasFavorited($recipe))
+                                                                <i class="fas fa-heart"></i>
+                                                            @else
+                                                                <i class="far fa-heart"></i>
+                                                            @endif
+                                                        @endif
+                                                    </p>
+                                                </div>
+                                                <a href="{{ url('/recetas', $recipe->id) }}" class="btn btn-primary ml-auto">Ver más</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+                {{$recipes->links()}}
+            </div>
+        </div>   
     </div>
-  </div>
+</main>
 @endsection 

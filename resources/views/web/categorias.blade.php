@@ -50,7 +50,7 @@
                         <form method="POST" action="/categoria" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
-                                <input type="text" name="name" placeholder="Nombre" class="form-control" value="{{old('name')}}">
+                                <input type="text" name="name" placeholder="Nueva categoría" class="form-control" value="{{old('name')}}">
                             </div>
                             <div class="form-group position-relative">
                                 <input name="img" type="file" class="custom-file-input js-preload-input">

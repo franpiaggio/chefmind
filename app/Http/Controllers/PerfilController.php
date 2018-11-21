@@ -6,6 +6,8 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Session;
 
 class PerfilController extends Controller{
     /**
@@ -17,8 +19,13 @@ class PerfilController extends Controller{
     /**
      * Vista de mi perfil
      */
-    public function index(){
-        return view('user.miPerfil');
+    public function index(Request $request){
+        if($request->buscar){
+            $recipes = Auth::user()->recipes()->where('title', 'LIKE', '%'.$request->buscar.'%')->paginate(4);
+        }else{ 
+            $recipes = Auth::user()->recipes()->paginate(4);
+        }
+        return view('user.miPerfil', ['recipes'=>$recipes->appends(Input::except('page'))]);
     }
 
     /**
@@ -33,10 +40,18 @@ class PerfilController extends Controller{
      */
     public function updateProfile(Request $request){
         $user = Auth::user();
-        $validatedData = $request->validate([
-            'name' => 'required|min:3',
-            'email' => 'required|email'
-        ]);
+        $validatedData = $request->validate(
+            [
+                'name' => 'required|min:3',
+                'email' => 'required|email'
+            ],
+            [
+                'name.required' => 'El nombre es obligatorio',
+                'name.min' => 'Debe tener al menos 3 caracteres',
+                'email.required' => 'El email es obligatorio',
+                'email.email' => 'Ingresar un formáto de mail válido'
+            ]
+        );
         // Usuario editado
         $edited = $request->all();
         if(is_null($request->image)){
@@ -66,6 +81,7 @@ class PerfilController extends Controller{
         $user->instagram = $edited['instagram'];
         $user->image = $edited['image'];
         $user->save();
+        Session::flash('msg', "Perfil actualizado correctamente.");
         return back();
     }
 
