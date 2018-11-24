@@ -92,7 +92,10 @@
                                                         @endif
                                                     </p>
                                                 </div>
-                                                <a href="{{ url('/recetas', $recipe->id) }}" class="btn btn-primary ml-auto">Ver más</a>
+                                                <div class="ml-auto">
+                                                    <a href="/miperfil/borrarReceta/{{$recipe->id}}" class="btn btn-outline-danger"> <i class="fas fa-trash"></i> Borrar </a>
+                                                    <a href="{{ url('/recetas', $recipe->id) }}" class="btn btn-primary">Ver más</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -106,4 +109,8 @@
         </div>   
     </div>
 </main>
+@include('layouts.footer')
+@section('footer')
+    <script src="{{ asset('js/recetas.js') }}"></script>
+@endsection
 @endsection 

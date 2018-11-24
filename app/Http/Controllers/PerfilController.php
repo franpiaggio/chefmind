@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
+use App\Recipe;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -14,7 +15,7 @@ class PerfilController extends Controller{
      * Verifica con Auth en algunos métodos
      */
     public function __construct(){
-        $this->middleware('auth', ['only' => ['index', 'editProfile', 'updateProfile']]);
+        $this->middleware('auth', ['only' => ['index', 'editProfile', 'updateProfile', 'borrarReceta']]);
     }
     /**
      * Vista de mi perfil
@@ -83,6 +84,19 @@ class PerfilController extends Controller{
         $user->save();
         Session::flash('msg', "Perfil actualizado correctamente.");
         return back();
+    }
+
+    /**
+     * Borra una receta solo si el usuario es dueño
+     */
+    public function borrarReceta($id){
+        $recipe = Recipe::findOrFail($id);
+        if($recipe->user->id == Auth::user()->id ){
+            $recipe->delete();
+            return back();
+        }else{
+            return back();
+        }
     }
 
     /**

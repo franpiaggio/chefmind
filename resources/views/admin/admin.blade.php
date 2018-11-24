@@ -10,7 +10,6 @@
         @endif
         Estas Logeado
     @endif
-    <!-- Chequeo usando guest de blade -->
     <ul>
         @guest
             <li class="nav-item">

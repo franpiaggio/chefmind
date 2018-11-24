@@ -48,6 +48,7 @@ Route::post('/categoria', 'CategoriesController@store');
 Route::get('/miperfil/editar', 'PerfilController@editProfile');
 Route::patch('/miperfil/editar', 'PerfilController@updateProfile');
 Route::get('/miperfil', 'PerfilController@index');
+Route::get('/miperfil/borrarReceta/{id}', 'PerfilController@borrarReceta');
 // Perfiles
 Route::get('/perfil/{id}', 'PerfilController@getUser');
 // Auth laravel

@@ -91,5 +91,6 @@
             </div>
         </div>
     </div>
+    @include('layouts.footer')
 </main>
 @endsection
