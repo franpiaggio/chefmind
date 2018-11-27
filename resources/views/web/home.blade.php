@@ -19,14 +19,11 @@
                     </div>
                 </div>
             </form>
-            <small>¿Buscás algo muy específico? <a href="/categorias">Ingresá aquí</a></small>
+            <small>¿Buscás una receta en especial? <a href="/categorias">Ingresá aquí</a></small>
         </div>
     </section>
     <section class="container mt-5">
         <h2>Últimas recetas</h2>
-        <div class="row mt-5 equal">
-
-        </div>
         <div class="row">
             @include('web.listadoRecetas', ['recipes' => $latests])
         </div>
