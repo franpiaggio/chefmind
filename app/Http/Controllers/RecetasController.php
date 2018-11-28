@@ -171,6 +171,9 @@ class RecetasController extends Controller
         return back()->withErrors(['Borrado correctamente']);;
     }
 
+    /**
+     * Crea y valida una nueva receta
+     */
     private function createRecipe( CreateRecipeRequest $request ){
         // Validado de las múltiples imágenes, lo demás se valida con la request
         $this->validate($request, [

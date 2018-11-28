@@ -24,8 +24,13 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label for="name">Nombre</label>
-                                    <input type="text" placeholder="Ingresar su nombre" class="form-control" name="title" value="{{ old('title') }}">
+                                    <label for="title">Nombre</label>
+                                    <input type="text" placeholder="Ingresar su nombre" class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}" name="title" value="{{ old('title') }}">
+                                    @if($errors->has('title'))
+                                        <span class="d-block invalid-feedback" role="alert">
+                                            <strong> {{$errors->first('title')}}</strong>
+                                        </span>
+                                    @endif
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -66,8 +71,13 @@
                             <img src="" alt="preview de la receta" class="js-drop-image d-none">
                         </div>
                         <div class="custom-file mt-3">
-                            <input type="file" class="custom-file-input js-preload-input" name="featured_image" value="{{ old('featured_image') }}">
-                            <label class="custom-file-label" for="customFile">Subir imagen</label>
+                            <input type="file" class="custom-file-input js-preload-input {{ $errors->has('featured_image') ? 'is-invalid' : '' }}" name="featured_image" value="{{ old('featured_image') }}">
+                            <label class="custom-file-label js-file-label" for="customFile">Subir imagen</label>
+                            @if($errors->has('featured_image'))
+                                <span class="d-block invalid-feedback" role="alert">
+                                    <strong> {{$errors->first('featured_image')}}</strong>
+                                </span>
+                            @endif
                         </div>
                     </div>
                     <div class="col-md-12">
@@ -101,7 +111,7 @@
                     <div class="col-md-12 crear-receta mb-5">
                         <label for="body" >Pasos a seguir</label>
                         <small class="d-block mb-2">Contanos los detalles más importantes: ¿Que cantidades necesito? ¿Qué pasos debo seguir?</small>
-                        <input name="body" type="hidden" value="{{old('body')}}">
+                        <input id="bodyInput" name="body" type="hidden" value="{{old('body')}}">
                         <div id="editor-container"></div>
                     </div>
                     <div class="col-md-12 d-flex">
@@ -180,11 +190,11 @@
             @endif
         </div>
     --}}
-        <div>
+        {{--<div>
             @if($errors->any())
                 <pre> {{var_dump($errors)}} </pre>
             @endif
-        </div>
+        </div>--}}
         @include('layouts.footer')
         @section('footer')
         <script src="{{ asset('js/crear-receta.js') }}">
