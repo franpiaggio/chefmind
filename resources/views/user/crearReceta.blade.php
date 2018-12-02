@@ -59,7 +59,7 @@
                             <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="name">Comensales</label>
-                                    <input type="number" placeholder="Ej: 5 personas" class="form-control">
+                                    <input type="number" placeholder="Ej: 5 personas" class="form-control" name="quantity">
                                 </div>
                             </div>
                         </div>

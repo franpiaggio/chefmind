@@ -24,7 +24,7 @@ class RecetasController extends Controller
         $this->middleware('auth', [
             'only' => [
                 'create', 'store', 'edit', 'update', 'userRecipes', 
-                'likeReceta', 'deleteImg', 'storeGallery'
+                'likeReceta', 'deleteImg', 'storeGallery', 'createGallery'
             ]
         ]);
     }
