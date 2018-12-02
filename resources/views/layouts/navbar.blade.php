@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
     <div class="container">
-        <a class="navbar-brand" href="/">Chefmind</a>
+        <a class="navbar-brand" href="/"><img src="/svg/logo.svg" alt="logo chefmind" /></a>
         <button 
             class="navbar-toggler" 
             type="button" 
@@ -31,11 +31,11 @@
                         <a class="nav-link {{ Request::is('login') ? 'active' : '' }}" href="/login">Login</a>
                     </li>
                     <li class="nav-item {{ Request::is('register') ? 'active' : '' }}">
-                        <a href="/register" class="btn btn-outline-primary btn-sm registrarse">Registrarse</a>
+                        <a href="/register" class="btn btn-outline btn-sm registrarse">Registrarse</a>
                     </li>
                 @else
                     <li class="nav-item">
-                        <a href="/recetas/nueva" class="btn btn-outline-warning btn-sm registrarse">Crear receta</a>
+                        <a href="/recetas/nueva" class="btn btn-outline btn-sm registrarse">Crear receta</a>
                     </li>
                     <li class="nav-item menu-usuario">
                         <div class="dropdown">                           
