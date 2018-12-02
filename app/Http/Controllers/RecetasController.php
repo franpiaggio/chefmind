@@ -21,7 +21,12 @@ class RecetasController extends Controller
      * Verifica con Auth en algunos métodos
      */
     public function __construct(){
-        $this->middleware('auth', ['only' => ['create', 'store', 'edit', 'update', 'userRecipes', 'likeReceta', 'deleteImg']]);
+        $this->middleware('auth', [
+            'only' => [
+                'create', 'store', 'edit', 'update', 'userRecipes', 
+                'likeReceta', 'deleteImg', 'storeGallery'
+            ]
+        ]);
     }
 
     /**
@@ -77,15 +82,47 @@ class RecetasController extends Controller
     }
 
     /**
+     * Vista de creación de galerías de fotos
+     */
+    public function createGallery($id){
+        $recipe = Recipe::findOrFail($id);
+        if(Auth::user()->id != $recipe->user->id){
+            return back();
+        }
+        return view('user.crearGaleria', compact('recipe'));
+    }
+
+    /**
      * Guarda una receta en la DB
      * @param CreateArticleRequest $request
      * @return Response
      */
     public function store(CreateRecipeRequest $request){
         // Creo una nueva receta con la info del formulario
-        $this->createRecipe($request);
-        // Vuelvo a ver las recetas
-        return redirect('recetas');
+        $recipe = $this->createRecipe($request);
+        // Envío a la creación de galerías
+        return redirect('recetas/'.$recipe->id.'/crear-galeria');
+    }
+
+    /**
+     * Guarda las imágenes en las receta asignada
+     */
+    public function storeGallery(Request $request, $id){
+        $this->validate($request, [
+            'images.*' => 'mimes:jpeg,png,jpg,gif,svg'
+        ]);
+        $recipe = Recipe::findOrFail($id);
+        if($request->images){
+            foreach($request->images as $image){
+                $newImage = new Image();
+                $filename = time().'-'.$image->getClientOriginalName(); 
+                $image->move(public_path('/uploads/imagenes/'), $filename);
+                $newImage['name'] = $filename;
+                $newImage->recipe()->associate($recipe);
+                $newImage->save();                
+            }
+        }
+        return back();
     }
 
     /**
@@ -137,17 +174,6 @@ class RecetasController extends Controller
         $this->syncCategories( $recipe, $request->input('categories') );
         // Actualiza los ingredientes
         $this->syncIngredients( $recipe, $request->input('ingredients') );
-        // Si hay archivos los itero, guardo y relaciono
-        if($request->images){
-            foreach($request->images as $image){
-                $newImage = new Image();
-                $filename = time().'-'.$image->getClientOriginalName(); 
-                $image->move(public_path('/uploads/imagenes/'), $filename);
-                $newImage['name'] = $filename;
-                $newImage->recipe()->associate($recipe);
-                $newImage->save();                
-            }
-        }
         // Vuelvo a la vista de recetas
         return redirect('recetas');
     }

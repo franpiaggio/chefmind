@@ -27,6 +27,8 @@ Route::get('/admin', 'AdminController@index');
 // Recetas
 Route::get('/recetas', 'RecetasController@index');
 Route::get('/recetas/nueva', 'RecetasController@create');
+Route::get('/recetas/{id}/crear-galeria', 'RecetasController@createGallery');
+Route::post('/recetas/{id}/galeria', 'RecetasController@storeGallery');
 Route::get('/recetas/mis-recetas', 'RecetasController@userRecipes');
 Route::get('/recetas/mis-favoritos', 'RecetasController@userFavs');
 Route::get('/recetas/{id}', 'RecetasController@show');
