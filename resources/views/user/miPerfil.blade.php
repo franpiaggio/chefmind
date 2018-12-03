@@ -34,7 +34,7 @@
                         <a class="nav-link active" href="/miperfil"><i class="fas fa-book"></i> Recetas creadas </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="far fa-star"></i> Favoritas </a>
+                        <a class="nav-link" href="/miperfil/mis-favoritos"><i class="far fa-star"></i> Favoritas </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"><i class="far fa-user"></i> Usuarios seguidos</a>
@@ -94,6 +94,7 @@
                                                 </div>
                                                 <div class="ml-auto">
                                                     <a href="/miperfil/borrarReceta/{{$recipe->id}}" class="btn btn-outline-danger"> <i class="fas fa-trash"></i> Borrar </a>
+                                                    <a href="/recetas/{{$recipe->id}}/editar" class="btn btn-outline-success"> <i class="fas fa-edit"></i> Editar </a>
                                                     <a href="{{ url('/recetas', $recipe->id) }}" class="btn btn-primary">Ver más</a>
                                                 </div>
                                             </div>

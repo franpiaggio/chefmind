@@ -40,24 +40,6 @@ class RecetasController extends Controller
     }
 
     /**
-     * Vista de recetas del usuario
-     * @return Response
-     */
-    public function userRecipes(){
-        $recipes = User::find(Auth::user()->id)->recipes()->paginate(10);
-        return view('user.misRecetas', compact('recipes'));
-    }
-
-    /**
-     * Vista de recetas del usuario
-     * @return Response
-     */
-    public function userFavs(){
-        $recipes = Auth::user()->favorites(Recipe::class)->get();
-        return view('user.misFavoritos', compact('recipes'));
-    }
-
-    /**
      * Vista particular de recetas
      * Muestra una sola si existe, sino tira 404
      * @return Response

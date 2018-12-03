@@ -1,84 +1,103 @@
 @extends('layouts.webLayout')
 @section('title', 'Todas las recetas')
 @section('content')
-    <div class="container">
-    <h1>Mis recetas favoritas</h1>
+<main class="main-container container-fluid">  
     <div class="row">
-        @foreach($recipes as $recipe)
-            <div id="receta{{$recipe->id}}" class="col-md-4 my-3">
-                <div class="card" style="width: 18rem;">
-                    @unless( !$recipe->featured_image )
-                        <img class="card-img-top" src="/uploads/featured/{{$recipe->featured_image}}" alt="{{$recipe->title}}">
-                    @endunless
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $recipe->title }}</h5>
-                        <p class="card-text">{{ $recipe->textpreview }}</p>
-                        <p>Likes: <span id="recetaLike{{$recipe->id}}">{{ $recipe->likers()->get()->count() }}</span> </p>
-                        @auth
-                            <p class="js-like" data-id="{{ $recipe->id }}"> 
-                                {{ auth()->user()->hasLiked($recipe) ? 'Quitar like' : 'Dar like' }}
-                            </p>
-                            <hr>
-                            <p class="js-fav" data-id="{{ $recipe->id }}"> 
-                                {{ auth()->user()->hasFavorited($recipe) ? 'Eliminar de mis favoritos' : 'Agregar a favoritos' }}
-                            </p>
-                        @endauth
-                        <a href="{{ url('/recetas', $recipe->id) }}" class="btn btn-primary">Ver receta</a>
-                    </div>
+        <header class="col-md-12 profile-topbar">
+            <div class="container">
+                <img src="/uploads/perfiles/{{Auth::user()->image}}" class="img-responsive rounded-circle profile-topbar__image" alt="Foto de perfil de {{ Auth::user()->name }}">
+                <h1 class="profile-topbar__title">
+                    {{ Auth::user()->name }}
+                    <a href="/miperfil/editar" class="btn btn-outline-primary btn-sm ml-3">Editar perfil</a>
+                </h1>
+                <div class="profile-topbar__social">
+                    @if( Auth::user()->facebook )
+                    <a href="{{Auth::user()->facebook}}"><i class="fab fa-facebook"></i></a>
+                    @endif
+                    @if( Auth::user()->instagram )
+                    <a href="{{Auth::user()->instagram}}" class="ml-2"><i class="fab fa-instagram"></i></a>
+                    @endif
+                    @if( Auth::user()->twitter )
+                    <a href="{{Auth::user()->twitter}}" class="ml-2"><i class="fab fa-twitter"></i></a>
+                    @endif
                 </div>
             </div>
-        @endforeach
-        @section('footer')
-            <script>
-                $(document).ready(function(){
-                    $.ajaxSetup({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        }
-                    });
-                    
-                    // Maneja likes
-
-                    $(".js-like").click(function(){
-                        var clicked = $(this);
-                        var id = $(this).data('id');
-                        var number = $('#recetaLike'+id);
-
-                        $.ajax({
-                            type:'POST',
-                                url:'/likeReceta',
-                                data:{id:id},
-                                success:function(data){
-                                    if(jQuery.isEmptyObject(data.success.attached)){
-                                        number.html(parseInt(number.text())-1);
-                                        clicked.html("Dar like");
-                                    }else{
-                                        number.html(parseInt(number.text())+1);
-                                        clicked.html("Quitar like");
-                                    }
-                                }
-                        });
-                    });
-
-                        // Maneja Favoritos
-                    $(".js-fav").click(function(){
-                        var clicked = $(this);
-                        var id = $(this).data('id');
-
-                        $.ajax({
-                            type:'POST',
-                                url:'/favReceta',
-                                data:{id:id},
-                                success:function(data){
-                                    if(jQuery.isEmptyObject(data.success.attached)){
-                                        $("#receta"+id).remove();
-                                    }
-                                }
-                        });
-                    });
-                });
-            </script>
-        @endsection
+        </header>
+        <div class="col-md-12 mt-2">
+            <div class="container profile-description">
+                @if(Auth::user()->description)
+                    <h2>Sobre mí</h2>
+                    <p>{{ Auth::user()->description }}</p>
+                @endif
+                <ul class="nav nav-tabs mt-5">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/miperfil"><i class="fas fa-book"></i> Recetas creadas </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/miperfil/mis-favoritos"><i class="far fa-star"></i> Favoritas </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="far fa-user"></i> Usuarios seguidos</a>
+                    </li>
+                </ul>
+                <div class="row mt-3">
+                    @foreach($recipes as $recipe)
+                        <div class="col-md-12 mb-3 recipe-list">
+                            <div class="card">
+                                <div class="row ">
+                                    <div class="col-md-4">
+                                        <img src="/uploads/featured/{{$recipe->featured_image}}" class="w-100">
+                                    </div>
+                                    <div class="col-md-8 px-3">
+                                        <div class="card-block px-3 py-3">
+                                            <h3 class="card-title">{{$recipe->title}}</h3>
+                                            <p class="card-text">{{$recipe->textpreview}}</p>
+                                            <p class="text-muted mt-3">
+                                                Creada por <a href="#">{{$recipe->user->name}}</a>
+                                            </p>
+                                            <div class="d-flex">
+                                                <div class="icons d-flex" id="recetaLike{{$recipe->id}}" >
+                                                    <div data-id="{{ $recipe->id }}" class="like-receta d-flex {{auth()->user() ? 'js-like' : ''}}">
+                                                        <div class="icon-count mr-1">
+                                                            {{ $recipe->likers()->get()->count() }}	
+                                                        </div>
+                                                        <div class="like-icons">
+                                                            @if( auth()->user() && auth()->user()->hasLiked($recipe)) 
+                                                                <i class="fas fa-thumbs-up"></i>
+                                                            @else
+                                                                <i class="far fa-thumbs-up"></i>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                    <p class="js-fav ml-3" data-id="{{ $recipe->id }}">
+                                                        @if(auth()->user())
+                                                            @if(auth()->user()->hasFavorited($recipe))
+                                                                <i class="fas fa-heart"></i>
+                                                            @else
+                                                                <i class="far fa-heart"></i>
+                                                            @endif
+                                                        @endif
+                                                    </p>
+                                                </div>
+                                                <div class="ml-auto">
+                                                    <a href="{{ url('/recetas', $recipe->id) }}" class="btn btn-primary">Ver más</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+                {{$recipes->links()}}
+            </div>
+        </div>   
     </div>
-    </div>
+</main>
+@include('layouts.footer')
+@section('footer')
+    <script src="{{ asset('js/recetas.js') }}"></script>
+@endsection
+<!------------------------------->
 @endsection 
