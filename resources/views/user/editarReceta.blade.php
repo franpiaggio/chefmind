@@ -17,6 +17,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/recetas/{{$recipe->id}}/crear-galeria"> Album de fotos </a>
                     </li>
+                    <li class="nav-item ml-auto">
+                        <a href="{{ url('/recetas', $recipe->id) }}" class="btn">Ver receta</a>
+                    </li>
                 </ul> 
                 {!! Form::model($recipe, ['method' => 'PATCH','url' => 'recetas/' . $recipe->id,'class'=>'row my-3 profile-form', 'enctype' => 'multipart/form-data', 'id'=>'enviar']) !!}
                     @csrf

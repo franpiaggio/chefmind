@@ -12,13 +12,13 @@
             <div class="container">
                 <ul class="nav nav-tabs">
                   <li class="nav-item">
-                    <a class="nav-link active" href="#">Usuarios</a>
+                    <a class="nav-link active" href="/admin/usuarios">Usuarios</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Todas las recetas</a>
+                    <a class="nav-link" href="/admin/recetas">Todas las recetas</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">Categorías</a>
+                    <a class="nav-link" href="/admin/categorias">Categorías</a>
                   </li>
                 </ul>
             </div>

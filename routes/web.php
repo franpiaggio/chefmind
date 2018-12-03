@@ -30,7 +30,6 @@ Route::get('/recetas/nueva', 'RecetasController@create');
 Route::get('/recetas/{id}/crear-galeria', 'RecetasController@createGallery');
 Route::post('/recetas/{id}/galeria', 'RecetasController@storeGallery');
 Route::get('/recetas/mis-recetas', 'RecetasController@userRecipes');
-Route::get('/recetas/mis-favoritos', 'RecetasController@userFavs');
 Route::get('/recetas/{id}', 'RecetasController@show');
 Route::get('recetas/{id}/editar', 'RecetasController@edit');
 Route::post('/recetas', 'RecetasController@store');
@@ -50,6 +49,7 @@ Route::post('/categoria', 'CategoriesController@store');
 Route::get('/miperfil/editar', 'PerfilController@editProfile');
 Route::patch('/miperfil/editar', 'PerfilController@updateProfile');
 Route::get('/miperfil', 'PerfilController@index');
+Route::get('/miperfil/mis-favoritos', 'PerfilController@userFavs');
 Route::get('/miperfil/borrarReceta/{id}', 'PerfilController@borrarReceta');
 // Perfiles
 Route::get('/perfil/{id}', 'PerfilController@getUser');

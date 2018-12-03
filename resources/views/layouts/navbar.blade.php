@@ -44,8 +44,7 @@
                           </button>
                           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" href="/miperfil"> <i class="far fa-user"></i> Mi perfil</a>
-                            <a class="dropdown-item" href="/recetas/mis-recetas"> <i class="fas fa-book"></i> Mis recetas</a>
-                            <a class="dropdown-item" href="/recetas/mis-favoritos"> <i class="far fa-star"></i> Favoritos</a>
+                            <a class="dropdown-item" href="/miperfil/mis-favoritos"> <i class="far fa-star"></i> Favoritos</a>
                             <a 
                                 class="dropdown-item logout"
                                 href="{{ route('logout') }}"

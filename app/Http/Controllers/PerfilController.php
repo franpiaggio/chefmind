@@ -22,11 +22,29 @@ class PerfilController extends Controller{
      */
     public function index(Request $request){
         if($request->buscar){
-            $recipes = Auth::user()->recipes()->where('title', 'LIKE', '%'.$request->buscar.'%')->paginate(4);
+            $recipes = Auth::user()->recipes()->where('title', 'LIKE', '%'.$request->buscar.'%')->orderBy('created_at', 'desc')->paginate(4);
         }else{ 
-            $recipes = Auth::user()->recipes()->paginate(4);
+            $recipes = Auth::user()->recipes()->orderBy('created_at', 'desc')->paginate(4);
         }
         return view('user.miPerfil', ['recipes'=>$recipes->appends(Input::except('page'))]);
+    }
+
+    /**
+     * Vista de recetas del usuario
+     * @return Response
+     */
+    public function userRecipes(){
+        $recipes = User::find(Auth::user()->id)->recipes()->paginate(10);
+        return view('user.misRecetas', compact('recipes'));
+    }
+
+    /**
+     * Vista de recetas del usuario
+     * @return Response
+     */
+    public function userFavs(){
+        $recipes = Auth::user()->favorites(Recipe::class)->paginate(10);
+        return view('user.misFavoritos', compact('recipes'));
     }
 
     /**
