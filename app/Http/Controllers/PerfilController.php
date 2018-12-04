@@ -55,6 +55,13 @@ class PerfilController extends Controller{
     }
 
     /**
+     * Vista de edición de contraseña
+     */
+    public function editPass(){
+        return view('user.editarContraseña');
+    }
+
+    /**
      * Actualiza datos del perfil
      */
     public function updateProfile(Request $request){
@@ -102,6 +109,29 @@ class PerfilController extends Controller{
         $user->save();
         Session::flash('msg', "Perfil actualizado correctamente.");
         return back();
+    }
+
+    /**
+     * Actualiza la contraseña
+     */
+    public function updatePass(Request $request){
+        $validatedData = $request->validate(
+            [
+                'pass1' => 'required|min:6'
+            ],
+            [
+                'pass1.required' => 'Contraseña inválida.',
+                'pass1.min' => 'Debe tener al menos 6 caracteres',
+            ]
+        );
+        if($request->pass1 == $request->pass2){
+            $user = Auth::user();
+            $user->password = bcrypt($request->pass1);
+            $user->save();
+            return back()->withErrors(['Contraseña cambiada correctamente']);
+        }else{
+            return back()->withErrors(['Las contraseñas no son iguales']);
+        }
     }
 
     /**

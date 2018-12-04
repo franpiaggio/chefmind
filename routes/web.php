@@ -47,7 +47,9 @@ Route::get('/categoria/{id}', 'CategoriesController@show');
 Route::post('/categoria', 'CategoriesController@store');
 // Perfil
 Route::get('/miperfil/editar', 'PerfilController@editProfile');
+Route::get('/miperfil/editar/contraseña', 'PerfilController@editPass');
 Route::patch('/miperfil/editar', 'PerfilController@updateProfile');
+Route::post('/miperfil/editarContraseña', 'PerfilController@updatePass');
 Route::get('/miperfil', 'PerfilController@index');
 Route::get('/miperfil/mis-favoritos', 'PerfilController@userFavs');
 Route::get('/miperfil/borrarReceta/{id}', 'PerfilController@borrarReceta');
