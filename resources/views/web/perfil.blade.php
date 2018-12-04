@@ -32,9 +32,6 @@
                     <li class="nav-item">
                         <a class="nav-link active" href="/miperfil"><i class="fas fa-book"></i> Recetas creadas </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/miperfil/mis-favoritos"><i class="far fa-star"></i> Favoritas </a>
-                    </li>
                 </ul>
                 <div class="row mt-3">
                     <div class="col-md-12 mb-3">
