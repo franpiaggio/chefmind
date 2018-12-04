@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,9 +19,9 @@
     <!-- Scripts -->
     <script src="{{ asset('lib/jquery/jquery-3.3.1.min.js') }}"></script>
     <script src="{{ asset('lib/bootstrap/js/bootstrap.bundle.min.js') }} "></script>
-    <script src="{{asset('lib/select2/select2.min.js')}} "></script>
-    <script src="{{asset('lib/select2/es.js')}}"></script>
-    <script src="{{asset('lib/quill/quill.min.js')}}"></script>
+    <script src="{{ asset('lib/select2/select2.min.js')}} "></script>
+    <script src="{{ asset('lib/select2/es.js')}}"></script>
+    <script src="{{ asset('lib/quill/quill.min.js')}}"></script>
     <title>@yield('title', 'Chefmind - Recetas online')</title>
 </head>
 <body>
