@@ -27,8 +27,9 @@ Route::get('/admin', 'AdminController@index');
 // Recetas
 Route::get('/recetas', 'RecetasController@index');
 Route::get('/recetas/nueva', 'RecetasController@create');
+Route::get('/recetas/{id}/crear-galeria', 'RecetasController@createGallery');
+Route::post('/recetas/{id}/galeria', 'RecetasController@storeGallery');
 Route::get('/recetas/mis-recetas', 'RecetasController@userRecipes');
-Route::get('/recetas/mis-favoritos', 'RecetasController@userFavs');
 Route::get('/recetas/{id}', 'RecetasController@show');
 Route::get('recetas/{id}/editar', 'RecetasController@edit');
 Route::post('/recetas', 'RecetasController@store');
@@ -46,10 +47,13 @@ Route::get('/categoria/{id}', 'CategoriesController@show');
 Route::post('/categoria', 'CategoriesController@store');
 // Perfil
 Route::get('/miperfil/editar', 'PerfilController@editProfile');
+Route::get('/miperfil/editar/contraseña', 'PerfilController@editPass');
 Route::patch('/miperfil/editar', 'PerfilController@updateProfile');
+Route::post('/miperfil/editarContraseña', 'PerfilController@updatePass');
 Route::get('/miperfil', 'PerfilController@index');
+Route::get('/miperfil/mis-favoritos', 'PerfilController@userFavs');
 Route::get('/miperfil/borrarReceta/{id}', 'PerfilController@borrarReceta');
-// Perfiles
-Route::get('/perfil/{id}', 'PerfilController@getUser');
+// Perfiles publicos
+Route::get('/perfil/{id}', 'UserController@getProfile');
 // Auth laravel
 Auth::routes();

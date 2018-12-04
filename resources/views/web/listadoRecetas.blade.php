@@ -1,5 +1,5 @@
 @foreach($recipes as $recipe)
-<div class="col-md-3 col-sm-6 mb-3 small-card">
+<div class="col-md-4 col-sm-6 mb-3 small-card">
     <div class="card">
         @unless( !$recipe->featured_image )
             <img class="card-img-top" src="/uploads/featured/{{$recipe->featured_image}}" alt="{{$recipe->title}}">            

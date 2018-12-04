@@ -19,6 +19,9 @@
                 <li class="nav-item {{ Request::is('categorias') ? 'active' : '' }}">
                     <a class="nav-link" href="/categorias">Recetas</a>
                 </li>
+                <li class="nav-item {{ Request::is('contacto') ? 'active' : '' }}">
+                    <a class="nav-link" href="/contacto">Contacto</a>
+                </li>
                 @auth
                 @if(Auth::user()->hasRole('admin'))
                     <li class="nav-item {{ Request::is('admin') ? 'active' : '' }}">
@@ -44,8 +47,7 @@
                           </button>
                           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" href="/miperfil"> <i class="far fa-user"></i> Mi perfil</a>
-                            <a class="dropdown-item" href="/recetas/mis-recetas"> <i class="fas fa-book"></i> Mis recetas</a>
-                            <a class="dropdown-item" href="/recetas/mis-favoritos"> <i class="far fa-star"></i> Favoritos</a>
+                            <a class="dropdown-item" href="/miperfil/mis-favoritos"> <i class="far fa-star"></i> Favoritos</a>
                             <a 
                                 class="dropdown-item logout"
                                 href="{{ route('logout') }}"
@@ -58,9 +60,6 @@
                             </form>
                           </div>
                         </div>
-                    </li>
-                    <li class="nav-item {{ Request::is('contacto') ? 'active' : '' }}">
-                        <a class="nav-link" href="/contacto">Contacto</a>
                     </li>
                 @endguest
             </ul>

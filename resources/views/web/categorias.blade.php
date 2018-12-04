@@ -86,7 +86,7 @@
                                             <h4 class="card-title">{{$recipe->title}}</h4>
                                             <p class="card-text">{{$recipe->textpreview}}</p>
                                             <p class="text-muted mt-3">
-                                                Creada por <a href="#">{{$recipe->user->name}}</a>
+                                                Creada por <a href="/perfil/{{$recipe->user->id}}">{{$recipe->user->name}}</a>
                                             </p>
                                             <div class="d-flex">
                                                 <div class="icons d-flex" id="recetaLike{{$recipe->id}}" >

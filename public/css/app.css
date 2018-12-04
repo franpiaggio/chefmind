@@ -327,6 +327,9 @@ footer .social-list li a{
   max-height: 70px;
   text-overflow: ellipsis;
 }
+.custom-file-input:lang(en)~.custom-file-label::after {
+  content: "Buscar" !important;
+}
 
 .small-card .card .recipe-rate i {
   color: #E7AF34;
@@ -566,5 +569,9 @@ footer .social-list li a{
 
 .gallery {
   border-top: 1px solid #cacaca;
+}
+
+#drop-image .img-container{
+  currsor: pointer;
 }
 

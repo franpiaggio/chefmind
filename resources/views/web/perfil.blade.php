@@ -5,42 +5,48 @@
     <div class="row">
         <header class="col-md-12 profile-topbar">
             <div class="container">
-                <img src="/uploads/perfiles/{{Auth::user()->image}}" class="img-responsive rounded-circle profile-topbar__image" alt="Foto de perfil de {{ Auth::user()->name }}">
+                <img src="/uploads/perfiles/{{$user->image}}" class="img-responsive rounded-circle profile-topbar__image" alt="Foto de perfil de {{ $user->name }}">
                 <h1 class="profile-topbar__title">
-                    {{ Auth::user()->name }}
-                    <a href="/miperfil/editar" class="btn btn-outline-primary btn-sm ml-3">Editar perfil</a>
+                    {{ $user->name }}
                 </h1>
                 <div class="profile-topbar__social">
-                    @if( Auth::user()->facebook )
-                    <a href="{{Auth::user()->facebook}}"><i class="fab fa-facebook"></i></a>
+                    @if( $user->facebook )
+                        <a href="{{$user->facebook}}"><i class="fab fa-facebook"></i></a>
                     @endif
-                    @if( Auth::user()->instagram )
-                    <a href="{{Auth::user()->instagram}}" class="ml-2"><i class="fab fa-instagram"></i></a>
+                    @if( $user->instagram )
+                        <a href="{{$user->instagram}}" class="ml-2"><i class="fab fa-instagram"></i></a>
                     @endif
-                    @if( Auth::user()->twitter )
-                    <a href="{{Auth::user()->twitter}}" class="ml-2"><i class="fab fa-twitter"></i></a>
+                    @if( $user->twitter )
+                        <a href="{{$user->twitter}}" class="ml-2"><i class="fab fa-twitter"></i></a>
                     @endif
                 </div>
             </div>
         </header>
         <div class="col-md-12 mt-2">
             <div class="container profile-description">
-                @if(Auth::user()->description)
+                @if($user->description)
                     <h2>Sobre mí</h2>
-                    <p>{{ Auth::user()->description }}</p>
+                    <p>{{ $user->description }}</p>
                 @endif
                 <ul class="nav nav-tabs mt-5">
                     <li class="nav-item">
-                        <a class="nav-link" href="/miperfil"><i class="fas fa-book"></i> Recetas creadas </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="/miperfil/mis-favoritos"><i class="far fa-star"></i> Favoritas </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="far fa-user"></i> Usuarios seguidos</a>
+                        <a class="nav-link active" href="/miperfil"><i class="fas fa-book"></i> Recetas creadas </a>
                     </li>
                 </ul>
                 <div class="row mt-3">
+                    <div class="col-md-12 mb-3">
+                        <form action="/perfil/{{$user->id}}" method="GET">
+                            <div class="input-group">
+                                @if(Request::query('categoria'))
+                                    <input type="hidden" name="categoria" value="{{Request::query('categoria')}}">
+                                @endif
+                                <input type="text" class="form-control" placeholder="Buscá tu receta" name="buscar">
+                                <div class="input-group-append">
+                                    <input type="submit" class="btn btn-outline-secondary" value="Buscar"/>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                     @foreach($recipes as $recipe)
                         <div class="col-md-12 mb-3 recipe-list">
                             <div class="card">
@@ -53,7 +59,7 @@
                                             <h3 class="card-title">{{$recipe->title}}</h3>
                                             <p class="card-text">{{$recipe->textpreview}}</p>
                                             <p class="text-muted mt-3">
-                                                Creada por <a href="#">{{$recipe->user->name}}</a>
+                                                Creada por <a href="/perfil/{{$recipe->user->id}}">{{$recipe->user->name}}</a>
                                             </p>
                                             <div class="d-flex">
                                                 <div class="icons d-flex" id="recetaLike{{$recipe->id}}" >
@@ -99,5 +105,4 @@
 @section('footer')
     <script src="{{ asset('js/recetas.js') }}"></script>
 @endsection
-<!------------------------------->
 @endsection 
