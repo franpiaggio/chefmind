@@ -1,7 +1,20 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
 
+/**
+***************************
+* Migrar a archivos externos
+***************************
+**/
+
+/**
+*
+* Globales
+*
+**/
+
 body {
   min-height: 100vh;
+  background-color: #fff;
 }
 
 .logout-form {
@@ -14,17 +27,59 @@ body {
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
-/**
-***************************
-* Migrar a archivos externos
-***************************
-**/
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: europa-regularregular, sans-serif;
+}
 
-/**
-*
-* Globales
-*
-**/
+a {
+  color: #3fb0ac;
+  border-color: #3fb0ac;
+}
+
+p {
+  /*font-family: 'Muli',sans-serif;*/
+  font-family: 'Source Sans Pro', sans-serif;
+  color: #333333;
+  letter-spacing: 0;
+}
+
+.jumbotron {
+  background-color: #fff;
+}
+
+body.home {
+  /*background: url('/img/main-bg.png') no-repeat 0 -40px;
+  background-size: 103%;*/
+}
+
+.btn-filled {
+  background: #3fb0ac;
+  color: #fff;
+}
+
+@font-face {
+  font-family:europa-lightregular;
+  src:url("https://s.yumm.ly/font/europa-light-webfont.woff2") format("woff2"),url("https://s.yumm.ly/font/woff/europa-light-webfont.woff") format("woff");
+  font-weight:100;
+  font-style:normal
+ }
+ @font-face {
+  font-family:europa-regularregular;
+  src:url("https://s.yumm.ly/font/europa-regular-webfont.woff2") format("woff2"),url("https://s.yumm.ly/font/woff/europa-regular-webfont.woff") format("woff");
+  font-weight:400;
+  font-style:normal
+ }
+ @font-face {
+  font-family:europa-boldregular;
+  src:url("https://s.yumm.ly/font/europa-bold-webfont.woff2") format("woff2"),url("https://s.yumm.ly/font/woff/europa-bold-webfont.woff") format("woff");
+  font-weight:700;
+  font-style:normal
+ }
 
 /* Select 2: buscador de ingredientes */
 
@@ -39,7 +94,10 @@ body {
 .select2-search__field,
 .select2-selection__choice {
   margin-top: 10px !important;
+  padding-left: 15px;
 }
+
+/* Fin Select 2: buscador de ingredientes */
 
 /* Navbar principal */
 
@@ -48,8 +106,16 @@ body {
 }
 
 @media (min-width: 992px) {
-  #menuPrincipal .registrarse {
-    margin-left: 15px !important;
+  .navbar.fixed {
+    position: fixed;
+    width: 100%;
+    background-color: rgba(255,255,255,0) !important;
+    transition: background-color .3s;
+    z-index: 999;
+  }
+  
+  .navbar.fixed.scrolled{
+    background-color: rgba(255,255,255,1) !important;
   }
 }
 
@@ -57,22 +123,221 @@ body {
   color: #dc3545;
 }
 
+.navbar .navbar-brand img{
+  width: 200px;
+  height: 50px;  
+}
+
+.navbar .navbar-nav .active > .nav-link,
+.navbar .navbar-nav .nav-link.active,
+.navbar .navbar-nav .nav-link.show,
+.navbar .navbar-nav .show > .nav-link,
+.navbar .navbar-nav .nav-link:focus,
+.navbar .navbar-nav .nav-link:hover {
+ color: #3fb0ac; 
+}
+
+.navbar .navbar-nav .active > .nav-link,
+.navbar .navbar-nav .nav-link.active {
+  color: #3fb0ac;
+  font-weight: 600;
+  border-bottom: 1px solid #3fb0ac;
+  padding-bottom: 5px;
+}
+
+.navbar .nav-item .nav-link {
+  color: #3fb0ac;
+}
+
+.navbar .nav-item a.btn,
+.navbar .nav-item button {
+  background: transparent;
+  color: #3fb0ac;
+  border-color: #3fb0ac;
+}
+
+.navbar .nav-item a.btn:hover,
+.navbar .nav-item button:hover {
+  background: #3fb0ac;
+  color: #fff;
+}
+
+.navbar .nav-item a.btn:focus,
+.navbar .nav-item button:focus {
+  box-shadow: none;
+}
+
+.navbar .nav-item {
+  margin: 0 10px;
+}
+
+/* Fin Navbar principal */
+
+/* Buscador principal */ 
+
+.search-cont {
+  background: url('/img/main-bg.png');
+  background-position: center;
+  display: flex;
+  align-items: center;
+}
+@media only screen and (min-width: 960px){
+  .search-cont{
+    min-height: 69vh;
+    background-repeat: no-repeat;
+    background-size: 103%;
+  }
+}
+.search-cont .container{
+}
+
+.search-cont h1 {
+  color: #3b3b3b
+}
+
+.search-cont h1 span {
+  color: #3fb0ac;
+  text-decoration: underline;
+}
+.search-cont .search-input {
+  padding-right: 0;
+}
+
+.search-cont .search-input .select2-container--default .select2-selection--multiple {
+  border: 0;
+  padding-left: 15px;
+  box-shadow: 1px 1px 15px -5px grey;
+}
+
+.search-cont .search-btn {
+  padding-left: 0;
+  padding-right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-cont .search-btn input {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  position: relative;
+} 
+
+.search-cont .search-btn::before {
+  font-family: "Font Awesome 5 Free";
+  content: '\f002';
+  font-weight: 600;
+  display: block;
+  position: absolute;
+  color: #fff;
+  z-index: 9999;
+  font-size: 1.25em;
+  line-height:1
+}
+
+.search-cont .search-desc span {
+  font-weight: 500; 
+}
+/* Fin Buscador principal */
+
 /* Footer */
+
+footer.bg-light {
+  background-color: #fffaf4; 
+  box-shadow: 1px -1px 10px #b0b0b066;
+}
 
 footer.footer {
   padding-top: 4rem;
   padding-bottom: 4rem;
 }
-
-/* Bootstrap mods */
-
-.card-img-top {
-  max-height: 200px;
-  min-height: 220px;
+footer .links-list li a,
+footer .social-list li a{
+  color: #3fb0ac;
 }
 
-.card-text {
-  min-height: 70px;
+/* Fin Footer */
+
+/* Recipe card */
+
+.small-card   .card::after {
+  content: '';
+  height: 230px;
+  width: 100%;
+  position: absolute;
+  display: block;
+  left: 0px;
+  top: 0px;
+  z-index: 6;
+  background: -moz-linear-gradient(top, rgba(42,42,42,.65) 0%, rgba(125,185,232,0) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, rgba(42,42,42,.65) 0%,rgba(125,185,232,0) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, rgba(42,42,42,.65) 0%,rgba(125,185,232,0) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+
+.small-card   .card:hover {
+  box-shadow: 0px 0px 20px -9px #0009;
+}
+
+.small-card .card .card-img-top {
+  height: 230px;
+  max-height: 230px;
+  object-fit: cover;
+  position: relative;
+ /* min-height: 220px; */
+}
+
+.small-card .card .card-body{
+  padding: .5rem 1rem 1rem 1rem;
+}
+
+.small-card .card .card-title{
+  font-family: europa-regularregular, sans-serif;
+  font-size: 1.35rem;
+  letter-spacing: 0;
+  font-weight: 400;
+  margin-top: 8px;
+}
+
+.small-card .card .card-link {
+  border-radius: 100px;
+  background: #3fb0ac;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 200px;
+  right: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 1px 1px 5px -1px #000;
+}
+ .small-card .card .card-link i {
+   font-size: .875em;   
+   color: #fff;
+   text-shadow: 1px 1px 10px grey;
+ }
+ /*.small-card .card .card-link{
+ font-size: .875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  display: block;
+  color: #3fb0ac;
+  border: 1px solid #3fb0ac;
+  padding: 5px 20px;
+  border-radius: .2rem; 
+  width: 100%;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.small-card .card .card-link:hover {
+  background: #3fb0ac;
+  color: #fff;
+}*/
+
+.small-card .card .card-text {
+  /*min-height: 70px;*/
   overflow: hidden;
   max-height: 70px;
   text-overflow: ellipsis;
@@ -80,6 +345,85 @@ footer.footer {
 .custom-file-input:lang(en)~.custom-file-label::after {
   content: "Buscar" !important;
 }
+
+.small-card .card .recipe-rate i {
+  color: #E7AF34;
+  font-size: 4px;
+  margin-right: 3px;
+  cursor: pointer;
+}
+
+/*.small-card .card .recipe-rate i.fas:hover {
+  font-weight: 300;
+}*/
+
+.small-card .card .recipe-rate i.far:hover {
+  font-weight: 600;
+}
+.small-card .card .recipe-info {
+  display: flex;
+  margin-left: auto;
+}
+
+.small-card .card .recipe-info span {
+  font-size: .875rem;
+  color: #adadad;
+  margin-left: 10px;
+}
+
+.small-card .card .recipe-info span:first-of-type {
+  margin-left: 0;
+}
+.small-card .card .recipe-info span:last-of-type i {
+  padding-right: 4px;
+}
+
+.small-card .card .recipe-info img {
+  width: 15px;
+  padding-bottom: 5px;
+}
+
+.small-card .card .icons {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  z-index: 9;
+}
+
+.small-card .card .icons * {
+  color: #fff;
+}
+
+.small-card .card .icons i {
+  cursor: pointer;
+}
+
+.small-card .card .icons i:hover {
+  font-weight: 600;
+}
+
+.small-card .card .icons .icon-count {
+  padding-right: 5px;
+}
+
+.small-card .card .card-body {
+  padding: .5rem 1rem 1rem 1rem;
+}
+
+.small-card .card .card-footer {
+  background: transparent;
+  border-top: 0;
+  padding-top: 0;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.small-card .card .card-footer .recipe-creator {
+  color: #3fb0ac;
+}
+
+/* End Recipe card */
+
 
 /**
 *

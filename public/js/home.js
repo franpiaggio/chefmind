@@ -29,3 +29,9 @@ $("#ingredientsSelector").select2({
         return object.text;
     }
 });
+// Verifico que la sección activa sea la home. Si es le agrega una clase al body para aplicar el background 
+$(function(){
+    if($('main').hasClass('index-section')){
+        $('body').addClass('home');
+    }
+});
