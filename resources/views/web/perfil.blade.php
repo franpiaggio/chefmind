@@ -11,13 +11,13 @@
                 </h1>
                 <div class="profile-topbar__social">
                     @if( $user->facebook )
-                    <a href="{{$user->facebook}}"><i class="fab fa-facebook"></i></a>
+                        <a href="{{$user->facebook}}"><i class="fab fa-facebook"></i></a>
                     @endif
                     @if( $user->instagram )
-                    <a href="{{$user->instagram}}" class="ml-2"><i class="fab fa-instagram"></i></a>
+                        <a href="{{$user->instagram}}" class="ml-2"><i class="fab fa-instagram"></i></a>
                     @endif
                     @if( $user->twitter )
-                    <a href="{{$user->twitter}}" class="ml-2"><i class="fab fa-twitter"></i></a>
+                        <a href="{{$user->twitter}}" class="ml-2"><i class="fab fa-twitter"></i></a>
                     @endif
                 </div>
             </div>
