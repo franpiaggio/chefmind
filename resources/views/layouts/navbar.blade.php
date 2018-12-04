@@ -19,6 +19,9 @@
                 <li class="nav-item {{ Request::is('categorias') ? 'active' : '' }}">
                     <a class="nav-link" href="/categorias">Recetas</a>
                 </li>
+                <li class="nav-item {{ Request::is('contacto') ? 'active' : '' }}">
+                    <a class="nav-link" href="/contacto">Contacto</a>
+                </li>
                 @auth
                 @if(Auth::user()->hasRole('admin'))
                     <li class="nav-item {{ Request::is('admin') ? 'active' : '' }}">
@@ -57,9 +60,6 @@
                             </form>
                           </div>
                         </div>
-                    </li>
-                    <li class="nav-item {{ Request::is('contacto') ? 'active' : '' }}">
-                        <a class="nav-link" href="/contacto">Contacto</a>
                     </li>
                 @endguest
             </ul>

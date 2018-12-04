@@ -15,7 +15,7 @@ class PerfilController extends Controller{
      * Verifica con Auth en algunos métodos
      */
     public function __construct(){
-        $this->middleware('auth', ['only' => ['index', 'editProfile', 'updateProfile', 'borrarReceta']]);
+        $this->middleware('auth', ['only' => ['index', 'editProfile', 'updateProfile', 'borrarReceta', 'borrarReceta', 'updatePass']]);
     }
     /**
      * Vista de mi perfil

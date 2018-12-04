@@ -10,7 +10,7 @@
             <a href="{{ url('/recetas', $recipe->id) }}" class="card-link">Ver Receta</a>
         </div>
         <div class="card-footer d-flex">
-            <small class="text-muted">Creada por <a href="#">{{$recipe->user->name}}</a></small>
+            <small class="text-muted">Creada por <a href="/perfil/{{$recipe->user->id}}">{{$recipe->user->name}}</a></small>
             <div class="icons ml-auto d-flex" id="recetaLike{{$recipe->id}}" >
                 <div data-id="{{ $recipe->id }}" class="like-receta d-flex {{auth()->user() ? 'js-like' : ''}}">
                     <div class="icon-count mr-1">

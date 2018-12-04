@@ -20,7 +20,7 @@ class RecipeTableSeeder extends Seeder
         $recipe = new Recipe();
         $recipe->title = "Receta de prueba";
         $recipe->textpreview = "Ideal para hacer pruebas";
-        $recipe->body = "Esta es la descripción de la receta de prueba";
+        $recipe->body = '{"ops":[{"insert":"Descripción de la receta\n\nPasos a seguir:\n\nPaso 1"},{"attributes":{"list":"ordered"},"insert":"\n"},{"insert":"Paso 2"},{"attributes":{"list":"ordered"},"insert":"\n"},{"insert":"Paso 3"},{"attributes":{"list":"ordered"},"insert":"\n"}]}';
         $recipe->featured_image = 'prueba.jpg';
         $recipe->difficulty = 'Media';
         $recipe->quantity = 2;
