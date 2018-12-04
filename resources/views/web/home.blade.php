@@ -17,7 +17,7 @@
                     </div>
                 </div>
             </form>
-            <small class="offset-md-1">¿Buscás una receta en especial?<a href="/categorias">Ingresá aquí</a></small>
+            <small class="offset-md-1">¿Buscás una receta en especial?<a href="/categorias" class="ml-1">Ingresá aquí</a></small>
         </div>
     </section>
     <section class="container mb-5">
@@ -30,12 +30,10 @@
     @section('footer')
         <script src="{{ asset('js/home.js') }}"></script>
         <script src="{{ asset('js/recetas.js') }}"></script>
+        <script src="{{asset('js/nav.js')}}"></script>
     @endsection
     <script>
-    $(document).scroll(function () {
-    var $nav = $(".navbar");
-        $nav.toggleClass('scrolled', $(this).scrollTop() > $nav.height());
-    });
-  </script>
+
+    </script>
 </main>
 @endsection 
