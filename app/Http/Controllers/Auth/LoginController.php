@@ -66,6 +66,7 @@ class LoginController extends Controller
      */
     protected function authenticated(Request $request, $user)
     {
+        // Verifico si está baneado
         if($user->user_state_id == 2){
             $this->guard()->logout();
             $request->session()->invalidate();
