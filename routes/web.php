@@ -53,7 +53,7 @@ Route::post('/miperfil/editarContraseña', 'PerfilController@updatePass');
 Route::get('/miperfil', 'PerfilController@index');
 Route::get('/miperfil/mis-favoritos', 'PerfilController@userFavs');
 Route::get('/miperfil/borrarReceta/{id}', 'PerfilController@borrarReceta');
-// Perfiles
-Route::get('/perfil/{id}', 'PerfilController@getUser');
+// Perfiles publicos
+Route::get('/perfil/{id}', 'UserController@getProfile');
 // Auth laravel
 Auth::routes();
