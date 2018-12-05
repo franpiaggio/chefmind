@@ -640,3 +640,32 @@ footer .social-list li a{
   min-height: 375px;
 }
 
+.errors{
+  min-height: 72.4vh;
+  background-image: url(/img/error.jpg);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.errors i{
+  font-size: 4rem;
+  color: #fc2143;
+}
+.errors .error-number{
+  font-size: 5rem;
+}
+
+.login{
+  background-image: url(/img/login.jpg);
+  background-position: center;
+}
+.register{
+  background-image: url(/img/register_2.jpg);
+  background-position: center;
+}
+.login-register{
+  min-height: 80vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+

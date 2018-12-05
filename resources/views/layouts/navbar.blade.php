@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light {{Request::is('/') ? 'fixed' : 'sticky-top'}}">
+<nav class="navbar navbar-expand-lg navbar-light bg-light {{Request::is('/')  ? 'fixed' : 'sticky-top'}}">
     <div class="container">
         <a class="navbar-brand" href="/"><img src="/svg/logo.svg" alt="logo chefmind" /></a>
         <button 
