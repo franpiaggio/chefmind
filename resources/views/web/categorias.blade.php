@@ -83,7 +83,16 @@
                                     </div>
                                     <div class="col-md-8 px-3">
                                         <div class="card-block px-3 py-3">
-                                            <h4 class="card-title">{{$recipe->title}}</h4>
+                                            <div class="d-flex">
+                                                <h4 class="card-title">{{$recipe->title}}</h4>
+                                                <div class="stars ml-auto mt-2 rate-{{(int)$recipe->averageRating}}">
+                                                    <span data-rate="1" class="js-rate fa fa-star"></span>
+                                                    <span data-rate="2" class="js-rate fa fa-star"></span>
+                                                    <span data-rate="3" class="js-rate fa fa-star"></span>
+                                                    <span data-rate="4" class="js-rate fa fa-star"></span>
+                                                    <span data-rate="5" class="js-rate fa fa-star"></span>
+                                                </div>
+                                            </div>
                                             <p class="card-text">{{$recipe->textpreview}}</p>
                                             <p class="text-muted mt-3">
                                                 Creada por <a href="/perfil/{{$recipe->user->id}}">{{$recipe->user->name}}</a>
