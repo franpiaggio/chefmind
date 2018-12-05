@@ -586,7 +586,30 @@ footer .social-list li a{
   border-top: 1px solid #cacaca;
 }
 
+#body ol li{
+  margin-bottom: 2em;
+}
+
 #drop-image .img-container{
   currsor: pointer;
+}
+
+.fa.checked{
+  color: orange;
+}
+.caracteristicas{
+  background: #D8D8D8;
+}
+
+.receta-carrousel img{
+  max-height: 370px;
+}
+
+.profile-comment{
+  max-height: 100px;
+  overflow: hidden;
+}
+#album{
+  min-height: 375px;
 }
 
