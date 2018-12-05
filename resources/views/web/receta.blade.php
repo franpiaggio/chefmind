@@ -187,8 +187,8 @@
                                                 <div class="d-flex flex-wrap">
                                                     <p class="card-text">{{$comment->body}}</p>
                                                     @if(Auth::check())
-                                                        @if(Auth::user()->id === $recipe->user_id)
-                                                            <a href="{{ url('comment/'.$comment->id.'/delete') }}" class="btn btn-outline-warning ml-auto">Borrar comentario</a>
+                                                        @if(Auth::user()->id == $recipe->user_id || Auth::user()->id == $comment->user->id)
+                                                            <a href="{{ url('comment/'.$comment->id.'/delete') }}" class="btn btn-outline-warning ml-auto"><i class="far fa-trash-alt mr-1"></i> Borrar</a>
                                                         @endif
                                                     @endif
                                                 </div>
