@@ -4,11 +4,11 @@
 <main class="main-container index-section">
     <section class="search-cont">
         <div class="container mb-3">
-            <h1 class="display-4 text-center">Encontrá tu <span>receta</span> </h1>
-            <p class="lead text-center search-desc">¿Tenés los ingredientes pero no sabés qué cocinar? <br /> <span>Escribilos en este buscador</span> y vas a poder resolverlo!</p>          
+            <h1 class="display-4 text-center">Encontrá tu receta</h1>
+            <p class="lead text-center search-desc">Escribí los ingredientes en el buscador</p>          
             <form class="mb-2 mt-4" method="GET" action="/buscar">
-                <div class="form-row">
-                    <div class="col-12 col-md-8 offset-md-1 mb-2 mb-md-0 search-input">
+                <div class="form-row justify-content-center">
+                    <div class="col-12 col-md-8 mb-2 mb-md-0 search-input">
                         <select id="ingredientsSelector" name="ingredients[]" class="form-control form-control-lg js-ingredients d-none" multiple>
                         </select>
                     </div>

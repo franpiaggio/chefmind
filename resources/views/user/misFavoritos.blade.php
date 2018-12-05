@@ -3,13 +3,15 @@
 @section('content')
 <main class="main-container container-fluid">  
     <div class="row">
-        <header class="col-md-12 profile-topbar">
+        <header class="col-md-12 profile-topbar top-banner">
             <div class="container">
                 <img src="/uploads/perfiles/{{Auth::user()->image}}" class="img-responsive rounded-circle profile-topbar__image" alt="Foto de perfil de {{ Auth::user()->name }}">
-                <h1 class="profile-topbar__title">
-                    {{ Auth::user()->name }}
-                    <a href="/miperfil/editar" class="btn btn-outline-primary btn-sm ml-3">Editar perfil</a>
-                </h1>
+                <div class="my-profile-cont d-flex align-items-center">
+                    <h1 class="profile-topbar__title">
+                        {{ Auth::user()->name }}
+                    </h1>
+                    <a href="/miperfil/editar" class="btn btn-green btn-sm ml-3">Editar perfil</a>
+                </div>
                 <div class="profile-topbar__social">
                     @if( Auth::user()->facebook )
                     <a href="{{Auth::user()->facebook}}"><i class="fab fa-facebook"></i></a>
@@ -42,10 +44,10 @@
                 </ul>
                 <div class="row mt-3">
                     @foreach($recipes as $recipe)
-                        <div class="col-md-12 mb-3 recipe-list">
+                        <div class="col-md-12 col-6 mb-3 recipe-list">
                             <div class="card">
                                 <div class="row ">
-                                    <div class="col-md-4">
+                                    <div class="col-md-4 img-cont">
                                         <img src="/uploads/featured/{{$recipe->featured_image}}" class="w-100">
                                     </div>
                                     <div class="col-md-8 px-3">
@@ -80,7 +82,7 @@
                                                     </p>
                                                 </div>
                                                 <div class="ml-auto">
-                                                    <a href="{{ url('/recetas', $recipe->id) }}" class="btn btn-primary">Ver más</a>
+                                                    <a href="{{ url('/recetas', $recipe->id) }}" class="card-link"><i class="fas fa-plus"></i> <span class="sr-only">Ver Receta</span></a>
                                                 </div>
                                             </div>
                                         </div>

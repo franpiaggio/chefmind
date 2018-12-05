@@ -3,12 +3,12 @@
 @section('content')
 <main class="main-container container-fluid">
     <div class="row">
-        <header class="col-md-12 profile-topbar">
+        <header class="col-md-12 profile-topbar edit-topbar top-banner">
             <div class="container">
                 <h2>Editar mi perfil</h2>
             </div>
         </header>
-        <div class="col-md-12 mt-5">
+        <div class="col-md-12 my-5">
             <div class="container">
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
@@ -82,7 +82,7 @@
                                     </div>
                                 </div>
                                 <div class="col-md-12 d-flex">
-                                    <input type="submit" class="btn btn-primary ml-auto" value="Guardar cambios">
+                                    <input type="submit" class="btn btn-green mt-3 ml-auto" value="Guardar cambios">
                                 </div>
                             </div>                            
                         </div>

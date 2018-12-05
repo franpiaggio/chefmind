@@ -41,4 +41,14 @@ $(document).ready(function(){
                 }
         });
     });
+
+    // Muestra form Agregar categoría
+    $(".add-cat").click(function(){
+        $(".add-cat-form").addClass('show')
+    });
+    $(".cancel-add-cat").click(function(){
+        $(".add-cat-form").removeClass('show')
+    });
+    
+
 });
