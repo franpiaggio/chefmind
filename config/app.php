@@ -161,6 +161,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Overtrue\LaravelFollow\FollowServiceProvider::class,
+        willvincent\Rateable\RateableServiceProvider::class,
 
         /*
          * Package Service Providers...
