@@ -32,21 +32,16 @@
             </div>
         @endunless
         <div class="card-body">
-            <span class="recipe-rate">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="far fa-star"></i>
-                <i class="far fa-star"></i>
-            </span>
+            <div class="stars mt-2 rate-{{(int)$recipe->averageRating}}">
+                <span data-rate="1" class="js-rate fa fa-star"></span>
+                <span data-rate="2" class="js-rate fa fa-star"></span>
+                <span data-rate="3" class="js-rate fa fa-star"></span>
+                <span data-rate="4" class="js-rate fa fa-star"></span>
+                <span data-rate="5" class="js-rate fa fa-star"></span>
+            </div>
             <h3 class="card-title"><a href="{{ url('/recetas', $recipe->id) }}">{{ $recipe->title }}</a></h3>
             <div class="recipe-info">
                 <span>{{$recipe->textpreview}}</span>
-                {{-- 
-                <span> <i class="far fa-clock"></i> {{ $recipe->time ? $recipe->time : 'No especificado' }} min</span>
-                <span> <img src="/svg/chefs.svg" /> {{ $recipe->difficulty ? $recipe->difficulty : 'No especificado' }} </span>
-                <span> <i class="far fa-user"></i>{{ $recipe->quantity ? $recipe->quantity : 'No especificado' }}  {{$recipe->quantity && $recipe->quantity == 1 ? 'persona' : 'personas'}}  </span>
-                --}}
             </div>
         </div>
         <div class="card-footer d-flex">

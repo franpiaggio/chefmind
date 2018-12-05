@@ -15,9 +15,11 @@
                     <div class="col-12 col-md-1 search-btn">
                         <input type="submit" class="btn btn-block btn-lg btn-filled" value="" />
                     </div>
+                    <div class="col-md-9 col-md-1 justify-content-center">
+                        <small class="">¿Buscás una receta en especial?<a href="/categorias" class="ml-1">Ingresá aquí</a></small>
+                    </div>
                 </div>
             </form>
-            <small class="offset-md-1">¿Buscás una receta en especial?<a href="/categorias" class="ml-1">Ingresá aquí</a></small>
         </div>
     </section>
     <section class="container mb-5">

@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\EditRecipeRequest;
 use App\Http\Requests\CreateRecipeRequest;
+use willvincent\Rateable\Rating;
 
 class RecetasController extends Controller
 {
@@ -24,7 +25,8 @@ class RecetasController extends Controller
         $this->middleware('auth', [
             'only' => [
                 'create', 'store', 'edit', 'update', 'userRecipes', 
-                'likeReceta', 'deleteImg', 'storeGallery', 'createGallery'
+                'likeReceta', 'deleteImg', 'storeGallery', 'createGallery',
+                'rateReceta'
             ]
         ]);
     }
@@ -281,6 +283,26 @@ class RecetasController extends Controller
         $recipe = Recipe::find($request->id);
         $response = auth()->user()->toggleFavorite($recipe);
         return response()->json(['success' => $response]);
+    }
+
+    /**
+     * Rankea una receta
+     */
+    public function rateReceta(Request $request){
+        $recipe = Recipe::find($request->id);
+        $rating = new Rating;
+        $rating->rating = $request->rate;
+        $rating->user_id = Auth::user()->id;
+        
+        if(Rating::where('user_id', Auth::user()->id)->first()){
+            $rate = Rating::where('user_id', Auth::user()->id)->first();
+            $rate->delete();
+            $recipe->ratings()->save($rating);
+        }else{
+            $recipe->ratings()->save($rating);
+        }
+        $average = $recipe->averageRating;
+        return response()->json(['success' => $average]);
     }
 
     /**

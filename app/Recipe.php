@@ -4,10 +4,11 @@ namespace App;
 
 use Overtrue\LaravelFollow\Traits\CanBeLiked;
 use Overtrue\LaravelFollow\Traits\CanBeFavorited;
+use willvincent\Rateable\Rateable;
 use Illuminate\Database\Eloquent\Model;
 
 class Recipe extends Model{
-    use CanBeLiked, canBeFavorited;
+    use CanBeLiked, canBeFavorited, Rateable;
 
     /**
      * Datos que se pueden completar

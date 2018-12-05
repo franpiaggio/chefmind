@@ -11,7 +11,8 @@
         "laravel/framework": "5.7.*",
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "~5.0",
-        "overtrue/laravel-follow": "^1.1"
+        "overtrue/laravel-follow": "^1.1",
+        "willvincent/laravel-rateable": "^1.07"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

@@ -5,8 +5,7 @@
     <div class="container-fluid errors d-flex">
         <div class="container d-flex flex-column align-items-center justify-content-center">
             <i class="fas fa-exclamation-circle mb-3"></i>
-            <h1 class="error-number">401</h1>
-            <p class="">No tienes permisos para acceder a esta ruta.</p>
+            <h1 class="error-number">403</h1>
             <a href="/" class="btn btn-outline-danger">Volver al home</a>
         </div>
     </div>

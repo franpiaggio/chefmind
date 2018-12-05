@@ -1,7 +1,7 @@
 @extends('layouts.webLayout')
 @section('title', 'Todas las recetas')
 @section('content')
-<main class="main-container container-fluid">
+<main class="main-container container-fluid mb-5">
     <div class="row">
         <header class="col-md-12 profile-topbar">
             <div class="container">
@@ -12,7 +12,7 @@
             <div class="container">
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#"> Infromación de la receta </a>
+                        <a class="nav-link active" href="#"> Información de la receta </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/recetas/{{$recipe->id}}/crear-galeria"> Album de fotos </a>
@@ -124,13 +124,14 @@
                         <div id="editor-container"></div>
                     </div>
                     <div class="col-md-12 d-flex">
-                        <input type="submit" class="btn btn-primary ml-auto" value="Crear receta">
+                        <input type="submit" class="btn btn-primary ml-auto" value="Editar">
                     </div>
                 {!! Form::close() !!}
             </div>
         </div>
     </div>
 </main>
+@include('layouts.footer')
 @section('footer')
     <script src="{{ asset('js/editar-receta.js') }}">
     </script>
