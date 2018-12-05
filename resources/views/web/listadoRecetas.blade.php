@@ -1,8 +1,10 @@
 @foreach($recipes as $recipe)
-<div class="col-md-4 col-sm-6 mb-3 small-card">
+<div class="col-md-4 col-6 mb-3 col-6 small-card">
     <div class="card">
         @unless( !$recipe->featured_image )
-            <img class="card-img-top" src="/uploads/featured/{{$recipe->featured_image}}" alt="{{$recipe->title}}">            
+        <a class="img-link" href="{{ url('/recetas', $recipe->id) }}">
+            <img class="card-img-top" src="/uploads/featured/{{$recipe->featured_image}}" alt="{{$recipe->title}}">
+        </a>            
             <div class="icons ml-auto d-flex" id="recetaLike{{$recipe->id}}" >
                 <div class="d-flex">
                     <div data-id="{{ $recipe->id }}" class="like-receta d-flex {{auth()->user() ? 'js-like' : ''}}">
@@ -30,14 +32,14 @@
             </div>
         @endunless
         <div class="card-body">
-            <div class="stars ml-1 mt-2 rate-{{(int)$recipe->averageRating}}">
+            <div class="stars mt-2 rate-{{(int)$recipe->averageRating}}">
                 <span data-rate="1" class="js-rate fa fa-star"></span>
                 <span data-rate="2" class="js-rate fa fa-star"></span>
                 <span data-rate="3" class="js-rate fa fa-star"></span>
                 <span data-rate="4" class="js-rate fa fa-star"></span>
                 <span data-rate="5" class="js-rate fa fa-star"></span>
             </div>
-            <h3 class="card-title">{{ $recipe->title }}</h3>
+            <h3 class="card-title"><a href="{{ url('/recetas', $recipe->id) }}">{{ $recipe->title }}</a></h3>
             <div class="recipe-info">
                 <span>{{$recipe->textpreview}}</span>
             </div>

@@ -34,15 +34,15 @@
                         <a class="nav-link {{ Request::is('login') ? 'active' : '' }}" href="/login">Login</a>
                     </li>
                     <li class="nav-item {{ Request::is('register') ? 'active' : '' }}">
-                        <a href="/register" class="btn btn-outline btn-sm registrarse">Registrarse</a>
+                        <a href="/register" class="btn btn-green btn-sm registrarse">Registrarse</a>
                     </li>
                 @else
                     <li class="nav-item">
-                        <a href="/recetas/nueva" class="btn btn-outline btn-sm registrarse">Crear receta</a>
+                        <a href="/recetas/nueva" class="btn btn-green btn-sm registrarse">Crear receta</a>
                     </li>
                     <li class="nav-item menu-usuario">
                         <div class="dropdown">                           
-                          <button class="btn btn-light btn-sm registrarse dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <button class="btn btn-outline-green btn-sm registrarse dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Mi Perfil
                           </button>
                           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
