@@ -30,8 +30,7 @@ class CreateRecipeRequest extends FormRequest
         return [
             'title' => 'required|min:3',
             'body' => 'required|min:5',
-            'featured_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'quantity' => 'integer|between:1,1000'
+            'featured_image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ];
     }
 

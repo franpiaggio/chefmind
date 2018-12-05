@@ -1,7 +1,7 @@
 @extends('layouts.webLayout')
 @section('title', 'Crear recetas')
 @section('content')
-<main class="main-container container-fluid">
+<main class="main-container container-fluid mb-5">
     <div class="row">
         <header class="col-md-12 profile-topbar">
             <div class="container">

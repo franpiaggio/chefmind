@@ -1,7 +1,7 @@
 @extends('layouts.webLayout')
 @section('title', 'Crear recetas')
 @section('content')
-<main class="main-container container-fluid">
+<main class="main-container container-fluid  mb-5">
     <div class="row">
         <header class="col-md-12 profile-topbar">
             <div class="container">
@@ -16,6 +16,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link active" href="#"> Album de fotos </a>
+                    </li>
+                    <li class="nav-item ml-auto">
+                        <a href="{{ url('/recetas', $recipe->id) }}" class="btn">Ver receta</a>
                     </li>
                 </ul>
                 <!-- Galería -->
