@@ -24,4 +24,22 @@ $(function(){
                 }
         });
     });
+    $('.js-rate').click(function(){
+        var id = $(this).parent().data('id');
+        var rate = $(this).data('rate');
+        $.ajax({
+            type:'POST',
+                url:'/rateReceta',
+                data:{id:id, rate: rate},
+                success:function(data){
+                    if(data.success){
+                        $('.stars').removeClass('rate-1 rate-2 rate-3 rate-4 rate-5');
+                        $('.stars').addClass('rate-'+rate);
+                        $('.average').text(parseFloat(data.success).toFixed(2));
+                    }else{
+                        console.log(data);
+                    }
+                }
+        });
+    });
 });

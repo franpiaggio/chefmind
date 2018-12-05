@@ -23,13 +23,11 @@
             </form>
         </div>
     </section>
-    <section class="container mt-5">
+    <section class="container mt-5 mb-5">
             <h2>Resultados de búsqueda</h2>
             <hr>
             <div class="row mt-5 equal">
-                <div class="row">
-                    @include('web.listadoRecetas', ['recipes' => $recipes])
-                </div>
+                @include('web.listadoRecetas', ['recipes' => $recipes])
             </div>
             {{$recipes->links()}}
     </section>

@@ -13,13 +13,24 @@
                         @endif
                     @endif
                 </div>
-                <div class="stars ml-1 mt-2">
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star checked"></span>
-                    <span class="fa fa-star"></span>
-                    <span class="fa fa-star"></span>
-                </div>
+                @if(Auth::check())
+                    <div class="stars logged ml-1 mt-2 rate-{{(int)$recipe->userSumRating}}" data-id="{{$recipe->id}}">
+                        <span data-rate="1" class="js-rate fa fa-star"></span>
+                        <span data-rate="2" class="js-rate fa fa-star"></span>
+                        <span data-rate="3" class="js-rate fa fa-star"></span>
+                        <span data-rate="4" class="js-rate fa fa-star"></span>
+                        <span data-rate="5" class="js-rate fa fa-star"></span>
+                    </div>
+                    <small>Calificación promedio: <span class="average">{{number_format($recipe->averageRating, 2)}}</span></small>
+                @else
+                    <div class="stars ml-1 mt-2 rate-{{(int)$recipe->averageRating}}">
+                        <span data-rate="1" class="js-rate fa fa-star"></span>
+                        <span data-rate="2" class="js-rate fa fa-star"></span>
+                        <span data-rate="3" class="js-rate fa fa-star"></span>
+                        <span data-rate="4" class="js-rate fa fa-star"></span>
+                        <span data-rate="5" class="js-rate fa fa-star"></span>
+                    </div>
+                @endif
                 <div class="user-container d-flex mt-3">
                     <div class="icon-user-container mr-3">
                         <i class="far fa-user"></i>

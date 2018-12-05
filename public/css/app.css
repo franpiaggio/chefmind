@@ -593,7 +593,34 @@ footer .social-list li a{
 #drop-image .img-container{
   currsor: pointer;
 }
-
+.stars.logged{
+  cursor: pointer;
+}
+.stars.rate-1 .fa-star:nth-of-type(1){
+  color: orange;
+}
+.stars.rate-2 .fa-star:nth-of-type(1),
+.stars.rate-2 .fa-star:nth-of-type(2){
+  color: orange;
+}
+.stars.rate-3 .fa-star:nth-of-type(1),
+.stars.rate-3 .fa-star:nth-of-type(2),
+.stars.rate-3 .fa-star:nth-of-type(3){
+  color: orange;
+}
+.stars.rate-4 .fa-star:nth-of-type(1),
+.stars.rate-4 .fa-star:nth-of-type(2),
+.stars.rate-4 .fa-star:nth-of-type(3),
+.stars.rate-4 .fa-star:nth-of-type(4){
+  color: orange;
+}
+.stars.rate-5 .fa-star:nth-of-type(1),
+.stars.rate-5 .fa-star:nth-of-type(2),
+.stars.rate-5 .fa-star:nth-of-type(3),
+.stars.rate-5 .fa-star:nth-of-type(4),
+.stars.rate-5 .fa-star:nth-of-type(5){
+  color: orange;
+}
 .fa.checked{
   color: orange;
 }
