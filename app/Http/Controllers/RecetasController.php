@@ -114,7 +114,7 @@ class RecetasController extends Controller
      * @param $id
      * @return Response
      */
-    public function edit(EditRecipeRequest $request ,$id){
+    public function edit(EditRecipeRequest $request , $id){
         // Receta seleccionada
         $recipe = Recipe::find($id);
         // Todas las categorias
@@ -294,8 +294,8 @@ class RecetasController extends Controller
         $rating->rating = $request->rate;
         $rating->user_id = Auth::user()->id;
         
-        if(Rating::where('user_id', Auth::user()->id)->first()){
-            $rate = Rating::where('user_id', Auth::user()->id)->first();
+        if(Rating::where(['user_id' => Auth::user()->id, 'rateable_id' => $recipe->id])->first()){
+            $rate = Rating::where(['user_id' => Auth::user()->id, 'rateable_id' => $recipe->id])->first();
             $rate->delete();
             $recipe->ratings()->save($rating);
         }else{

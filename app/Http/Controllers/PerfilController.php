@@ -58,7 +58,7 @@ class PerfilController extends Controller{
      * Vista de edición de contraseña
      */
     public function editPass(){
-        return view('user.editarContraseña');
+        return view('user.editarContrasena');
     }
 
     /**

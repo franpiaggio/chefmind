@@ -26,6 +26,7 @@ class CreateIngredientsTable extends Migration
             
             $table->integer('recipe_id')->unsigned()->index();
             $table->foreign('recipe_id')->references('id')->on('recipes')->onDelete('cascade');
+            $table->string('quantity')->nullable();
             
             $table->timestamps();
 
