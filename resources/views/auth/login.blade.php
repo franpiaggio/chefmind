@@ -2,7 +2,7 @@
 @section('content')
 <div class="container-fluid login-register login pt-5">
     <div class="container mt-5">
-        <div class="row justify-content-center align-items-center mt-5">
+        <div class="row justify-content-center align-items-center mt-5 cont-login-register">
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">Iniciar sesión</div>
@@ -53,7 +53,7 @@
                             </div>
                             <div class="form-group row mb-0">
                                 <div class="col-md-12 d-flex">
-                                    <button type="submit" class="btn btn-primary ml-auto">
+                                    <button type="submit" class="btn btn-green ml-auto">
                                         Ingresar
                                     </button>
 

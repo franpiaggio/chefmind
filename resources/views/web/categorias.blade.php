@@ -73,7 +73,7 @@
                         </div>
                     @endif
                     @foreach($recipes as $recipe)
-                        <div class="col-md-12 col-6 mb-3 recipe-list">
+                        <div class="col-md-12 col-12 mb-3 recipe-list">
                             <div class="card">
                                 <div class="row ">
                                     <div class="col-md-5 col-xl-4  img-cont">
@@ -84,8 +84,8 @@
                                     <div class="col-md-7 col-xl-8 px-3">
                                         <div class="card-block px-3 py-3">
                                             <div class="d-flex">
-                                                <h4 class="card-title">{{$recipe->title}}</h4>
-                                                <div class="stars ml-auto mt-2 rate-{{(int)$recipe->averageRating}}">
+                                                <h4 class="card-title"><a href="{{ url('/recetas', $recipe->id) }}">{{$recipe->title}}</a></h4>
+                                                <div class="recipe-rate stars ml-auto mt-2 rate-{{(int)$recipe->averageRating}}">
                                                     <span data-rate="1" class="js-rate fa fa-star"></span>
                                                     <span data-rate="2" class="js-rate fa fa-star"></span>
                                                     <span data-rate="3" class="js-rate fa fa-star"></span>

@@ -46,10 +46,10 @@
                             Mi Perfil
                           </button>
                           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="/miperfil"> <i class="far fa-user"></i> Mi perfil</a>
-                            <a class="dropdown-item" href="/miperfil/mis-favoritos"> <i class="far fa-star"></i> Favoritos</a>
+                            <a class="dropdown-item my-2" href="/miperfil"> <i class="far fa-user"></i> Mi perfil</a>
+                            <a class="dropdown-item my-2" href="/miperfil/mis-favoritos"> <i class="far fa-star"></i> Favoritos</a>
                             <a 
-                                class="dropdown-item logout"
+                                class="dropdown-item my-2 logout"
                                 href="{{ route('logout') }}"
                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 <i class="fas fa-sign-out-alt"></i> 
