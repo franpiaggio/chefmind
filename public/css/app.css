@@ -473,7 +473,7 @@ a.color-orange:hover {
   padding-right: 0!important;
 }
 .select2-selection.select2-selection--multiple {
-    height: 57px!important;
+    min-height: 57px!important;
 }
 
 .search-input .select2-container--default .select2-selection--multiple{
@@ -846,7 +846,7 @@ footer .social-list li a{
 }
 
 .card .recipe-rate span {
-  font-size: 5px;
+  font-size: 15px;
 }
 .receta .recipe-rate span {
   font-size: .865em;
@@ -857,16 +857,15 @@ footer .social-list li a{
   cursor: pointer;
 }
 
-/*.small-card .card .recipe-rate i.fas:hover {
-  font-weight: 300;
-}*/
-
 .recipe-rate span:hover {
-  font-weight: 600;
+  /*font-weight: 600;*/
+  cursor: auto !important;
 }
 .small-card .card .recipe-info {
   display: flex;
   margin-left: auto;
+  height: 65px;
+  overflow: hidden;
 }
 
 .small-card .card .recipe-info span {
@@ -1322,6 +1321,7 @@ span.filter-cat-name {
 
 .crear-receta .select2-selection {
   min-height: calc(2rem + 2px) !important;
+  padding: 9px;
 }
 
 .crear-receta .ql-editor {
@@ -1399,23 +1399,31 @@ span.filter-cat-name {
 .stars.logged{
   cursor: pointer;
 }
+.stars .fa{
+  font-weight: 300;
+}
+
 .stars.rate-1 .fa-star:nth-of-type(1){
   color: orange;
+  font-weight: 900;
 }
 .stars.rate-2 .fa-star:nth-of-type(1),
 .stars.rate-2 .fa-star:nth-of-type(2){
   color: orange;
+  font-weight: 900;
 }
 .stars.rate-3 .fa-star:nth-of-type(1),
 .stars.rate-3 .fa-star:nth-of-type(2),
 .stars.rate-3 .fa-star:nth-of-type(3){
   color: orange;
+  font-weight: 900;
 }
 .stars.rate-4 .fa-star:nth-of-type(1),
 .stars.rate-4 .fa-star:nth-of-type(2),
 .stars.rate-4 .fa-star:nth-of-type(3),
 .stars.rate-4 .fa-star:nth-of-type(4){
   color: orange;
+  font-weight: 900;
 }
 .stars.rate-5 .fa-star:nth-of-type(1),
 .stars.rate-5 .fa-star:nth-of-type(2),
@@ -1423,9 +1431,11 @@ span.filter-cat-name {
 .stars.rate-5 .fa-star:nth-of-type(4),
 .stars.rate-5 .fa-star:nth-of-type(5){
   color: orange;
+  font-weight: 900;
 }
 .fa.checked{
   color: orange;
+  font-weight: 900;
 }
 
 .receta-carrousel img{
@@ -1508,6 +1518,15 @@ span.filter-cat-name {
   width: auto;
   object-fit: cover;
   min-height: 375px;
+}
+.img-receta{
+  max-height: 390px;
+}
+.favoritos{
+  cursor: pointer;
+}
+.rate-av{
+  color: #888;
 }
 
 

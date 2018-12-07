@@ -16,14 +16,32 @@
                     <h1 class="mt-0">{{$recipe->title}}</h1>
                 </div>
                 <div class="user-container d-flex mt-2 mb-4 align-items-center">
-                    Por <a href="/perfil/{{$recipe->user->id}}" class="ml-1">{{$recipe->user->name}}</a>
-                    <span class="ml-2">|</span>                    
+                    Por <a href="/perfil/{{$recipe->user->id}}" class="ml-1">{{$recipe->user->name}}</a>                  
                     @if(Auth::check())
+                        <span class="ml-2">|</span>  
                         @if(Auth::user()->id === $recipe->user_id)
                             <a href="{{ url('recetas/'.$recipe->id.'/editar') }}" class="btn mr-auto edit-recipe"><i class="fas fa-edit mr-2"></i><span class="">Editar receta</span></a>
                         @endif
                     @endif
                 </div>
+                @if(Auth::check())
+                    <div class="stars logged ml-1 mt-2 rate-{{(int)$recipe->userSumRating}}" data-id="{{$recipe->id}}">
+                        <span data-rate="1" class="js-rate fa fa-star"></span>
+                        <span data-rate="2" class="js-rate fa fa-star"></span>
+                        <span data-rate="3" class="js-rate fa fa-star"></span>
+                        <span data-rate="4" class="js-rate fa fa-star"></span>
+                        <span data-rate="5" class="js-rate fa fa-star"></span>
+                    </div>
+                    <small class="rate-av">Calificación promedio: <span class="average">{{number_format($recipe->averageRating, 2)}}</span></small>
+                @else
+                    <div class="stars ml-1 mt-2 rate-{{(int)$recipe->averageRating}}">
+                        <span data-rate="1" class="js-rate fa fa-star"></span>
+                        <span data-rate="2" class="js-rate fa fa-star"></span>
+                        <span data-rate="3" class="js-rate fa fa-star"></span>
+                        <span data-rate="4" class="js-rate fa fa-star"></span>
+                        <span data-rate="5" class="js-rate fa fa-star"></span>
+                    </div>
+                @endif
                <div class="row align-items-center justify-content-start py-3 ml-1 caracteristicas">
                 <div class="d-flex align-items-center justify-content-start difficulty mr-2">
                     @if($recipe->difficulty)
@@ -61,7 +79,7 @@
                    <span class="separator-pipe">|</span>
                 <div class="d-flex align-items-center justify-content-start ml-2">
                     <i class="far fa-user mr-2"></i>
-                    <span class="diners-quant">3 comensales</span>
+                    <span class="diners-quant">{{$recipe->quantity}} comensales</span>
                 </div>
             </div>
                 <div class="descripcion-corta-container mt-3">
@@ -81,10 +99,10 @@
                     </div>
                 </div>                        
             <div class="col-md-6 recipe-img pr-5 d-flex flex-column align-items-start">
-                <img src="/uploads/featured/{{$recipe->featured_image}}" alt="{{$recipe->title}}" class="img-fluid rounded">
+                <img src="/uploads/featured/{{$recipe->featured_image}}" alt="{{$recipe->title}}" class="img-fluid rounded img-receta">
                 <div class="buttons d-flex fav-cont">
                     @if(Auth::check())
-                        <div class="js-fav p-2" data-id="{{$recipe->id}}">
+                        <div class="js-fav p-2 favoritos" data-id="{{$recipe->id}}">
                             @if( auth()->user() && auth()->user()->hasFavorited($recipe)) 
                                 <i class="fas fa-heart"></i> En mis favoritos
                             @else

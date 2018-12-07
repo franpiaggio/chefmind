@@ -32,7 +32,7 @@
             </div>
         @endunless
         <div class="card-body">
-            <div class="recipe-rate stars mt-2 rate-{{(int)$recipe->averageRating}}">
+            <div class="recipe-rate listado stars mt-2 rate-{{(int)$recipe->averageRating}}">
                 <span data-rate="1" class="js-rate fa fa-star"></span>
                 <span data-rate="2" class="js-rate fa fa-star"></span>
                 <span data-rate="3" class="js-rate fa fa-star"></span>
