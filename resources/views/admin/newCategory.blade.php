@@ -7,8 +7,10 @@
             @csrf
             <label for="name">Nombre</label>
             <input type="text" name="name" class="form-control" value="{{old('name')}}">
+            {{-- 
             <label for="img">Imágen</label>
             <input class="form-control" name="img" type="file">
+            --}}
             <input type="submit">
         </form>
         <div>

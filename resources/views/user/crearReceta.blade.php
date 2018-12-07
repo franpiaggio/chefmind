@@ -12,7 +12,7 @@
             <div class="container">
                 <ul class="nav nav-tabs">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#"> Infromación de la receta </a>
+                        <a class="nav-link active" href="#"> Información de la receta </a>
                     </li>
                     <li class="nav-item d-none">
                         <a class="nav-link" href="#"> Album de fotos </a>
@@ -115,7 +115,7 @@
                         <div id="editor-container"></div>
                     </div>
                     <div class="col-md-12 d-flex">
-                        <input type="submit" class="btn btn-primary ml-auto" value="Crear receta">
+                        <input type="submit" class="btn btn-orange ml-auto" value="Crear receta">
                     </div>
                 </form>
             </div>

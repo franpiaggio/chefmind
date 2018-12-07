@@ -1,5 +1,5 @@
 @foreach($recipes as $recipe)
-<div class="col-md-4 col-6 mb-3 col-6 small-card">
+<div class="col-md-4 col-12 mb-3 col-6 small-card">
     <div class="card">
         @unless( !$recipe->featured_image )
         <a class="img-link" href="{{ url('/recetas', $recipe->id) }}">
@@ -32,7 +32,7 @@
             </div>
         @endunless
         <div class="card-body">
-            <div class="stars mt-2 rate-{{(int)$recipe->averageRating}}">
+            <div class="recipe-rate listado stars mt-2 rate-{{(int)$recipe->averageRating}}">
                 <span data-rate="1" class="js-rate fa fa-star"></span>
                 <span data-rate="2" class="js-rate fa fa-star"></span>
                 <span data-rate="3" class="js-rate fa fa-star"></span>
