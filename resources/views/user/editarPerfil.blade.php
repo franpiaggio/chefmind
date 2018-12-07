@@ -26,11 +26,11 @@
                 @endif
                 {!! Form::open(['method' => 'PATCH', 'url' => '/miperfil/editar', 'enctype' => 'multipart/form-data', 'row mt-3 profile-form']) !!}
                     <div class="row mt-5">
-                        <div class="col-md-3">
-                            <img src="/uploads/perfiles/{{Auth::user()->image}}" class="img-responsive profile-form__img js-preload-img" alt="Foto de perfil del usuario">
+                        <div class="col-md-3" id="drop-area">
+                            <img src="/uploads/perfiles/{{Auth::user()->image}}" class="img-responsive profile-form__img js-preload-img js-drop-image" alt="Foto de perfil del usuario">
                             <div class="custom-file mt-3">
                                 <input type="file" class="custom-file-input js-preload-input" name="image">
-                                <label class="custom-file-label" for="customFile">Buscar archivo</label>
+                                <label class="custom-file-label js-file-label" for="customFile">Buscar archivo</label>
                             </div>
                         </div>
                         <div class="col-md-9">
@@ -91,6 +91,29 @@
             </div>
         </div>
     </div>
+    <script>
+        function readURL(input) {
+        if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('.js-drop-image').attr('src', e.target.result);
+                    $('.icon').remove();
+                    $('.js-drop-image').removeClass('d-none');
+                    $('.js-file-label').text($(input).val().split('\\').pop())
+                }
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $(".js-preload-input").change(function() {
+            readURL(this);
+        });
+
+        $('.img-container').click(function(){
+            $('.js-preload-input').trigger('click');
+        });
+    </script>
     @include('layouts.footer')
 </main>
 @endsection

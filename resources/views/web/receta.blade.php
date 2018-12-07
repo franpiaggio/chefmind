@@ -97,7 +97,7 @@
                         </div>
                     </div>
                 </div>                        
-            <div class="col-md-6 recipe-img pr-5 d-flex flex-column align-items-start">
+            <div class="col-md-6 recipe-img d-flex flex-column align-items-start">
                 <img src="/uploads/featured/{{$recipe->featured_image}}" alt="{{$recipe->title}}" class="img-fluid rounded img-receta">
                 <div class="buttons d-flex fav-cont">
                     @if(Auth::check())
