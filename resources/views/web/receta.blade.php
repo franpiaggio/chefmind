@@ -151,6 +151,7 @@
                 <div class="comentarios tab-pane fade show active" id="comentarios" role="tabpanel">
                     @if(!$recipe->comments->isEmpty())
                         @foreach( $recipe->comments()->get() as $k => $comment )
+                            @if($comment->user)
                             <div class="row mt-3">
                                 @if($k%2==0)
                                     <div class="profile-comment col-md-2 mb-3">
@@ -196,6 +197,7 @@
                                     </div>
                                 @endif
                             </div>
+                            @endif
                         @endforeach
                     @else
                         <h4 class="my-5">No hay comentarios registrados</h4>
