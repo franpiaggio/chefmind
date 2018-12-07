@@ -8,7 +8,7 @@
                 <div class="d-flex align-items-center">                 
                     <h1>{{$recipe->title}}</h1>
                     @if(Auth::check())
-                        @if(Auth::user()->id === $recipe->user_id)
+                        @if(Auth::user()->id === intval($recipe->user_id))
                             <a href="{{ url('recetas/'.$recipe->id.'/editar') }}" class="btn btn-outline-primary ml-auto">Editar</a>
                         @endif
                     @endif

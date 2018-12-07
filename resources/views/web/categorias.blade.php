@@ -2,7 +2,7 @@
 @section('title', 'Chefmind - Categorías')
 @section('content')
 <main class="main-container">
-    <section class="search-filter top-banner">
+    <section class="search-filter top-banner top-banner">
         <div class="container text-center">
             @if( !Request::query('categoria') )
                 <h1>Todas las recetas</h1>

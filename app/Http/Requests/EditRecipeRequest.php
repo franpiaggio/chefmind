@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Recipe;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
 class EditRecipeRequest extends FormRequest
@@ -14,9 +15,9 @@ class EditRecipeRequest extends FormRequest
      */
     public function authorize()
     {
-        $user   = app( 'auth' )->user();
+        $user   = Auth::user();
         $recipe = Recipe::findOrFail( $this->id );
-        return $recipe->user_id === $user->id;
+        return intval($recipe->user_id) === $user->id;
         
     }
 
