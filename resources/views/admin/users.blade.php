@@ -3,7 +3,7 @@
 @section('content')
 <main class="main-container container-fluid">  
     <div class="row">
-        <header class="col-md-12 admin-topbar">
+        <header class="col-md-12 admin-topbar top-banner">
             <div class="container">
                 <h2>Administrador</h2>
             </div>
@@ -50,6 +50,7 @@
                             @endif
                         </td>
                         <td>
+                            <a href="/perfil/{{$user->id}}" class="btn btn-primary btn-sm mr-2">Ver perfil</a>
                             @if( Auth::user()->id != $user->id )
                             @if(!$user->hasRole('admin'))
                                     <a href="{{ url('admin/usuarios/'.$user->id.'/editar') }}" class="btn btn-outline-primary btn-sm mr-2"> <i class="far fa-edit"></i> Editar</a>

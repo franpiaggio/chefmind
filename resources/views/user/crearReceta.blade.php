@@ -3,7 +3,7 @@
 @section('content')
 <main class="main-container container-fluid mb-5">
     <div class="row">
-        <header class="col-md-12 profile-topbar">
+        <header class="col-md-12 profile-topbar top-banner">
             <div class="container">
                 <h2>Nueva receta</h2>
             </div>

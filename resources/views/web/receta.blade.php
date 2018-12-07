@@ -18,9 +18,8 @@
                 <div class="user-container d-flex mt-2 mb-4 align-items-center">
                     Por <a href="/perfil/{{$recipe->user->id}}" class="ml-1">{{$recipe->user->name}}</a>                  
                     @if(Auth::check())
-                        <span class="ml-2">|</span>  
-                        @if(Auth::user()->id === $recipe->user_id)
-                            <a href="{{ url('recetas/'.$recipe->id.'/editar') }}" class="btn mr-auto edit-recipe"><i class="fas fa-edit mr-2"></i><span class="">Editar receta</span></a>
+                        @if(Auth::user()->id == intval($recipe->user_id))
+                            <a href="{{ url('recetas/'.$recipe->id.'/editar') }}" class="btn mr-auto edit-recipe"><i class="fas fa-edit mr-2"></i>Editar</a>
                         @endif
                     @endif
                 </div>
@@ -166,8 +165,8 @@
                                                 <div class="d-flex flex-wrap">
                                                     <p class="card-text">{{$comment->body}}</p>
                                                     @if(Auth::check())
-                                                        @if(Auth::user()->id === $recipe->user_id)
-                                                            <a href="{{ url('comment/'.$comment->id.'/delete') }}" class="btn btn-outline-warning ml-auto">Borrar comentario</a>
+                                                        @if(Auth::user()->id === $recipe->user_id || Auth::user()->id == $comment->user->id)
+                                                        <a href="{{ url('comment/'.$comment->id.'/delete') }}" class="btn btn-outline-warning ml-auto"><i class="far fa-trash-alt mr-1"></i> Borrar</a>
                                                         @endif
                                                     @endif
                                                 </div>

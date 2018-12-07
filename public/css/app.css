@@ -1443,8 +1443,11 @@ span.filter-cat-name {
 }
 
 .profile-comment{
-  max-height: 100px;
+  max-height: 110px;
   overflow: hidden;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
 }
 #album{
   min-height: 375px;
