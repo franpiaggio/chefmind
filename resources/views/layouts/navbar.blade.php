@@ -8,9 +8,14 @@
             data-target="#menuPrincipal" 
             aria-controls="menuPrincipal" 
             aria-expanded="false" 
-            aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
+            aria-label="Toggle navigation"
+            id="nav-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
         </button>
+
         <div class="collapse navbar-collapse" id="menuPrincipal">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item {{ Request::is('/') || Request::is('buscar') ? 'active' : '' }}">
@@ -34,15 +39,15 @@
                         <a class="nav-link {{ Request::is('login') ? 'active' : '' }}" href="/login">Login</a>
                     </li>
                     <li class="nav-item {{ Request::is('register') ? 'active' : '' }}">
-                        <a href="/register" class="btn btn-green btn-sm registrarse">Registrarse</a>
+                        <a href="/register" class="btn btn-orange btn-sm registrarse">Registrarse</a>
                     </li>
                 @else
                     <li class="nav-item">
-                        <a href="/recetas/nueva" class="btn btn-green btn-sm registrarse">Crear receta</a>
+                        <a href="/recetas/nueva" class="btn btn-orange btn-sm registrarse">Crear receta</a>
                     </li>
                     <li class="nav-item menu-usuario">
                         <div class="dropdown">                           
-                          <button class="btn btn-outline-green btn-sm registrarse dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                          <button class="btn btn-outline-orange btn-sm registrarse dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Mi Perfil
                           </button>
                           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">

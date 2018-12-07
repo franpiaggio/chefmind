@@ -5,7 +5,8 @@
         <div class="row justify-content-center align-items-center mt-5 cont-login-register">
             <div class="col-md-6">
                 <div class="card">
-                    <div class="card-header">Iniciar sesión</div>
+                    <h1 class="sr-only">Login</h1>
+                    <div class="card-header"><h2 class="h4">Iniciar sesión</h2></div>
                     @if($errors->any())
                         <div class="alert alert-danger mx-3 my-3" role="alert">
                             {{$errors->first()}}
@@ -42,18 +43,14 @@
                             </div>
 
                             <div class="form-group row">
-                                <div class="col-md-12 d-flex">
-                                    <div class="form-check ml-auto">
+                                <div class="col-md-12 d-flex justify-content-between mt-4">
+                                    <div class="form-check">
                                         <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
                                         <label class="form-check-label" for="remember">
                                             Recordarme
                                         </label>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="form-group row mb-0">
-                                <div class="col-md-12 d-flex">
-                                    <button type="submit" class="btn btn-green ml-auto">
+                                    <button type="submit" class="btn btn-green">
                                         Ingresar
                                     </button>
 

@@ -25,17 +25,17 @@
                 <ul class="list-inline mb-0 social-list">
                     <li class="list-inline-item mr-3">
                         <a href="#">
-                            <i class="fab fa-facebook fa-fw"></i>
+                            <i class="fab fa-facebook fa-fw color-orange"></i>
                         </a>
                     </li>
                     <li class="list-inline-item mr-3">
                         <a href="#">
-                            <i class="fab fa-twitter-square fa-fw"></i>
+                            <i class="fab fa-twitter-square fa-fw color-orange"></i>
                         </a>
                     </li>
                     <li class="list-inline-item">
                         <a href="#">
-                            <i class="fab fa-instagram fa-fw"></i>
+                            <i class="fab fa-instagram fa-fw color-orange"></i>
                         </a>
                     </li>
                 </ul>

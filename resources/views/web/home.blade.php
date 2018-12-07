@@ -3,11 +3,15 @@
 @section('content')
 <main class="main-container index-section">
     <section class="search-cont">
-        <div class="container mb-3 d-flex flex-column">
+        <img src="/img/tomates.png" alt="tomates" class="tomate-bg transparent-bg" />
+        <img src="/img/rabano.png" alt="rabano" class="rabano-bg transparent-bg" />
+        <img src="/img/huevo.png" alt="huevo" class="huevo-bg transparent-bg" />
+        <img src="/img/morrones.png" alt="hoja" class="morrones-bg transparent-bg" />
+        <div class="container d-flex flex-column">
             <img src="/svg/logo-xl.svg" alt="logo-xl" class="logo-xl my-2" />
             <h1 class="display-4 text-center">Encontrá tu receta</h1>
             <p class="lead text-center search-desc">Escribí los ingredientes en el buscador</p>          
-            <form class="mb-2 mt-4" method="GET" action="/buscar">
+            <form class="mb-2 mt-2" method="GET" action="/buscar">
                 <div class="form-row justify-content-center">
                     <div class="col-10 col-md-8 mb-2 mb-md-0 search-input">
                         <select id="ingredientsSelector" name="ingredients[]" class="form-control form-control-lg js-ingredients d-none" multiple>

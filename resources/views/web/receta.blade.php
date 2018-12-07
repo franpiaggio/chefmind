@@ -4,87 +4,42 @@
 <main class="main-container">
     <div class="receta container mt-5">
         <div class="row">
-            <div class="data col-md-6">
+            <div class="data col-md-6 pl-3">
+                <div class="recipe-cat-cont d-flex flex-row flex-wrap">
+                    @if(!$recipe->categories->isEmpty())
+                            @foreach($recipe->categories as $category)
+                                <a href="/categorias?categoria={{$category->name}}" class="btn mb-3 mr-2 badge badge-outline-orange">{{$category->name}}</a>
+                            @endforeach
+                    @endif
+                </div>
                 <div class="d-flex align-items-center">                 
-                    <h1>{{$recipe->title}}</h1>
+                    <h1 class="mt-0">{{$recipe->title}}</h1>
+                </div>
+                <div class="user-container d-flex mt-2 mb-4 align-items-center">
+                    Por <a href="/perfil/{{$recipe->user->id}}" class="ml-1">{{$recipe->user->name}}</a>
+                    <span class="ml-2">|</span>                    
                     @if(Auth::check())
                         @if(Auth::user()->id === $recipe->user_id)
-                            <a href="{{ url('recetas/'.$recipe->id.'/editar') }}" class="btn btn-outline-primary ml-auto">Editar</a>
+                            <a href="{{ url('recetas/'.$recipe->id.'/editar') }}" class="btn mr-auto edit-recipe"><i class="fas fa-edit mr-2"></i><span class="">Editar receta</span></a>
                         @endif
                     @endif
                 </div>
-                @if(Auth::check())
-                    <div class="recipe-rate stars logged ml-1 mt-2 rate-{{(int)$recipe->userSumRating}}" data-id="{{$recipe->id}}">
-                        <span data-rate="1" class="js-rate fa fa-star"></span>
-                        <span data-rate="2" class="js-rate fa fa-star"></span>
-                        <span data-rate="3" class="js-rate fa fa-star"></span>
-                        <span data-rate="4" class="js-rate fa fa-star"></span>
-                        <span data-rate="5" class="js-rate fa fa-star"></span>
-                    </div>
-                    <small>Calificación promedio: <span class="average">{{number_format($recipe->averageRating, 2)}}</span></small>
-                @else
-                    <div class="recipe-rate stars ml-1 mt-2 rate-{{(int)$recipe->averageRating}}">
-                        <span data-rate="1" class="js-rate fa fa-star"></span>
-                        <span data-rate="2" class="js-rate fa fa-star"></span>
-                        <span data-rate="3" class="js-rate fa fa-star"></span>
-                        <span data-rate="4" class="js-rate fa fa-star"></span>
-                        <span data-rate="5" class="js-rate fa fa-star"></span>
-                    </div>
-                @endif
-                <div class="user-container d-flex mt-3">
-                    <div class="icon-user-container mr-3">
-                        <i class="far fa-user"></i>
-                    </div>
-                    Creada por <a href="/perfil/{{$recipe->user->id}}" class="ml-1">{{$recipe->user->name}}</a>
-                </div>
-                <div class="descripcion-corta-container mt-3">
-                    <p class="descripcion-corta">
-                        {{$recipe->textpreview}}
-                    </p>
-                </div>
-                <div class="buttons d-flex">
-                    @if(Auth::check())
-                        <div class="badge badge-success js-fav p-2" data-id="{{$recipe->id}}">
-                            @if( auth()->user() && auth()->user()->hasFavorited($recipe)) 
-                                <i class="fas fa-heart"></i> En mis favoritos
-                            @else
-                                <i class="far fa-heart"></i> Agregar a favoritos
-                            @endif 
-                        </div>
-                    @endif
-                </div>
-                @if(!$recipe->categories->isEmpty())
-                    <div class="categorias d-flex flex-wrap my-3">
-                        <h3 class="w-100 mb-3">Categorías</h3>
-                        @foreach($recipe->categories as $category)
-                            <a href="/categorias?categoria={{$category->name}}" class="btn btn-outline-primary mr-3">{{$category->name}}</a>
-                        @endforeach
-                    </div>
-                @endif
-            </div>
-            <div class="col-md-6">
-                <img src="/uploads/featured/{{$recipe->featured_image}}" alt="{{$recipe->title}}" class="img-fluid rounded">
-            </div>
-        </div>
-    </div>
-    <div class="container-fluid caracteristicas">
-        <div class="container py-3 mt-5">
-            <div class="row align-items-center py-3">
-                <div class="col-md-4 d-flex align-items-center justify-content-center">
+               <div class="row align-items-center justify-content-start py-3 ml-1 caracteristicas">
+                <div class="d-flex align-items-center justify-content-start difficulty mr-2">
                     @if($recipe->difficulty)
-                        <div class="d-flex mr-3">
+                        <div class="d-flex mr-2">
                             @if($recipe->difficulty == 'Fácil')
-                                <i class="far fa-dot-circle"></i>
-                                <i class="far fa-circle"></i>
-                                <i class="far fa-circle"></i>
+                                <i class="far fa-dot-circle mr-1"></i>
+                                <i class="far fa-circle mr-1"></i>
+                                <i class="far fa-circle mr-1"></i>
                             @elseif($recipe->difficulty == 'Media')
-                                <i class="far fa-dot-circle"></i>
-                                <i class="far fa-dot-circle"></i>
-                                <i class="far fa-circle"></i>
+                                <i class="far fa-dot-circle mr-1"></i>
+                                <i class="far fa-dot-circle mr-1"></i>
+                                <i class="far fa-circle mr-1"></i>
                             @else
-                                <i class="far fa-dot-circle"></i>
-                                <i class="far fa-dot-circle"></i>
-                                <i class="far fa-dot-circle"></i>
+                                <i class="far fa-dot-circle mr-1"></i>
+                                <i class="far fa-dot-circle mr-1"></i>
+                                <i class="far fa-dot-circle mr-1"></i>
                             @endif
                         </div>
                         <p class="dificultad m-0">Dificultad {{$recipe->difficulty}}</p>
@@ -92,60 +47,84 @@
                         <p class="dificultad m-0">Dificultad no determinada</p>
                     @endif
                 </div>
-                <div class="col-md-4 d-flex align-items-center justify-content-center">
-                    <i class="far fa-clock mr-3"></i>
+                <span class="separator-pipe">|</span>
+                <div class="d-flex align-items-center justify-content-start ml-2 mr-2">
+                    <i class="far fa-clock mr-2"></i>
+                    <span class="time-quant">
                     @if($recipe->time)
                         {{$recipe->time}}
                     @else
                         No determinado
                     @endif
+                    </span>
                 </div>
-                <div class="col-md-4 d-flex align-items-center justify-content-center">
-                    <i class="far fa-user mr-3"></i>
-                    3 comensales
+                   <span class="separator-pipe">|</span>
+                <div class="d-flex align-items-center justify-content-start ml-2">
+                    <i class="far fa-user mr-2"></i>
+                    <span class="diners-quant">3 comensales</span>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="container ingredientes-receta mt-5">
-        <h2>Ingredientes</h2>
-        <div class="ingredientes d-flex flex-wrap">
-            @if(!$recipe->ingredients->isEmpty())
-                @foreach($recipe->ingredients as $ingredient)
-                    <span class="badge badge-secondary py-3 px-3 mr-3 my-3"><i class="fas fa-utensils mr-2"></i> {{$ingredient->name}}</span>
-                @endforeach
-            @endif
-        </div>
-    </div>
-    <div class="container contenido-receta mt-5">
-        <div class="row">
-            <div class="@if( $recipe->images->isEmpty() ) col-md-12 @else col-md-6 @endif">
-                <h3>Descripción</h3>
-                <div id="body" class="mt-3">{{$recipe->body}}</div>
-            </div>
-            @if( !$recipe->images->isEmpty() )
-                <div class="col-md-6">
-                    <div id="album" class="carousel slide" data-ride="carousel">
-                        <div class="carousel-inner receta-carrousel">
-                            @foreach( $recipe->images()->get() as $image )
-                                <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
-                                    <img class="d-block w-100 img-fluid rounded" src="/uploads/imagenes/{{$image->name}}" alt="Imagen de la receta">
-                                </div>
-                            @endforeach
+                <div class="descripcion-corta-container mt-3">
+                    <p class="descripcion-corta">
+                        {{$recipe->textpreview}}
+                    </p>
+                </div>                
+                    <div class="ingredientes-receta my-5">
+                        <h2 class="h3 mb-4">Ingredientes</h2>
+                        <div class="ingredientes d-flex flex-wrap">
+                            @if(!$recipe->ingredients->isEmpty())
+                                @foreach($recipe->ingredients as $ingredient)
+                                    <span class="badge bg-green color-white py-3 px-3 mr-2 my-1 "><i class="fas fa-utensils mr-2"></i> {{$ingredient->name}}</span>
+                                @endforeach 
+                            @endif
                         </div>
-                        <a class="carousel-control-prev" href="#album" role="button" data-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                        <a class="carousel-control-next" href="#album" role="button" data-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="sr-only">Next</span>
-                        </a>
+                    </div>
+                </div>                        
+            <div class="col-md-6 recipe-img pr-5 d-flex flex-column align-items-start">
+                <img src="/uploads/featured/{{$recipe->featured_image}}" alt="{{$recipe->title}}" class="img-fluid rounded">
+                <div class="buttons d-flex fav-cont">
+                    @if(Auth::check())
+                        <div class="js-fav p-2" data-id="{{$recipe->id}}">
+                            @if( auth()->user() && auth()->user()->hasFavorited($recipe)) 
+                                <i class="fas fa-heart"></i> En mis favoritos
+                            @else
+                                <i class="far fa-heart mr-1"></i> Agregar a favoritos
+                            @endif 
+                        </div>
+                    @endif
+                </div>
+            </div>
+            </div>
+            </div>
+                <div class="container contenido-receta mt-5">
+                    <div class="row">
+                        <div class="@if( $recipe->images->isEmpty() ) col-md-12 @else col-md-6 @endif">
+                            <h3 class="mb-4">Descripción</h3>
+                            <div id="body" class="mt-3">{{$recipe->body}}</div>
+                        </div>
+                        @if( !$recipe->images->isEmpty() )
+                            <div class="col-md-6">
+                                <div id="album" class="carousel slide" data-ride="carousel">
+                                    <div class="carousel-inner receta-carrousel">
+                                        @foreach( $recipe->images()->get() as $image )
+                                            <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
+                                                <img class="d-block w-100 img-fluid rounded" src="/uploads/imagenes/{{$image->name}}" alt="Imagen de la receta">
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                    <a class="carousel-control-prev" href="#album" role="button" data-slide="prev">
+                                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                    <a class="carousel-control-next" href="#album" role="button" data-slide="next">
+                                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
-            @endif
-        </div>
-    </div>
     <div class="container mt-5 mb-5">
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
             <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#comentarios" role="tab" aria-controls="comentarios" aria-selected="true">Comentarios</a>
@@ -226,7 +205,7 @@
                     @endif
                 </div>
             </div>
-        </div>
+    </div>
 </main>
 @include('layouts.footer')
 @section('footer')

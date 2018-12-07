@@ -11,11 +11,11 @@
             @endif
         </div>
     </section>
-    <section class="container mt-5">
-        <div class="row mt-5 equal">
+    <section class="container my-5 no-mt">
+        <div class="row mt-5 equal no-mt">
             <div class="col-md-12 col-xl-3">
                 <div class="js-filters">
-                    <h2>Buscar</h2>
+                    <h2 class="my-4">Buscar</h2>
                     <form action="/categorias" method="GET">
                         <div class="input-group">
                             @if(Request::query('categoria'))
@@ -27,18 +27,18 @@
                             </div>
                         </div>
                     </form>
-                    <h2 class="my-3">Categorías</h2>
+                    <h2 class="my-4">Categorías</h2>
                     <ul class="list-group categories">
                         <li class="list-group-item {{Request::query('categoria') == '' ? 'active' : ''}}">
                             <a class="d-flex justify-content-between align-items-center" href="?categoria">
-                                Todas
+                            <span class="filter-cat-name">Todas</span>
                             </a>
                         </li>
                         @foreach($categories as $category)
                             <li class="list-group-item {{Request::query('categoria') == $category->name ? 'active' : ''}}">
                                 <a class="d-flex justify-content-between align-items-center" href="?categoria={{$category->name}}">
-                                    {{$category->name}}
-                                    <span class="badge green-bg  badge-pill">{{$category->recipes->count()}}</span>
+                                    <span class="filter-cat-name">{{$category->name}}</span>
+                                    <span class="badge badge-orange badge-pill">{{$category->recipes->count()}}</span>
                                 </a>
                             </li>
                         @endforeach
@@ -47,13 +47,13 @@
                 @if(Auth::check())
                     <div class="custom-file mt-4">
                         <p class="mb-1">¿Querés agregar una nueva categoría?</p>
-                        <p>Hacé clic <span class="add-cat">acá</span></p>                        
+                        <p>Hacé clic <span class="add-cat color-orange">acá</span></p>                        
                         <form class="add-cat-form" method="POST" action="/categoria" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <input type="text" name="name" placeholder="Nombre categoría" class="form-control" value="{{old('name')}}">
                             </div>
-                            <input type="submit" value="Guardar categoría" class="btn btn-green">
+                            <input type="submit" value="Guardar categoría" class="btn btn-orange">
                             <a class="btn btn-link cancel-add-cat">Cancelar</a> 
                             @if($errors->any())
                                 <p class="small mt-3 text-success">{{$errors->first()}}</p>
@@ -83,7 +83,7 @@
                                     </div>
                                     <div class="col-md-7 col-xl-8 px-3">
                                         <div class="card-block px-3 py-3">
-                                            <div class="d-flex">
+                                            <div class="d-flex title-rate-cont">
                                                 <h4 class="card-title"><a href="{{ url('/recetas', $recipe->id) }}">{{$recipe->title}}</a></h4>
                                                 <div class="recipe-rate stars ml-auto mt-2 rate-{{(int)$recipe->averageRating}}">
                                                     <span data-rate="1" class="js-rate fa fa-star"></span>
