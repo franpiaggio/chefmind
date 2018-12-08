@@ -110,7 +110,7 @@
                             <label for="test">Ingredientes</label>
                             <select name="ingredients[]" id="ingredientsSelector" class="form-control" multiple>
                                 @foreach($recipe->ingredients as $ingredient)
-                                    <option value="{{$ingredient->id}}" selected>
+                                    <option value="{{$ingredient->name}}" selected>
                                         {{$ingredient->name}}
                                     </option>
                                 @endforeach            
