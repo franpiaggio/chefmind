@@ -159,7 +159,7 @@ class RecetasController extends Controller
         // Actualiza los ingredientes
         $this->syncIngredients( $recipe, $request->input('ingredients') );
         // Vuelvo a la vista de recetas
-        return redirect('recetas');
+        return redirect('miperfil');
     }
 
     /**
