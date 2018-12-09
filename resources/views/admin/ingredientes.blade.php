@@ -33,7 +33,10 @@
                         {{$errors->first()}}
                     </div>
                 @endif
-                <h2 class="mb-3">Ingredientes registrados</h2>
+                <div class="d-flex mt-3 mb-3 align-items-center">
+                    <h2 class="mb-3">Ingredientes registrados</h2>
+                    <button class="btn btn-primary ml-auto">Agregar nuevo</button>
+                </div>
                 <table class="table table-bordered">
                   <thead>
                     <tr>
