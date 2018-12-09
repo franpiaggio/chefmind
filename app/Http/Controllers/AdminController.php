@@ -261,7 +261,13 @@ class AdminController extends Controller
         $newIngredient = Ingredient::where('name', 'LIKE', '%'.$request->input('name').'%')->first();
         $recipes = Recipe::whereHas('ingredients', function($query) use ($name) {
             $query->whereName($name);
-          })->get();
-        dd($recipes);
+        })->get();
+        foreach($recipes as $recipe){
+            $recipe->ingredients()->detach($id);
+            if(!$recipe->ingredients()->where('id', $newIngredient->id)->exists()){
+                $recipe->ingredients()->attach($newIngredient->id);
+            }
+        }
+        return back()->withErrors(['Se reasignó el ingrediente a todas las recetas que lo contenían.']);;
     }
 }

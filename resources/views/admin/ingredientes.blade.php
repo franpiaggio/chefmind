@@ -28,12 +28,18 @@
         </div>
         <section class="col-md-12 mt-3">
             <div class="container">
+                @if($errors->any())
+                    <div class="alert alert-warning mt-3 mb-3" role="alert">
+                        {{$errors->first()}}
+                    </div>
+                @endif
                 <h2 class="mb-3">Ingredientes registrados</h2>
                 <table class="table table-bordered">
                   <thead>
                     <tr>
                         <th>#</th>
                         <th>Nombre</th>
+                        <th>Recetas que lo usan</th>
                         <th>Acciones</th>
                     </tr>
                   </thead>
@@ -42,6 +48,7 @@
                     <tr>
                         <td>{{$ingredient->id}}</td>
                         <td>{{$ingredient->name}}</td>
+                        <td>{{$ingredient->recipes->count()}}</td>
                         <td class="d-flex">
                             <button data-id="{{$ingredient->id}}" data-name="{{$ingredient->name}}" class="btn btn-outline-warning reasign-ingredient ml-3">Reasignar</button>
                             <button data-id="{{$ingredient->id}}" data-name="{{$ingredient->name}}" class="btn btn-outline-primary edit-ingredient ml-3">Editar nombre</button>
