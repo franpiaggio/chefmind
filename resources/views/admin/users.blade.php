@@ -1,7 +1,7 @@
 @extends('layouts.webLayout')
 @section('title', 'Admin')
 @section('content')
-<main class="main-container container-fluid">  
+<main class="main-container container-fluid mb-5">  
     <div class="row">
         <header class="col-md-12 admin-topbar top-banner">
             <div class="container">
@@ -11,21 +11,24 @@
         <div class="col-md-12 mt-5">
             <div class="container">
                 <ul class="nav nav-tabs">
-                  <li class="nav-item">
-                    <a class="nav-link active" href="/admin/usuarios">Usuarios</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="/admin/recetas">Todas las recetas</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="/admin/categorias">Categorías</a>
-                  </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/admin/usuarios">Usuarios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/recetas">Recetas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/categorias">Categorías</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/ingredientes">Ingredientes</a>
+                    </li>
                 </ul>
             </div>
         </div>
         <section class="col-md-12 mt-3">
             <div class="container">
-                <h2 class="mb-3">Usuarios registrados</h2>
+                <h2 class="mb-3 mt-3">Usuarios registrados</h2>
                 <table class="table table-bordered">
                   <thead>
                     <tr>

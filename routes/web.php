@@ -10,6 +10,12 @@ Route::get('/admin/usuarios/{id}/ban', 'AdminController@ban');
 Route::get('/admin/usuarios/{id}/borrar', 'AdminController@delete');
 Route::patch('/admin/usuarios/{id}', 'AdminController@update');
 Route::get('/admin/usuarios', 'AdminController@adminUsers');
+// Admin ingredientes
+Route::get('/admin/ingredientes', 'AdminController@adminIngredients');
+Route::post('/admin/ingredientes/nuevo', 'AdminController@newIngredient');
+Route::get('/admin/ingredientes/{id}/borrar', 'AdminController@deleteIngredient');
+Route::post('/admin/ingredientes/{id}/editar', 'AdminController@editIngredient');
+Route::post('/admin/ingredientes/{id}/reasignar', 'AdminController@reasignIngredient');
 // Admin categorías
 Route::get('/admin/categorias', 'AdminController@adminCats');
 Route::post('/admin/categorias/nueva', 'AdminController@createCat');
