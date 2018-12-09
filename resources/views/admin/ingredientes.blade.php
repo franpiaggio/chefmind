@@ -1,7 +1,7 @@
 @extends('layouts.webLayout')
 @section('title', 'Ingredientes')
 @section('content')
-<main class="main-container container-fluid">  
+<main class="main-container container-fluid mb-5">  
     <div class="row">
         <header class="col-md-12 admin-topbar top-banner">
             <div class="container">
@@ -101,7 +101,7 @@
                             </div>
                             <div class="form-group select-reasign">
                                 <label for="recipient-name" class="col-form-label">Reasignar a:</label>
-                                <select id="ingredientsSelector" name="ingredient" class="form-control js-ingredients" required>
+                                <select id="ingredientsSelector" name="name" class="form-control js-ingredients" required>
                                 </select>
                             </div>
                             <p class="text-danger">Todas las recetas que contengan este ingrediente se reasignaran al seleccionado.</p>

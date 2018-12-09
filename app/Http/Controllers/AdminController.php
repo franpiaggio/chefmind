@@ -257,6 +257,11 @@ class AdminController extends Controller
      */
     public function reasignIngredient(Request $request, $id){
         $ingredient = Ingredient::findOrFail($id);
-        dd('Anda');
+        $name = $ingredient->name;
+        $newIngredient = Ingredient::where('name', 'LIKE', '%'.$request->input('name').'%')->first();
+        $recipes = Recipe::whereHas('ingredients', function($query) use ($name) {
+            $query->whereName($name);
+          })->get();
+        dd($recipes);
     }
 }
