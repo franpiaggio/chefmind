@@ -29,13 +29,13 @@
         <section class="col-md-12 mt-3">
             <div class="container">
                 @if($errors->any())
-                    <div class="alert alert-warning mt-3 mb-3" role="alert">
+                    <div class="alert alert-success mt-3 mb-3" role="alert">
                         {{$errors->first()}}
                     </div>
                 @endif
                 <div class="d-flex mt-3 mb-3 align-items-center">
                     <h2 class="mb-3">Ingredientes registrados</h2>
-                    <button class="btn btn-primary ml-auto">Agregar nuevo</button>
+                    <button class="btn btn-primary ml-auto new-ingredient">Agregar nuevo</button>
                 </div>
                 <table class="table table-bordered">
                   <thead>
@@ -64,11 +64,11 @@
                 {{$ingredients->links()}}
             </div>
         </section>
-        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Editar ingrediente</h5>
+                    <h5 class="modal-title" id="edit">Editar ingrediente</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>
@@ -77,11 +77,11 @@
                     @csrf
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Nombre:</label>
+                            <label class="col-form-label">Nombre:</label>
                             <input type="text" class="form-control" id="old-name" disabled>
                         </div>
                         <div class="form-group">
-                            <label for="recipient-name" class="col-form-label">Nuevo nombre:</label>
+                            <label for="name" class="col-form-label">Nuevo nombre:</label>
                             <input type="text" placeholder="Ingresar nuevo valor" class="form-control" required id="new-name" name="name">
                         </div>
                     </div>
@@ -93,37 +93,62 @@
                 </div>
             </div>
         </div> 
-        <div class="modal fade" id="reasignModal" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Reasignar ingrediente</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <form id="reasignForm" method="POST" action="#">
-                        @csrf
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label for="recipient-name" class="col-form-label">Nombre:</label>
-                                <input type="text" class="form-control" id="old-name-reasign" disabled>
-                            </div>
-                            <div class="form-group select-reasign">
-                                <label for="recipient-name" class="col-form-label">Reasignar a:</label>
-                                <select id="ingredientsSelector" name="name" class="form-control js-ingredients" required>
-                                </select>
-                            </div>
-                            <p class="text-danger">Todas las recetas que contengan este ingrediente se reasignaran al seleccionado.</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                            <input type="submit" class="btn btn-primary" value="Guardar cambio" >
-                        </div>
-                    </form>
-                    </div>
+        <div class="modal fade" id="reasignModal" role="dialog" aria-labelledby="reasign" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="reasign">Reasignar ingrediente</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-            </div>     
+                <form id="reasignForm" method="POST" action="#">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="recipient-name" class="col-form-label">Nombre:</label>
+                            <input type="text" class="form-control" id="old-name-reasign" disabled>
+                        </div>
+                        <div class="form-group select-reasign">
+                            <label for="recipient-name" class="col-form-label">Reasignar a:</label>
+                            <select id="ingredientsSelector" name="name" class="form-control js-ingredients" required>
+                            </select>
+                        </div>
+                        <p class="text-danger">Todas las recetas que contengan este ingrediente se reasignaran al seleccionado.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <input type="submit" class="btn btn-primary" value="Guardar cambio" >
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="newIngredient" role="dialog" aria-labelledby="new" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="new">Nuevo Ingrediente</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form id="reasignForm" method="POST" action="/admin/ingredientes/nuevo">
+                    @csrf
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="name" class="col-form-label">Nombre:</label>
+                            <input type="text" class="form-control" id="old-name-reasign" name="name">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <input type="submit" class="btn btn-primary" value="Guardar cambio" >
+                    </div>
+                </form>
+                </div>
+            </div>
+        </div>       
     </div>
 </main>
 @include('layouts.footer')
@@ -142,6 +167,9 @@
             $('#old-name-reasign').val(name);
             $('#reasignForm').attr('action', '/admin/ingredientes/'+id+'/reasignar');
             $('#reasignModal').modal();
+        });
+        $('.new-ingredient').click(function(){
+            $('#newIngredient').modal();
         });
         $("#ingredientsSelector").select2({
             language: "es",

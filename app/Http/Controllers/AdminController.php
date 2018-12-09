@@ -268,6 +268,16 @@ class AdminController extends Controller
                 $recipe->ingredients()->attach($newIngredient->id);
             }
         }
-        return back()->withErrors(['Se reasignó el ingrediente a todas las recetas que lo contenían.']);;
+        return back()->withErrors(['Se reasignó el ingrediente a todas las recetas que lo contenían.']);
+    }
+
+    /**
+     * Nuevo ingrediente
+     */
+    public function newIngredient(Request $request){
+        $ingredient = new Ingredient();
+        $ingredient->name = $request->input('name');
+        $ingredient->save();
+        return back()->withErrors(['Ingrediente creado correctamente.']);
     }
 }
