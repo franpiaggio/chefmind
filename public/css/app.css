@@ -1534,3 +1534,12 @@ span.filter-cat-name {
 
 
 /* Fin Receta individual */
+
+/* Admin ingredientes */
+.select-reasign .select2-selection{
+  min-height: 38px !important;
+  padding: 0.3em;
+}
+.select-reasign .selection__arrow{
+  top: 6px !important;
+}

@@ -11,15 +11,18 @@
         <div class="col-md-12 mt-5">
             <div class="container">
                 <ul class="nav nav-tabs">
-                  <li class="nav-item">
-                    <a class="nav-link" href="/admin/usuarios">Usuarios</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="/admin/recetas">Todas las recetas</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link active" href="/admin/categorias">Categorías</a>
-                  </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/usuarios">Usuarios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/recetas">Recetas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/admin/categorias">Categorías</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/admin/ingredientes">Ingredientes</a>
+                    </li>
                 </ul>
             </div>
         </div>

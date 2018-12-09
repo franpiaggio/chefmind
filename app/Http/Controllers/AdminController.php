@@ -6,6 +6,7 @@ use App\User;
 use App\Role;
 use App\Recipe;
 use App\Category;
+use App\Ingredient;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -222,5 +223,40 @@ class AdminController extends Controller
         $recipe = Recipe::findOrFail($id);
         $recipe->delete();
         return back();
+    }
+
+    /**
+     * Vista de administración de ingredientes
+     */
+    public function adminIngredients(){
+        $ingredients = Ingredient::orderBy('created_at', 'desc')->paginate(10);
+        return view("admin.ingredientes", compact('ingredients'));
+    }
+
+    /**
+     * Borra un ingrediente
+     */
+    public function deleteIngredient($id){
+        $ingredient = Ingredient::findOrfail($id);
+        $ingredient->delete();
+        return back();
+    }
+
+    /**
+     * Edita el nombre de un ingrediente
+     */
+    public function editIngredient(Request $request, $id){
+        $ingredient = Ingredient::findOrFail($id);
+        $ingredient->name = $request->input('name');
+        $ingredient->save();
+        return back();
+    }
+
+    /**
+     * Reasigna un ingrediente
+     */
+    public function reasignIngredient(Request $request, $id){
+        $ingredient = Ingredient::findOrFail($id);
+        dd('Anda');
     }
 }
