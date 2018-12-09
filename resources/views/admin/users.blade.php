@@ -1,7 +1,7 @@
 @extends('layouts.webLayout')
 @section('title', 'Admin')
 @section('content')
-<main class="main-container container-fluid">  
+<main class="main-container container-fluid mb-5">  
     <div class="row">
         <header class="col-md-12 admin-topbar top-banner">
             <div class="container">
@@ -28,7 +28,7 @@
         </div>
         <section class="col-md-12 mt-3">
             <div class="container">
-                <h2 class="mb-3">Usuarios registrados</h2>
+                <h2 class="mb-3 mt-3">Usuarios registrados</h2>
                 <table class="table table-bordered">
                   <thead>
                     <tr>

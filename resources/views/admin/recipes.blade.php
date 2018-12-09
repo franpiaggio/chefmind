@@ -1,7 +1,7 @@
 @extends('layouts.webLayout')
 @section('title', 'Categorías')
 @section('content')
-<main class="main-container container-fluid">  
+<main class="main-container container-fluid mb-5">  
     <div class="row">
         <header class="col-md-12 admin-topbar top-banner">
             <div class="container">
@@ -28,7 +28,7 @@
         </div>
         <section class="col-md-12 mt-3">
             <div class="container">
-                <h2 class="mb-3">Todas las recetas</h2>
+                <h2 class="mb-3 mt-3">Todas las recetas</h2>
                 <table class="table table-bordered">
                   <thead>
                     <tr>
@@ -43,7 +43,7 @@
                     <tr>
                         <td>{{$recipe->id}}</td>
                         <td>{{$recipe->title}}</td>
-                        <td>{{$recipe->user->name}}</td>
+                        <td><a href="/perfil/{{$recipe->user->id}}">{{$recipe->user->name}}</a></td>
                         <td>
                             <a href="/admin/recetas/{{$recipe->id}}/borrar" class="btn btn-danger">Borrar</a>
                             <a href="/recetas/{{$recipe->id}}" class="btn btn-primary mx-3">Ver receta</a>
