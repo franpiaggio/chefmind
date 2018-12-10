@@ -24,12 +24,20 @@
         </div>
     </section>
     <section class="container mt-5 mb-5">
+        @if(count($recipes))
             <h2>Resultados de búsqueda</h2>
             <hr>
             <div class="row mt-5 equal">
                 @include('web.listadoRecetas', ['recipes' => $recipes])
             </div>
             {{$recipes->links()}}
+        @else
+            <div class="my-5 empty-results">
+                <div class="alert alert-warning mt-3 mb-5" role="alert">
+                    No se encontraron recetas con esos ingredientes. Intente ingresando los más prioritarios.
+                </div>
+            </div>
+        @endif
     </section>
     @include('layouts.footer')
     @section('footer')

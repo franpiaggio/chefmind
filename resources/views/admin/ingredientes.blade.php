@@ -15,7 +15,7 @@
                     <a class="nav-link" href="/admin/usuarios">Usuarios</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="/admin/recetas">Todas las recetas</a>
+                    <a class="nav-link" href="/admin/recetas">Recetas</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="/admin/categorias">Categorías</a>
@@ -37,6 +37,21 @@
                     <h2 class="mb-3">Ingredientes registrados</h2>
                     <button class="btn btn-primary ml-auto new-ingredient">Agregar nuevo</button>
                 </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <form action="/admin/ingredientes" method="get">
+                            <div class="form-group">
+                                <label for="search">Buscar:</label>
+                                <div class="d-flex">
+                                <input type="text" value="{{Request::query('buscar')}}" class="form-control" name="buscar" placeholder="Nombre del ingrediente">
+                                <input type="submit" class="btn btn-outline-secondary ml-3" value="buscar">
+                                </div>
+                            </div>
+                        
+                        </form>
+                    </div>
+                </div>
+                @if(count($ingredients))
                 <table class="table table-bordered">
                   <thead>
                     <tr>
@@ -62,6 +77,13 @@
                   </tbody>
                 </table>
                 {{$ingredients->links()}}
+                @else
+                    <div class="my-3">
+                        <div class="alert alert-warning mt-3 mb-3" role="alert">
+                            No se encontraron ingredientes con ese nombre.
+                        </div>
+                    </div>
+                @endif
             </div>
         </section>
         <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="edit" aria-hidden="true">

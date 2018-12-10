@@ -1543,3 +1543,8 @@ span.filter-cat-name {
 .select-reasign .selection__arrow{
   top: 6px !important;
 }
+
+/* Empty results */
+.empty-results{
+  min-height: 50vh;
+}
