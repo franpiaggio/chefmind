@@ -228,8 +228,12 @@ class AdminController extends Controller
     /**
      * Vista de administración de ingredientes
      */
-    public function adminIngredients(){
-        $ingredients = Ingredient::orderBy('created_at', 'desc')->paginate(10);
+    public function adminIngredients(Request $request){
+        if($request->buscar){
+            $ingredients = Ingredient::where('name', 'LIKE', '%'.$request->buscar.'%')->paginate(10);
+        }else{
+            $ingredients = Ingredient::orderBy('created_at', 'desc')->paginate(10);
+        }
         return view("admin.ingredientes", compact('ingredients'));
     }
 

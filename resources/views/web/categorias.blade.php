@@ -31,7 +31,7 @@
                     <ul class="list-group categories">
                         <li class="list-group-item {{Request::query('categoria') == '' ? 'active' : ''}}">
                             <a class="d-flex justify-content-between align-items-center" href="?categoria">
-                            <span class="filter-cat-name">Todas</span>
+                            <span class="filter-cat-name">Todas las recetas</span>
                             </a>
                         </li>
                         @foreach($categories as $category)
