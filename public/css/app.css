@@ -360,6 +360,7 @@ a.color-orange:hover {
   
   .navbar.fixed.scrolled {
     background-color: rgba(255,255,255,1) !important;
+    z-index: 99999;
   }
 }
 
@@ -1478,6 +1479,10 @@ span.filter-cat-name {
 }
 .register{
   background-image: url(/img/register_2.jpg);
+  background-position: center;
+}
+.contacto{
+  background-image: url(/img/contacto.jpg);
   background-position: center;
 }
 .login-register{
