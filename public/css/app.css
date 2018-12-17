@@ -369,6 +369,7 @@ a.color-orange:hover {
   
   .navbar.fixed.scrolled {
     background-color: rgba(255,255,255,1) !important;
+    z-index: 999999;
   }
 }
 
@@ -1547,4 +1548,20 @@ span.filter-cat-name {
 /* Empty results */
 .empty-results{
   min-height: 50vh;
+}
+
+
+/** Fixes **/
+.contacto .card-header,
+.login-register .card-header{
+  background-color: rgb(255, 126, 97);
+  color: white;
+  border: 1px solid #ff7e61;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+}
+
+.contacto h2:after,
+.login-register h2:after{
+  display: none;
 }

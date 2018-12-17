@@ -31,7 +31,7 @@
                         <span data-rate="4" class="js-rate fa fa-star"></span>
                         <span data-rate="5" class="js-rate fa fa-star"></span>
                     </div>
-                    <small class="rate-av">Calificación promedio: <span class="average">{{number_format($recipe->averageRating, 2)}}</span></small>
+                    <small class="rate-av">Calificación promedio: <span class="average">{{number_format($recipe->averageRating, 2)}}  con  {{count($recipe->ratings)}} {{count($recipe->ratings) == 1 ? 'voto' : 'votos'}}</span></small>
                 @else
                     <div class="stars ml-1 mt-2 rate-{{(int)$recipe->averageRating}}">
                         <span data-rate="1" class="js-rate fa fa-star"></span>
@@ -157,7 +157,7 @@
                                     <div class="profile-comment col-md-2 mb-3">
                                         <img src="/uploads/perfiles/{{$comment->user->image}}" alt="" class="img-fluid rounded img-thumbnail">
                                     </div>
-                                    <div class="col-md-6 mb-3">
+                                    <div class="col-md-7 mb-3">
                                         <div class="card">
                                             <div class="card-header">
                                             <a href="/perfil/{{$comment->user->id}}">{{$comment->user->name}}</a>
@@ -175,7 +175,7 @@
                                         </div>
                                     </div>
                                 @else
-                                    <div class="col-md-6 offset-md-3 mb-3">
+                                    <div class="col-md-7 offset-md-2 mb-3">
                                         <div class="card">
                                             <div class="card-header">
                                             <a href="/perfil/{{$comment->user->id}}">{{$comment->user->name}}</a>

@@ -11,4 +11,12 @@ class ContactoController extends Controller{
     public function index(){
         return view('web.contacto');
     }
+
+    public function send(Request $request){
+        $validatedData = $request->validate([
+            'email' => 'required|email',
+            'consulta' => 'required'
+        ]);
+        return back()->withErrors(['Muchas gracias, tu mensaje fué enviado correctamente.']);
+    }
 }
