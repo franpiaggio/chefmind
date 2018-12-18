@@ -28,7 +28,7 @@
         </div>
         <section class="col-md-12 mt-3">
             <div class="container">
-                <h2 class="mb-3 mt-3">Todas las recetas</h2>
+                <h2 class="mb-3 mt-3 detail-border">Todas las recetas</h2>
                 <table class="table table-bordered">
                   <thead>
                     <tr>

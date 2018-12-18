@@ -28,7 +28,7 @@
         </div>
     </section>
     <section class="container mb-5 mt-3">
-        <h2 class="mb-3">Últimas recetas</h2>
+        <h2 class="mb-3 detail-border mt-5">Últimas recetas</h2>
         <div class="row">
             @include('web.listadoRecetas', ['recipes' => $latests])
         </div>

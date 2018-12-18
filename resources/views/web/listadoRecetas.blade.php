@@ -39,7 +39,7 @@
                 <span data-rate="4" class="js-rate fa fa-star"></span>
                 <span data-rate="5" class="js-rate fa fa-star"></span>
             </div>
-            <h3 class="card-title"><a href="{{ url('/recetas', $recipe->id) }}">{{ $recipe->title }}</a></h3>
+            <h3 class="card-title detail-border"><a href="{{ url('/recetas', $recipe->id) }}">{{ $recipe->title }}</a></h3>
             <div class="recipe-info">
                 <span>{{$recipe->textpreview}}</span>
             </div>

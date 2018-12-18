@@ -3,7 +3,7 @@
 @section('content')
 <main class="main-container container-fluid mb-5">  
     <div class="row">
-        <header class="col-md-12 admin-topbar admin-topbar">
+        <header class="col-md-12 admin-topbar top-banner">
             <div class="container">
                 <h2>Administrador</h2>
             </div>
@@ -29,7 +29,7 @@
         <section class="col-md-12 mt-3">
             <div class="container">
                 <div class="d-flex align-items-center">
-                    <h2 class="mb-3 mt-3">Categorías disponibles</h2>
+                    <h2 class="mb-3 mt-3 detail-border">Categorías disponibles</h2>
                     <button class="btn btn-primary ml-auto my-3 new-category">Nueva categoría </button>
                 </div>
                 <table class="table table-bordered">

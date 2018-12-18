@@ -54,7 +54,6 @@
                             <a class="dropdown-item my-2" href="/miperfil"> <i class="far fa-user"></i> Mi perfil</a>
                             <a class="dropdown-item my-2" href="/miperfil/mis-favoritos"> <i class="far fa-star"></i> Favoritos</a>
                             <a class="dropdown-item my-2" href="/miperfil/seguidos"> <i class="far fa-address-book"></i> Usuarios seguidos</a>
-
                             <a 
                                 class="dropdown-item my-2 logout"
                                 href="{{ route('logout') }}"

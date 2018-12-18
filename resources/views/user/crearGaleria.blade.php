@@ -24,7 +24,7 @@
                 <!-- Galería -->
                 <form action="/recetas/{{$recipe->id}}/galeria" id="img-upload-form"  class="mt-3 profile-form" enctype="multipart/form-data" method="POST">
                     @csrf
-                    <h3>Cargar nuevas imágenes</h3>
+                    <h3 class="border">Cargar nuevas imágenes</h3>
                     <div class="form-group">
                         <label for="upload_imgs" class="btn btn-outline-success"> + Seleccionar imágenes</label>
                         <input class="d-none" type="file" id="upload_imgs" name="images[]" multiple/>
