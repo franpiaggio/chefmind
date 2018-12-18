@@ -91,7 +91,7 @@
                         <div class="ingredientes d-flex flex-wrap">
                             @if(!$recipe->ingredients->isEmpty())
                                 @foreach($recipe->ingredients as $ingredient)
-                                    <span class="badge bg-green color-white py-3 px-3 mr-2 my-1 "><i class="fas fa-utensils mr-2"></i> {{$ingredient->name}}</span>
+                                <span class="badge bg-green color-white py-3 px-3 mr-2 my-1 "><i class="fas fa-utensils mr-2"></i> {{$ingredient->name}} <span>{{$ingredient->pivot->quantity}}</span> </span>
                                 @endforeach 
                             @endif
                         </div>

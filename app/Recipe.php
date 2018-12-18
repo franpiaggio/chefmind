@@ -28,14 +28,14 @@ class Recipe extends Model{
      * Relación de categorias con recetas
      */
     public function categories(){
-      return $this->belongsToMany('App\Category')->withTimestamps();;
+      return $this->belongsToMany('App\Category')->withTimestamps();
     }
 
     /**
      * Relación de ingredientes con recetas
      */
     public function ingredients(){
-      return $this->belongsToMany('App\Ingredient')->withTimestamps();;
+      return $this->belongsToMany('App\Ingredient')->withTimestamps()->withPivot('quantity');
     }
     
     /**

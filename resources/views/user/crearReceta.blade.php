@@ -94,12 +94,38 @@
                                 @endforeach
                             </select>
                         </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="form-group crear-receta multi-ingredient-selector">
+                            <label for="ingredientes">Ingredientes</label>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <select id="ingredientsSelector" class="form-control js-ingredients d-none">
+                                    </select>
+                                    <span class="d-none invalid-feedback js-ing-vacio" role="alert">
+                                        <strong>Debes ingresar el nombre del ingrediente</strong>
+                                    </span>
+                                </div>
+                                <div class="col-md-5">
+                                    <input type="text" id="ingredientQuantity" class="form-group quantity-ing w-100" placeholder="Ingresar una cantidad">
+                                </div>
+                                <div class="col-md-2">
+                                    <button type="button" class="btn btn-primary quantity-ing w-100 js-agregar-ingrediente">Agregar</button>
+                                </div>   
+                            </div>       
+                        </div>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <div class="added row">
+                        
+                        </div>
                     </div>                   
                     <div class="col-md-12">
+                        {{-- 
                         <div class="form-group crear-receta">
                             <label for="test">Ingredientes</label>
                             <select name="ingredients[]" id="ingredientsSelector" class="form-control" multiple>
-                                    {{-- Si hay valores viejos los agrego --}}
+
                                 @if( old('ingredients') )
                                     @foreach(old('ingredients') as $ingredient)
                                         <option value="{{$ingredient}}" selected>{{$ingredient}}</option>
@@ -107,6 +133,7 @@
                                 @endif            
                             </select>
                         </div>
+                        --}}
                     </div>
                     <div class="col-md-12 crear-receta mb-5">
                         <label for="body" >Pasos a seguir</label>

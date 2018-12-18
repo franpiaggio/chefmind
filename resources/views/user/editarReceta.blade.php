@@ -104,7 +104,47 @@
                                 @endforeach
                             </select>
                         </div>
-                    </div>                   
+                    </div>
+
+                    <div class="col-md-12">
+                            <div class="form-group crear-receta multi-ingredient-selector">
+                                <label for="ingredientes">Ingredientes</label>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <select id="ingredientsSelector" class="form-control js-ingredients d-none">
+                                        </select>
+                                        <span class="d-none invalid-feedback js-ing-vacio" role="alert">
+                                            <strong>Debes ingresar el nombre del ingrediente</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <input type="text" id="ingredientQuantity" class="form-group quantity-ing w-100" placeholder="Ingresar una cantidad">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button type="button" class="btn btn-primary quantity-ing w-100 js-agregar-ingrediente">Agregar</button>
+                                    </div>   
+                                </div>       
+                            </div>
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <div class="added row">
+                                    @foreach($recipe->ingredients as $ingredient)
+                                        <div class="col-md-5 mt-3">
+                                            <input class="form-control" name="ingredients[]" value="{{$ingredient->name}}"  type="hidden" />
+                                            <p class="form-control disabled">{{$ingredient->name}}</p>
+                                        </div>
+                                        <div class="col-md-5 mt-3">
+                                            <input class="form-control" name="ingQuantity[]" value="{{$ingredient->pivot->quantity}}"  type="text" />
+                                        </div>
+                                        <div class="col-md-2 mt-3"> 
+                                            <button type="button" class="btn btn-danger w-100 js-delete-ingredient"> Borrar </button> 
+                                        </div>
+                                    @endforeach   
+                            </div>
+                        </div> 
+
+                    {{--
+                      
                     <div class="col-md-12">
                         <div class="form-group crear-receta">
                             <label for="test">Ingredientes</label>
@@ -117,6 +157,8 @@
                             </select>
                         </div>
                     </div>
+
+                    --}}
                     <div class="col-md-12 crear-receta mb-5">
                         <label for="body" >Pasos a seguir</label>
                         <small class="d-block mb-2">Contanos los detalles más importantes: ¿Que cantidades necesito? ¿Qué pasos debo seguir?</small>

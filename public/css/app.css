@@ -1580,3 +1580,19 @@ span.filter-cat-name {
   align-items: center;
   justify-content: center;
 }
+.multi-ingredient-selector .select2-selection--single{
+  min-height: 50px !important;
+  padding: 9px;
+}
+.multi-ingredient-selector .select2-container--default .select2-selection--single .select2-selection__arrow {
+  height: 50px !important;
+}
+.quantity-ing{
+  min-height: 50px !important;
+  padding: 9px;
+}
+
+p.disabled{
+  background-color: #e9ecef;
+  opacity: 1;
+}

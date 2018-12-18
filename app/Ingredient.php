@@ -16,6 +16,6 @@ class Ingredient extends Model
      * Asocio Recetas y categorias
      */
     public function recipes(){
-        return $this->belongsToMany('App\Recipe')->withTimestamps();
+        return $this->belongsToMany('App\Recipe')->withTimestamps()->withPivot('quantity');;
     }
 }
