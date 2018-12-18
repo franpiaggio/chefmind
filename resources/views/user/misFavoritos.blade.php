@@ -5,7 +5,12 @@
     <div class="row">
         <header class="col-md-12 profile-topbar top-banner">
             <div class="container">
-                <img src="/uploads/perfiles/{{Auth::user()->image}}" class="img-responsive rounded-circle profile-topbar__image" alt="Foto de perfil de {{ Auth::user()->name }}">
+                    @if( Auth::user()->image == 'profile.png')
+                    {{-- TODO: Super hardcodeado esto, cambiarlo --}}
+                    <img src="/uploads/default/{{Auth::user()->image}}" class="img-responsive rounded-circle profile-topbar__image" alt="Foto de perfil de {{ Auth::user()->name }}">
+                    @else
+                    <img src="/uploads/perfiles/{{Auth::user()->image}}" class="img-responsive rounded-circle profile-topbar__image" alt="Foto de perfil de {{ Auth::user()->name }}">
+                    @endif
                 <div class="my-profile-cont d-flex align-items-center">
                     <h1 class="profile-topbar__title">
                         {{ Auth::user()->name }}

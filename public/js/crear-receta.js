@@ -112,10 +112,10 @@ $(document).ready(function(){
         }
     });
     
-    if(localStorage.getItem("ingredients") !== null){
+    /*if(localStorage.getItem("ingredients") !== null){
         var added = localStorage.getItem("ingredients");
         $('.added').append(added);
-    }
+    }*/
 
     var saveLocalData = function(){
         var added = $('.added').html();

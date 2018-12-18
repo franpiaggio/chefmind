@@ -260,8 +260,8 @@ class RecetasController extends Controller
             forEach($quantities as $key=>$quantity){
                 $pivotData[] = ['quantity' => $quantity];
             }
-            
             $syncData = array_combine($ingredientsIds, $pivotData);
+            
             // Sinc de todos los ingredientes agregados 
             $recipe->ingredients()->sync($syncData);
         }else{
