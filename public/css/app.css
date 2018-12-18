@@ -1571,3 +1571,12 @@ span.filter-cat-name {
 .login-register h2:after{
   display: none;
 }
+
+.profile-follow{
+  max-width: 100px;
+}
+.profile-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

@@ -31,7 +31,7 @@
                         <span data-rate="4" class="js-rate fa fa-star"></span>
                         <span data-rate="5" class="js-rate fa fa-star"></span>
                     </div>
-                    <small class="rate-av">Calificación promedio: <span class="average">{{number_format($recipe->averageRating, 2)}}  con  {{count($recipe->ratings)}} {{count($recipe->ratings) == 1 ? 'voto' : 'votos'}}</span></small>
+                    <small class="rate-av">Calificación promedio: <span class="average">{{number_format($recipe->averageRating, 2)}}</span><span> con {{count($recipe->ratings)}}  {{count($recipe->ratings) == 1 ? 'valoración' : 'valoraciones'}}</span></small>
                 @else
                     <div class="stars ml-1 mt-2 rate-{{(int)$recipe->averageRating}}">
                         <span data-rate="1" class="js-rate fa fa-star"></span>

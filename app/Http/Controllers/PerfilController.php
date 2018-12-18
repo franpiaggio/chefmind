@@ -146,11 +146,21 @@ class PerfilController extends Controller{
             return back();
         }
     }
+    
+    /**
+     * Vista de usuarios seguidos
+     */
+    public function usersFollowed(){
+        $followings = Auth::user()->followings()->paginate(10);
+        return view('user.misSeguidos', compact('followings'));
+    }
 
     /**
-     * Obtiene el perfil de un usuario
+     * Sigue a un usuario
      */
-    public function getUser($id){
-
+    public function followUser(Request $request){
+        $user = User::findOrFail($request->id);
+        $response = Auth::user()->toggleFollow($user);
+        return response()->json(['success'=>$response]);
     }
 }

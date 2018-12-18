@@ -38,59 +38,67 @@
                     <li class="nav-item">
                         <a class="nav-link active" href="/miperfil/mis-favoritos"><i class="far fa-star"></i> Favoritas </a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="far fa-user"></i> Usuarios seguidos</a>
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/miperfil/seguidos"><i class="far fa-user"></i> Usuarios seguidos</a>
                     </li>
                 </ul>
                 <div class="row mt-3">
-                    @foreach($recipes as $recipe)
-                        <div class="col-md-12 col-6 mb-3 recipe-list">
-                            <div class="card">
-                                <div class="row ">
-                                    <div class="col-md-4 img-cont">
-                                        <img src="/uploads/featured/{{$recipe->featured_image}}" class="w-100">
-                                    </div>
-                                    <div class="col-md-8 px-3">
-                                        <div class="card-block px-3 py-3">
-                                            <h3 class="card-title">{{$recipe->title}}</h3>
-                                            <p class="card-text">{{$recipe->textpreview}}</p>
-                                            <p class="text-muted mt-3">
-                                                Creada por <a href="#">{{$recipe->user->name}}</a>
-                                            </p>
-                                            <div class="d-flex">
-                                                <div class="icons d-flex" id="recetaLike{{$recipe->id}}" >
-                                                    <div data-id="{{ $recipe->id }}" class="like-receta d-flex {{auth()->user() ? 'js-like' : ''}}">
-                                                        <div class="icon-count mr-1">
-                                                            {{ $recipe->likers()->get()->count() }}	
+                    @if(!count($recipes))
+                        <div class="col-md-12">
+                            <div class="alert alert-warning mt-3 mb-5" role="alert">
+                                No tienes ninguna receta favorita.
+                            </div> <!-- Todo: Cambiar esto --> <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                        </div>
+                    @else
+                        @foreach($recipes as $recipe)
+                            <div class="col-md-12 col-6 mb-3 recipe-list">
+                                <div class="card">
+                                    <div class="row ">
+                                        <div class="col-md-4 img-cont">
+                                            <img src="/uploads/featured/{{$recipe->featured_image}}" class="w-100">
+                                        </div>
+                                        <div class="col-md-8 px-3">
+                                            <div class="card-block px-3 py-3">
+                                                <h3 class="card-title">{{$recipe->title}}</h3>
+                                                <p class="card-text">{{$recipe->textpreview}}</p>
+                                                <p class="text-muted mt-3">
+                                                    Creada por <a href="#">{{$recipe->user->name}}</a>
+                                                </p>
+                                                <div class="d-flex">
+                                                    <div class="icons d-flex" id="recetaLike{{$recipe->id}}" >
+                                                        <div data-id="{{ $recipe->id }}" class="like-receta d-flex {{auth()->user() ? 'js-like' : ''}}">
+                                                            <div class="icon-count mr-1">
+                                                                {{ $recipe->likers()->get()->count() }}	
+                                                            </div>
+                                                            <div class="like-icons">
+                                                                @if( auth()->user() && auth()->user()->hasLiked($recipe)) 
+                                                                    <i class="fas fa-thumbs-up"></i>
+                                                                @else
+                                                                    <i class="far fa-thumbs-up"></i>
+                                                                @endif
+                                                            </div>
                                                         </div>
-                                                        <div class="like-icons">
-                                                            @if( auth()->user() && auth()->user()->hasLiked($recipe)) 
-                                                                <i class="fas fa-thumbs-up"></i>
-                                                            @else
-                                                                <i class="far fa-thumbs-up"></i>
+                                                        <p class="js-fav ml-3" data-id="{{ $recipe->id }}">
+                                                            @if(auth()->user())
+                                                                @if(auth()->user()->hasFavorited($recipe))
+                                                                    <i class="fas fa-heart"></i>
+                                                                @else
+                                                                    <i class="far fa-heart"></i>
+                                                                @endif
                                                             @endif
-                                                        </div>
+                                                        </p>
                                                     </div>
-                                                    <p class="js-fav ml-3" data-id="{{ $recipe->id }}">
-                                                        @if(auth()->user())
-                                                            @if(auth()->user()->hasFavorited($recipe))
-                                                                <i class="fas fa-heart"></i>
-                                                            @else
-                                                                <i class="far fa-heart"></i>
-                                                            @endif
-                                                        @endif
-                                                    </p>
-                                                </div>
-                                                <div class="ml-auto">
-                                                    <a href="{{ url('/recetas', $recipe->id) }}" class="card-link"><i class="fas fa-plus"></i> <span class="sr-only">Ver Receta</span></a>
+                                                    <div class="ml-auto">
+                                                        <a href="{{ url('/recetas', $recipe->id) }}" class="card-link"><i class="fas fa-plus"></i> <span class="sr-only">Ver Receta</span></a>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    @endif
                 </div>
                 {{$recipes->links()}}
             </div>
