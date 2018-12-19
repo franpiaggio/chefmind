@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddQuantity extends Migration
+class AddRecipeSoftDelete extends Migration
 {
     /**
      * Run the migrations.
@@ -12,9 +12,9 @@ class AddQuantity extends Migration
      * @return void
      */
     public function up()
-    {  
-        Schema::table('ingredient_recipe', function($table) {
-            $table->string('quantity')->nullable()->default('-');
+    {
+        Schema::table('recipes', function (Blueprint $table) {
+            $table->softDeletes();
         });
     }
 
@@ -25,8 +25,8 @@ class AddQuantity extends Migration
      */
     public function down()
     {
-        Schema::table('ingredient_recipe', function($table) {
-            $table->dropColumn('quantity');
+        Schema::table('recipes', function($table) {
+            $table->users('deleted_at');
         });
     }
 }

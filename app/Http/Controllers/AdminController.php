@@ -212,6 +212,10 @@ class AdminController extends Controller
             return back();
         }
         $user = User::findOrFail($id);
+        $recipes = $user->recipes;
+        forEach($recipes as $recipe){
+            $recipe->delete();
+        }
         $user->delete();
         return back();
     }

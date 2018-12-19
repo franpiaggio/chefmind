@@ -6,9 +6,12 @@ use Overtrue\LaravelFollow\Traits\CanBeLiked;
 use Overtrue\LaravelFollow\Traits\CanBeFavorited;
 use willvincent\Rateable\Rateable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Recipe extends Model{
-    use CanBeLiked, canBeFavorited, Rateable;
+    use CanBeLiked, canBeFavorited, Rateable, SoftDeletes;
+
+    protected $dates = ['deleted_at'];
 
     /**
      * Datos que se pueden completar
