@@ -127,6 +127,7 @@ class RecetasController extends Controller
      * Edita una receta
      */
     public function update($id, Request $request){
+        //dd($request->all());
         $validatedData = $request->validate([
             'title' => 'required|min:3',
             'body' => 'required',
@@ -157,7 +158,7 @@ class RecetasController extends Controller
         // Actualiza las categorias sin repetirlas
         $this->syncCategories( $recipe, $request->input('categories') );
         // Actualiza los ingredientes
-        $this->syncIngredients( $recipe, $request->input('ingredients') );
+        $this->syncIngredients( $recipe, $request->input('ingredients'), $request->input('ingQuantity') );
         // Vuelvo a la vista de recetas
         return redirect('miperfil');
     }
@@ -209,7 +210,7 @@ class RecetasController extends Controller
         // Guardo las categorias una vez creada la receta porque necesito que se genere un ID
         $this->syncCategories( $recipe, $request->input('categories') );
         // Guardo los ingredientes
-        $this->syncIngredients( $recipe, $request->input('ingredients') );
+        $this->syncIngredients( $recipe, $request->input('ingredients'), $request->input('ingQuantity') );
         // Si hay archivos los itero, guardo y relaciono
         if($request->images){
             foreach($request->images as $image){
@@ -246,7 +247,7 @@ class RecetasController extends Controller
      * @param Recipe $recipe
      * @param array $ingredients
      */
-    private function syncIngredients(Recipe $recipe, $ingredients){
+    private function syncIngredients(Recipe $recipe, $ingredients, $quantities){
         if($ingredients){
             // Array de ids
             $ingredientsIds = [];
@@ -256,8 +257,13 @@ class RecetasController extends Controller
                 // Push al array
                 $ingredientsIds[] = $current->id;             
             }
+            forEach($quantities as $key=>$quantity){
+                $pivotData[] = ['quantity' => $quantity];
+            }
+            $syncData = array_combine($ingredientsIds, $pivotData);
+            
             // Sinc de todos los ingredientes agregados 
-            $recipe->ingredients()->sync($ingredientsIds);
+            $recipe->ingredients()->sync($syncData);
         }else{
             // Si no llegan ingredientes es porque los borró todos
             $ingredientsIds = [];

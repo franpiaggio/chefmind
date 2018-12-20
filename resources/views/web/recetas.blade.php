@@ -25,7 +25,7 @@
     </section>
     <section class="container mt-5 mb-5">
         @if(count($recipes))
-            <h2>Resultados de búsqueda</h2>
+            <h2 class="detail-border">Resultados de búsqueda</h2>
             <hr>
             <div class="row mt-5 equal">
                 @include('web.listadoRecetas', ['recipes' => $recipes])

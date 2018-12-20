@@ -4,6 +4,7 @@ Route::get('/', 'HomeController@index');
 Route::get('/buscar', 'HomeController@search');
 Route::get('/recetas', 'HomeController@list');
 Route::get('/contacto', 'ContactoController@index');
+Route::post('/contacto', 'ContactoController@send');
 // Admin Usuarios
 Route::get('/admin/usuarios/{id}/editar', 'AdminController@editUser');
 Route::get('/admin/usuarios/{id}/ban', 'AdminController@ban');
@@ -60,6 +61,8 @@ Route::post('/miperfil/editarContraseña', 'PerfilController@updatePass');
 Route::get('/miperfil', 'PerfilController@index');
 Route::get('/miperfil/mis-favoritos', 'PerfilController@userFavs');
 Route::get('/miperfil/borrarReceta/{id}', 'PerfilController@borrarReceta');
+Route::get('/miperfil/seguidos', 'PerfilController@usersFollowed');
+Route::post('/followUser', 'PerfilController@followUser');
 // Perfiles publicos
 Route::get('/perfil/{id}', 'UserController@getProfile');
 // Auth laravel

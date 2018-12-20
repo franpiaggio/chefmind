@@ -31,7 +31,7 @@
                         <span data-rate="4" class="js-rate fa fa-star"></span>
                         <span data-rate="5" class="js-rate fa fa-star"></span>
                     </div>
-                    <small class="rate-av">Calificación promedio: <span class="average">{{number_format($recipe->averageRating, 2)}}</span></small>
+                    <small class="rate-av">Calificación promedio: <span class="average">{{number_format($recipe->averageRating, 2)}}</span><span> con {{count($recipe->ratings)}}  {{count($recipe->ratings) == 1 ? 'valoración' : 'valoraciones'}}</span></small>
                 @else
                     <div class="stars ml-1 mt-2 rate-{{(int)$recipe->averageRating}}">
                         <span data-rate="1" class="js-rate fa fa-star"></span>
@@ -86,17 +86,8 @@
                         {{$recipe->textpreview}}
                     </p>
                 </div>                
-                    <div class="ingredientes-receta my-5">
-                        <h2 class="h3 mb-4">Ingredientes</h2>
-                        <div class="ingredientes d-flex flex-wrap">
-                            @if(!$recipe->ingredients->isEmpty())
-                                @foreach($recipe->ingredients as $ingredient)
-                                    <span class="badge bg-green color-white py-3 px-3 mr-2 my-1 "><i class="fas fa-utensils mr-2"></i> {{$ingredient->name}}</span>
-                                @endforeach 
-                            @endif
-                        </div>
-                    </div>
-                </div>                        
+            </div>    
+                
             <div class="col-md-6 recipe-img d-flex flex-column align-items-start">
                 <img src="/uploads/featured/{{$recipe->featured_image}}" alt="{{$recipe->title}}" class="img-fluid rounded img-receta">
                 <div class="buttons d-flex fav-cont">
@@ -111,6 +102,17 @@
                     @endif
                 </div>
             </div>
+
+            <div class="col-md-12 ingredientes-receta my-5">
+                <h2 class="h3 mb-4">Ingredientes</h2>
+                <div class="ingredientes d-flex flex-wrap">
+                    @if(!$recipe->ingredients->isEmpty())
+                        @foreach($recipe->ingredients as $ingredient)
+                        <span class="badge bg-green color-white py-3 px-3 mr-2 my-1 "><i class="fas fa-utensils mr-2"></i> {{$ingredient->name}} <span>{{$ingredient->pivot->quantity}}</span> </span>
+                        @endforeach 
+                    @endif
+                </div>
+            </div>    
             </div>
             </div>
                 <div class="container contenido-receta mt-5">
@@ -157,7 +159,7 @@
                                     <div class="profile-comment col-md-2 mb-3">
                                         <img src="/uploads/perfiles/{{$comment->user->image}}" alt="" class="img-fluid rounded img-thumbnail">
                                     </div>
-                                    <div class="col-md-6 mb-3">
+                                    <div class="col-md-7 mb-3">
                                         <div class="card">
                                             <div class="card-header">
                                             <a href="/perfil/{{$comment->user->id}}">{{$comment->user->name}}</a>
@@ -175,7 +177,7 @@
                                         </div>
                                     </div>
                                 @else
-                                    <div class="col-md-6 offset-md-3 mb-3">
+                                    <div class="col-md-7 offset-md-2 mb-3">
                                         <div class="card">
                                             <div class="card-header">
                                             <a href="/perfil/{{$comment->user->id}}">{{$comment->user->name}}</a>

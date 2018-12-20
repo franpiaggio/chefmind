@@ -15,7 +15,7 @@
         <div class="row mt-5 equal no-mt">
             <div class="col-md-12 col-xl-3">
                 <div class="js-filters">
-                    <h2 class="my-4">Buscar</h2>
+                    <h2 class="my-4 detail-border">Buscar</h2>
                     <form action="/categorias" method="GET">
                         <div class="input-group">
                             @if(Request::query('categoria'))
@@ -27,7 +27,7 @@
                             </div>
                         </div>
                     </form>
-                    <h2 class="my-4">Categorías</h2>
+                    <h2 class="my-4 detail-border">Categorías</h2>
                     <ul class="list-group categories">
                         <li class="list-group-item {{Request::query('categoria') == '' ? 'active' : ''}}">
                             <a class="d-flex justify-content-between align-items-center" href="?categoria">

@@ -3,12 +3,29 @@
 @section('content')
 <main class="main-container container-fluid">  
     <div class="row">
-        <header class="col-md-12 profile-topbar">
+        <header class="col-md-12 profile-topbar top-banner">
             <div class="container">
+                @if( $user->image == 'profile.png')
+                {{-- TODO: Super hardcodeado esto, cambiarlo --}}
+                <img src="/uploads/default/{{$user->image}}" class="img-responsive rounded-circle profile-topbar__image" alt="Foto de perfil de {{ $user->name }}">
+                @else
                 <img src="/uploads/perfiles/{{$user->image}}" class="img-responsive rounded-circle profile-topbar__image" alt="Foto de perfil de {{ $user->name }}">
-                <h1 class="profile-topbar__title">
-                    {{ $user->name }}
-                </h1>
+                @endif
+                <div class="d-flex align-items-center">
+                    <h1 class="profile-topbar__title">
+                        {{ $user->name }}
+                    </h1>
+                    @guest
+                    @else
+                        @if($user->id != Auth::user()->id)
+                            @if($user->isFollowedBy(Auth::user()))
+                                <button data-id={{$user->id}} class="btn btn-green btn-sm ml-auto js-follow"><i class="fas fa-user-minus"></i> Dejar de seguir</button>
+                            @else
+                                <button data-id={{$user->id}} class="btn btn-green btn-sm ml-auto js-follow"><i class="fas fa-user-plus"></i> Seguir</button>
+                            @endif
+                        @endif
+                    @endguest
+                </div>
                 <div class="profile-topbar__social">
                     @if( $user->facebook )
                         <a href="{{$user->facebook}}"><i class="fab fa-facebook"></i></a>
@@ -104,5 +121,6 @@
 @include('layouts.footer')
 @section('footer')
     <script src="{{ asset('js/recetas.js') }}"></script>
+    <script src="{{ asset('js/follow.js') }}"></script>
 @endsection
 @endsection 

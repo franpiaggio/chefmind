@@ -1,12 +1,3 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);
-@charset "UTF-8";
-
-/**
-***************************
-* Migrar a archivos externos
-***************************
-**/
-
 /**
 *
 * Globales
@@ -17,6 +8,7 @@ body {
   min-height: 100vh;
   background-color: #fff;
   font-family: 'Source Sans Pro', sans-serif;
+  overflow-x: hidden;
 }
 
 .logout-form {
@@ -28,7 +20,6 @@ body {
   -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
-data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0, 0, 0, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E
 h1,
 h2,
 h3,
@@ -41,9 +32,15 @@ h6 {
   width: fit-content!important;
   width: -moz-fit-content!important;
 }
+
+h1,
+h2,
+h3{
+  font-weight: 400 !important;
+}
  
-h2::after, 
-h3::after{ 
+h2.detail-border::after, 
+h3.detail-border::after{ 
   content: '';
   height: 3px;
   width: 35%;
@@ -369,6 +366,7 @@ a.color-orange:hover {
   
   .navbar.fixed.scrolled {
     background-color: rgba(255,255,255,1) !important;
+    z-index: 99999;
   }
 }
 
@@ -458,6 +456,19 @@ a.color-orange:hover {
   top: 0;
   right: 0;
   max-width: 250px;
+}
+
+@media (min-width: 1300px) and (max-width: 1367px){
+	.morrones-bg {
+	    top: 0;
+	    right: -90px;
+	    max-width: 250px;
+	}
+	.tomate-bg {
+	    top: -91px;
+	    left: -63px;
+	    max-width: 400px;
+	}
 }
 
 .search-cont h1 {
@@ -789,10 +800,15 @@ footer .social-list li a{
   transition: all .1s ease-in-out;
 }
 
+.recipe-list .card .card-link:hover,
 .card .card-link:active,
 .card .card-link:hover,
 .card .card-link:focus {
   background-color: #2e8784;
+}
+
+.recipe-list .card .card-link:hover {
+  background: #2e8784;
 }
 
 .card .card-link i {
@@ -1476,6 +1492,10 @@ span.filter-cat-name {
   background-image: url(/img/register_2.jpg);
   background-position: center;
 }
+.contacto{
+  background-image: url(/img/contacto.jpg);
+  background-position: center;
+}
 .login-register{
   min-height: 80vh;
   background-size: cover;
@@ -1543,8 +1563,63 @@ span.filter-cat-name {
 .select-reasign .selection__arrow{
   top: 6px !important;
 }
-
 /* Empty results */
 .empty-results{
   min-height: 50vh;
+}
+
+/** Fixes **/
+.contacto .card-header,
+.login-register .card-header{
+  background-color: rgb(255, 126, 97);
+  color: white !important;
+  border: 1px solid #ff7e61;
+  border-top-left-radius: 2px;
+  border-top-right-radius: 2px;
+}
+
+.contacto h2:after,
+.login-register h2:after{
+  display: none;
+}
+
+.profile-follow{
+  max-width: 100px;
+}
+.profile-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.multi-ingredient-selector .select2-selection--single{
+  min-height: 50px !important;
+  padding: 9px;
+}
+.multi-ingredient-selector .select2-container--default .select2-selection--single .select2-selection__arrow {
+  height: 50px !important;
+}
+.quantity-ing{
+  min-height: 50px !important;
+  padding: 9px;
+}
+
+p.disabled{
+  background-color: #e9ecef;
+  opacity: 1;
+}
+
+.contacto .card,
+.login  .card,
+.register .card {
+border: none;
+}
+
+.login-register {
+  border: none
+}
+
+.contacto h2.h4,
+.register h2.h4,
+.login h2.h4 {
+  color: white !important;
 }

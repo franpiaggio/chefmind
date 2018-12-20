@@ -31,9 +31,6 @@ class CommentsController extends Controller{
      */
     public function delete(Request $request, $id){
         $comment = Comment::findOrFail($id);
-        if($comment->recipe->user_id != Auth::user()->id){
-            return back();
-        }
         $comment->delete();
         return back();
     }

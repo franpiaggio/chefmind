@@ -34,7 +34,7 @@
                     </div>
                 @endif
                 <div class="d-flex mt-3 mb-3 align-items-center">
-                    <h2 class="mb-3">Ingredientes registrados</h2>
+                    <h2 class="mb-3 mt-3 detail-border">Ingredientes registrados</h2>
                     <button class="btn btn-primary ml-auto new-ingredient">Agregar nuevo</button>
                 </div>
                 <div class="row">
