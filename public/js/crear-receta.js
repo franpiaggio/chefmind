@@ -126,6 +126,10 @@ $(document).ready(function(){
 
         var name = $("#ingredientsSelector").val();
         var quantity = $('#ingredientQuantity').val();
+        
+        /*if(!quantity){
+            quantity = '-'
+        }*/
 
         if(!name){
             $('.js-ing-vacio').removeClass('d-none');
@@ -136,6 +140,7 @@ $(document).ready(function(){
             $('.js-ing-vacio').removeClass('d-block');
         }
 
+        $('#ingredientsSelector').val(null).trigger('change');
         $('.multi-ingredient-selector .select2-selection__rendered').html('Ingresar un ingrediente');
         $("#ingredientsSelector").val('');
         $('#ingredientQuantity').val('');

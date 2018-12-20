@@ -3,7 +3,7 @@
 @section('content')
 <main class="main-container container-fluid">  
     <div class="row">
-        <header class="col-md-12 profile-topbar">
+        <header class="col-md-12 profile-topbar top-banner">
             <div class="container">
                 @if( $user->image == 'profile.png')
                 {{-- TODO: Super hardcodeado esto, cambiarlo --}}
@@ -15,11 +15,16 @@
                     <h1 class="profile-topbar__title">
                         {{ $user->name }}
                     </h1>
-                    @if($user->isFollowedBy(Auth::user()))
-                        <button data-id={{$user->id}} class="btn btn-green btn-sm ml-auto js-follow"><i class="fas fa-user-minus"></i> Dejar de seguir</button>
+                    @guest
                     @else
-                        <button data-id={{$user->id}} class="btn btn-green btn-sm ml-auto js-follow"><i class="fas fa-user-plus"></i> Seguir</button>
-                    @endif
+                        @if($user->id != Auth::user()->id)
+                            @if($user->isFollowedBy(Auth::user()))
+                                <button data-id={{$user->id}} class="btn btn-green btn-sm ml-auto js-follow"><i class="fas fa-user-minus"></i> Dejar de seguir</button>
+                            @else
+                                <button data-id={{$user->id}} class="btn btn-green btn-sm ml-auto js-follow"><i class="fas fa-user-plus"></i> Seguir</button>
+                            @endif
+                        @endif
+                    @endguest
                 </div>
                 <div class="profile-topbar__social">
                     @if( $user->facebook )

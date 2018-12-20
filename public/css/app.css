@@ -19,7 +19,6 @@ body {
   -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
-data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(0, 0, 0, 0.5)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E
 h1,
 h2,
 h3,
@@ -31,6 +30,12 @@ h6 {
   font-weight: 600!important;
   width: fit-content!important;
   width: -moz-fit-content!important;
+}
+
+h1,
+h2,
+h3{
+  font-weight: 400 !important;
 }
  
 h2.detail-border::after, 
@@ -794,10 +799,15 @@ footer .social-list li a{
   transition: all .1s ease-in-out;
 }
 
+.recipe-list .card .card-link:hover,
 .card .card-link:active,
 .card .card-link:hover,
 .card .card-link:focus {
   background-color: #2e8784;
+}
+
+.recipe-list .card .card-link:hover {
+  background: #2e8784;
 }
 
 .card .card-link i {
@@ -1561,7 +1571,7 @@ span.filter-cat-name {
 .contacto .card-header,
 .login-register .card-header{
   background-color: rgb(255, 126, 97);
-  color: white;
+  color: white !important;
   border: 1px solid #ff7e61;
   border-top-left-radius: 2px;
   border-top-right-radius: 2px;
@@ -1595,4 +1605,20 @@ span.filter-cat-name {
 p.disabled{
   background-color: #e9ecef;
   opacity: 1;
+}
+
+.contacto .card,
+.login  .card,
+.register .card {
+border: none;
+}
+
+.login-register {
+  border: none
+}
+
+.contacto h2.h4,
+.register h2.h4,
+.login h2.h4 {
+  color: white !important;
 }

@@ -86,17 +86,8 @@
                         {{$recipe->textpreview}}
                     </p>
                 </div>                
-                    <div class="ingredientes-receta my-5">
-                        <h2 class="h3 mb-4">Ingredientes</h2>
-                        <div class="ingredientes d-flex flex-wrap">
-                            @if(!$recipe->ingredients->isEmpty())
-                                @foreach($recipe->ingredients as $ingredient)
-                                <span class="badge bg-green color-white py-3 px-3 mr-2 my-1 "><i class="fas fa-utensils mr-2"></i> {{$ingredient->name}} <span>{{$ingredient->pivot->quantity}}</span> </span>
-                                @endforeach 
-                            @endif
-                        </div>
-                    </div>
-                </div>                        
+            </div>    
+                
             <div class="col-md-6 recipe-img d-flex flex-column align-items-start">
                 <img src="/uploads/featured/{{$recipe->featured_image}}" alt="{{$recipe->title}}" class="img-fluid rounded img-receta">
                 <div class="buttons d-flex fav-cont">
@@ -111,6 +102,17 @@
                     @endif
                 </div>
             </div>
+
+            <div class="col-md-12 ingredientes-receta my-5">
+                <h2 class="h3 mb-4">Ingredientes</h2>
+                <div class="ingredientes d-flex flex-wrap">
+                    @if(!$recipe->ingredients->isEmpty())
+                        @foreach($recipe->ingredients as $ingredient)
+                        <span class="badge bg-green color-white py-3 px-3 mr-2 my-1 "><i class="fas fa-utensils mr-2"></i> {{$ingredient->name}} <span>{{$ingredient->pivot->quantity}}</span> </span>
+                        @endforeach 
+                    @endif
+                </div>
+            </div>    
             </div>
             </div>
                 <div class="container contenido-receta mt-5">

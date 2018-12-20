@@ -55,18 +55,24 @@
                             </div> <!-- Todo: Cambiar esto --> <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
                         </div>
                     @else
+                        <style>
+                            .card-profile-follow p.card-text.text-center {
+                                min-height: 113px;
+                            }
+                        </style>
                         @foreach($followings as $followed)
-                            <div class="col-md-6 followed">
-                                <div class="card mb-5">
+                            <div class="col-md-4 followed">
+                                <div class="card card-profile-follow mb-5">
                                     <div class="my-3 profile-container">
-                                        <img class="card-img-top profile-follow" src="/uploads/default/profile.png" alt="Profile">
+                                        {{-- <img class="card-img-top profile-follow" src="/uploads/default/profile.png" alt="Profile"> --}}
+                                        <img class="card-img-top profile-follow rounded-circle" src="/uploads/perfiles/{{$followed->image}}" alt="Profile">
                                     </div>
                                     <div class="card-body text-center">
-                                        <h5 class="card-title">{{$followed->name}}</h5>
+                                        <h5 class="card-title text-center w-100">{{$followed->name}}</h5>
                                         @if($followed->description)
-                                            <p class="card-text">{{$followed->description}}</p>
+                                            <p class="card-text text-center">{{$followed->description}}</p>
                                         @else
-                                            <p class="card-text">Sin descripción.</p>
+                                            <p class="card-text text-center">Sin descripción.</p>
                                         @endif
                                         <div class="d-flex">
                                         <a href="/perfil/{{$followed->id}}">Ver perfil</a>
