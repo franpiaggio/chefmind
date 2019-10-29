@@ -1,7 +1,7 @@
 # Sobre la aplicación #
 
 Chefmind es una aplicación desarrollada como proyecto final para la carrera Desarrollo web cursada en Escuela Davinci.
-Se trata de un motor de bùsqueda de recetas basandose en ingredientes ignresados.
+Se trata de un motor de búsqueda de recetas basandose en ingredientes ingresados.
 
 ### Frameworks y requerimientos ###
 
