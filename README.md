@@ -1,6 +1,7 @@
 # Sobre la aplicación #
 
-Chefmind es una aplicación desarrollada como proyecto final de Francisco Piaggio para la carrera Desarrollo web cursada en Escuela Davinci.
+Chefmind es una aplicación desarrollada como proyecto final para la carrera Desarrollo web cursada en Escuela Davinci.
+Se trata de un motor de bùsqueda de recetas basandose en ingredientes ignresados.
 
 ### Frameworks y requerimientos ###
 
