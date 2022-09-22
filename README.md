@@ -1,3 +1,5 @@
+Live demo: https://chefmind.io
+
 # Sobre la aplicación #
 
 Chefmind es una aplicación desarrollada como proyecto final para la carrera Desarrollo web cursada en Escuela Davinci.
